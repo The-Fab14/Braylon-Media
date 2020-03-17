@@ -1,5 +1,7 @@
 package com.dev10.BraylonMedia.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,32 +12,23 @@ import javax.persistence.ManyToOne;
 import org.springframework.data.annotation.Id;
 
 @Entity
-public class User 
+public class Visit 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int userId;
+	int visitId;
 	
 	@Column(nullable = false)
-	String firstName;
-	
-	@Column(nullable = false)
-	String lastName;
-	
-	@Column(nullable = false)
-	String emailAddress;
-	
-	@Column(nullable = false)
-	String userRole;
-	
-	@Column(nullable = false)
-	String password;
-	
-	@Column(nullable = false)
-	boolean didPasswordChange;
+	LocalDate dateVisited;
 	
 	@ManyToOne
-    @JoinColumn(name = "stateId", nullable = false)
-	State state;
+    @JoinColumn(name = "userId", nullable = false)
+	User user;
 	
+	@Column(nullable = false)
+	String visitNotes;
+	
+	@ManyToOne
+    @JoinColumn(name = "clientId", nullable = false)
+	Client client;
 }

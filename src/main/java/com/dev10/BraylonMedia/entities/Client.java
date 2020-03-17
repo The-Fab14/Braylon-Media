@@ -10,32 +10,44 @@ import javax.persistence.ManyToOne;
 import org.springframework.data.annotation.Id;
 
 @Entity
-public class User 
+public class Client 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int userId;
+	int clientId;
 	
 	@Column(nullable = false)
-	String firstName;
+	String contactFirstName;
 	
 	@Column(nullable = false)
-	String lastName;
+	String contactLastName;
 	
 	@Column(nullable = false)
-	String emailAddress;
+	String companyName;
 	
 	@Column(nullable = false)
-	String userRole;
+	String streetAddress;
 	
 	@Column(nullable = false)
-	String password;
+	int aptUnit;
 	
 	@Column(nullable = false)
-	boolean didPasswordChange;
+	String city;
 	
 	@ManyToOne
     @JoinColumn(name = "stateId", nullable = false)
 	State state;
 	
+	@Column(nullable = false)
+	int zip;
+	
+	@ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+	User user;
+	
+	@Column(nullable = false)
+	String emailAddress;
+	
+	@Column(nullable = false)
+	String phoneNumber;
 }
