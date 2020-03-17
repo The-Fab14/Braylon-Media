@@ -1,3 +1,7 @@
-C:\Users\Executor\Desktop\fab14\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
-C:\Users\Executor\Desktop\fab14\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\MainController.java
-C:\Users\Executor\Desktop\fab14\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityConfig.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityWebAppInitializer.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\UserDetailsServiceImpl.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityUtils.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\MainController.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
