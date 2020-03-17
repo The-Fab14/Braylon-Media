@@ -13,7 +13,7 @@ CREATE TABLE crm_user (
 	user_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(256) NOT NULL,
     last_name VARCHAR(256) NOT NULL,
-    user_password VARCHAR(15) NOT NULL,
+    user_password VARCHAR(256) NOT NULL,
     did_password_change TINYINT(1) NOT NULL,
     user_role VARCHAR(256) NOT NULL,
     email_address VARCHAR(256) NOT NULL,
