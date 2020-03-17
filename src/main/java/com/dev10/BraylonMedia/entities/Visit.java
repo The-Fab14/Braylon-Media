@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 
@@ -25,7 +26,8 @@ public class Visit
     @JoinColumn(name = "userId", nullable = false)
 	User user;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
+	@Size(max = 5000)
 	String visitNotes;
 	
 	@ManyToOne

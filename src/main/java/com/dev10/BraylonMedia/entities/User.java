@@ -6,10 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 
-@Entity
+@Entity(name = "crm_user")
 public class User 
 {
 	@Id
@@ -17,12 +18,15 @@ public class User
 	int userId;
 	
 	@Column(nullable = false)
+	@Size(max = 256)
 	String firstName;
 	
 	@Column(nullable = false)
+	@Size(max = 256)
 	String lastName;
 	
 	@Column(nullable = false)
+	@Size(max = 256)
 	String emailAddress;
 	
 	@Column(nullable = false)
