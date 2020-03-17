@@ -10,36 +10,54 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 
-@Entity(name = "crm_user")
-public class User 
+@Entity(name = "crm_client")
+public class Client 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int userId;
+	int clientId;
 	
 	@Column(nullable = false)
 	@Size(max = 256)
-	String firstName;
+	String contactFirstName;
 	
 	@Column(nullable = false)
 	@Size(max = 256)
-	String lastName;
+	String contactLastName;
+	
+	@Column(nullable = false)
+	@Size(max = 256)
+	String companyName;
+	
+	@Column(nullable = false)
+	@Size(max = 256)
+	String streetAddress;
+	
+	@Column(nullable = false)
+	@Size(max = 256)
+	String aptUnit;
+	
+	@Column(nullable = false)
+	@Size(max = 256)
+	String city;
+	
+	@ManyToOne
+    @JoinColumn(name = "stateId", nullable = false)
+	State state;
+	
+	@Column(nullable = false)
+	@Size(max = 5)
+	int zip;
+	
+	@ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+	User user;
 	
 	@Column(nullable = false)
 	@Size(max = 256)
 	String emailAddress;
 	
 	@Column(nullable = false)
-	String userRole;
-	
-	@Column(nullable = false)
-	String password;
-	
-	@Column(nullable = false)
-	boolean didPasswordChange;
-	
-	@ManyToOne
-    @JoinColumn(name = "stateId", nullable = false)
-	State state;
-	
+	@Size(max = 10)
+	String phoneNumber;
 }

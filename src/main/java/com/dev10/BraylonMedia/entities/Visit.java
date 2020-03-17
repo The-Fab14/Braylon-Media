@@ -1,5 +1,7 @@
 package com.dev10.BraylonMedia.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,36 +12,25 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 
-@Entity(name = "crm_user")
-public class User 
+@Entity
+public class Visit 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int userId;
+	int visitId;
 	
 	@Column(nullable = false)
-	@Size(max = 256)
-	String firstName;
-	
-	@Column(nullable = false)
-	@Size(max = 256)
-	String lastName;
-	
-	@Column(nullable = false)
-	@Size(max = 256)
-	String emailAddress;
-	
-	@Column(nullable = false)
-	String userRole;
-	
-	@Column(nullable = false)
-	String password;
-	
-	@Column(nullable = false)
-	boolean didPasswordChange;
+	LocalDate dateVisited;
 	
 	@ManyToOne
-    @JoinColumn(name = "stateId", nullable = false)
-	State state;
+    @JoinColumn(name = "userId", nullable = false)
+	User user;
 	
+	@Column(nullable = true)
+	@Size(max = 5000)
+	String visitNotes;
+	
+	@ManyToOne
+    @JoinColumn(name = "clientId", nullable = false)
+	Client client;
 }
