@@ -1,3 +1,13 @@
+<<<<<<< HEAD
 C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
 C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
 C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\MainController.java
+=======
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityConfig.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityWebAppInitializer.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\UserDetailsServiceImpl.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityUtils.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\MainController.java
+C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
+>>>>>>> 07cc916571b2f180e16a4a6c289780cdd60a740c
