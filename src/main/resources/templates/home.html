@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>View Customers</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+  </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Braylon Media</a>
@@ -40,18 +40,18 @@
     </nav>
 
     <!-- "Search by ____" dropdowns go here -->
-    <select>
-      <option id="customerNumber" value="customerNumber" selected disabled>--Search by Customer Number--</option>
+    <select id="customerNumber">
+      <option selected disabled>--Search by Customer Number--</option>
     </select>
-    <select>
-      <option id="company" value="company" selected disabled>--Search by Company--</option>
+    <select id="company">
+      <option selected disabled>--Search by Company--</option>
     </select>
-    <select>
-      <option id="contactName" value="contactName" selected disabled>--Search by Contact Name--</option>
+    <select id="contactLastName">
+      <option selected disabled>--Search by Contact Name--</option>
     </select>
     <!-- LST OPTION ONLY: -->
-    <select>
-      <option id="salesRepId" value="salesRepId" selected disabled>--Search by Sales Rep ID--</option>
+    <select id="salesRepId">
+      <option selected disabled>--Search by Sales Rep ID--</option>
     </select>
 
     <!-- Customer table -->
