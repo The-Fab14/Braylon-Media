@@ -1,11 +1,10 @@
-@@ -0,0 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add New Order</title>
+    <title>Add New Customer</title>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
@@ -39,54 +38,32 @@
             </nav>
 <div class = "page-header">
    <h1 class="text-center">
-Add New Order  
+Add New Customer   
    </h1>
 </div>
     <div class="row">
     <div class="col-sm-4 offset-sm-4">
       <form>
         <div class="form-group">
-          <label for="basicNameInput">Sales Rep Id</label>
-          <input class="form-control" type="name" id="repId" placeholder="Company Name">
+          <label for="basicNameInput">Company Name</label>
+          <input class="form-control" type="name" id="companyName" placeholder="Company Name">
         </div>
         <div class="form-group">
-          <label for="basicNameInput">Customer Number</label>
-          <input class="form-control" type="name" id="cusNumber" placeholder="Customer Number">
+          <label for="basicNameInput">Contact</label>
+          <input class="form-control" type="name" id="contact" placeholder="Contact">
         </div>
              <div class='form-group'>
-          <label for="basicNameInput">Order Number</label>
-          <input class="form-control" type="name" id="orderNumber" placeholder="Order Number">
+          <label for="basicNameInput">Address</label>
+          <input class="form-control" type="name" id="address" placeholder="Address">
         </div>
           <div class='form-group'>
-          <label for="basicNameInput">Product Name</label>
-          <input class="form-control" type="name" id="productName" placeholder="Product Name">
+          <label for="basicSelect1">Phone</label>
+          <input class="form-control" type="phone" id="phone" placeholder="Phone">
           </div>
-          <div class="form-group">
-                <label for="formControlSelect1">Quantity</label>
-                <select class="form-control" id="quantity">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-              <div class='form-group'>
-                    <label for="basicNameInput">Price</label>
-                    <input class="form-control" type="name" id="price" placeholder="Price">
-                    </div>
-                    <div class="form-group">
-                            <label for="formControlSelect1">Status</label>
-                            <select class="form-control" id="status">
-                              <option>Pending</option>
-                              <option>Completed</option>
-                              <option>3</option>
-                            </select>
-                          </div>
-                          <div class='form-group'>
-                                <label for="basicNameInput">Comments</label>
-                                <input class="form-control" type="name" id="comments" placeholder="Comments">
-                                </div>
+          <div class='form-group'>
+                <label for="basicSelect1">Email</label>
+                <input class="form-control" type="email" id="email" placeholder="Email">
+                </div>
         <div class="form-check">
         </div>
         <button type="cancel" class="btn btn-danger">Cancel</button>
