@@ -18,11 +18,4 @@ public class LoginController
     {
         return "login";
     }
-    
-    @PostMapping("/login")
-    public String login(String userId, String password)
-    {
-        
-        return "redirect:home";
-    }
 }
