@@ -10,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
+import lombok.Data;
 
 @Entity
+@Data
 public class Visit
 {
 	@Id
