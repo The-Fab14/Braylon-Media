@@ -5,15 +5,15 @@
  */
 package com.dev10.BraylonMedia.repositories;
 
-import com.dev10.BraylonMedia.entities.Order;
+import com.dev10.BraylonMedia.entities.Visit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author diego
+ * @author joe
  */
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Integer>{
-
+public interface VisitRepository extends JpaRepository<Visit, Integer>{
+    
 }
