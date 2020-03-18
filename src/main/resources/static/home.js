@@ -56,7 +56,7 @@ function displayDefaultCustomerView(clients){
         '<td>' + client.state + '</td>' +
         '<td>' + client.zip + '</td>' +
         '<td>' + client.phoneNumber + '</td>' +
-        '<td>' + client.emailAddress + '</td>' +
+        '<td>' + client.emailAddress + '</td>'
         );
     });
 }
