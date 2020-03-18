@@ -146,3 +146,45 @@ INSERT INTO state(state_id, state_name)
 	('WI', 'Wisconsin'),
 	('WY', 'Wyoming');
 
+INSERT INTO crm_user (first_name, last_name, user_password, did_password_change, user_role, email_address, state_id) VALUES
+	('George', 'Costanza', 'jerkstore', 2, 'Sales Representative', 'gcostanza@braylonm.com', 'NY'),
+	('Elaine', 'Benes', 'stela123', 2, 'Sales Representative', 'ebenes@braylonm.com', 'NY'),
+	('Cosmo', 'Kramer', 'giddyup', 2, 'Sales Representative', 'ckramer@braylonm.com', 'NY'),
+	('Frank', 'Costanza', 'serenitynow', 2, 'Leadership Team', 'fcostanza@braylonm.com', 'NJ'),
+	('Jay', 'Peterman', 'squirleydan22', 2,  'Leadership Team', 'jpeterman@braylon.com', 'NV');
+    
+INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('John', 'Martin','Ted Talks', '285 Young Road', 'Apt #301', 'Stone Mountain', '30385','jmartin@gmail.com','6783611390','GA',1);
+INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Alex', 'Cross','Live Sound Prodution', '7816 Monogramm Lane', 'Apt #2200','Mint Hill','28227','cross_sounds@gmail.com','7045521694','NC',2);
+INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Casey', 'Jones','Stage Audio', '3000 College Drive', 'Apt #305', 'Savannah', '30385','jstagestudios01@yahoo.com','2290052387','GA', 3);
+INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Meghan', 'Robinson','Sound Peristance', '25001 Venice Dr.', 'Apt #8759', 'Los Angeles','93736','s.persistance@microsoft.com','8063667834','LA',4);
+INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Joey', 'Martin','Creative Sound', '1026 Jay Street', 'Apt# 264', 'Charlotte','28208','creativesound@gmail.com','7048881497','NC', 5);
+
+
+INSERT INTO visit(visit_id, date_visited, user_id, client_id)
+	VALUES
+    ('1', '2020-01-13', '1', '1'),
+	('2', '2020-01-14', '2', '2'),
+	('3', '2020-01-15', '3', '3'),
+	('4', '2020-01-16', '4', '4'),
+	('5', '2020-01-17', '5', '5');
+    
+INSERT INTO product(product_name, price) VALUES
+	('Jumbotron XXL', 799.99),
+    ('OLED Jumbotron 392', 1099.99),
+    ('Jumbotron 4K Ultra HD', 999.99),
+    ('Jumbotron 4K UHD with LTE', 1299.99),
+    ('Jumbotron Smart 4K XL', 899.99);
+    
+INSERT INTO crm_order(date_submitted, date_installed, date_completed, order_total, order_status, order_comments, client_id) VALUES
+	('2020-04-01', '2020-04-05', '2020-04-06', 1299.99, 'Complete', null, 1),
+    ('2020-05-12', '2020-05-14', '2020-05-15', 1099.99, 'Complete', null, 2),
+    ('2020-05-12', '2020-05-14', '2020-05-16', 899.99, 'Complete', null, 3),
+    ('2020-04-15', '2020-04-16', '2020-04-16', 999.99, 'Complete', null, 4),
+    ('2020-06-04', '2020-06-08', '2020-06-10', 799.99, 'Complete', null, 5);
+
+INSERT INTO crm_order_product(order_id, product_id, quantity) VALUES
+	(1, 4, 1),
+    (2, 2, 1),
+    (3, 5, 1),
+    (4, 3, 1),
+    (5, 1, 1);
