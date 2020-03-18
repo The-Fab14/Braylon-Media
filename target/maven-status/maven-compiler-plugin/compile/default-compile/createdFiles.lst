@@ -1,3 +1,14 @@
+com\dev10\BraylonMedia\entities\Product.class
+com\dev10\BraylonMedia\controllers\MainController.class
+com\dev10\BraylonMedia\services\LookupService.class
+com\dev10\BraylonMedia\entities\Client.class
 com\dev10\BraylonMedia\entities\User.class
 com\dev10\BraylonMedia\BraylonMediaApplication.class
-com\dev10\BraylonMedia\controllers\MainController.class
+com\dev10\BraylonMedia\config\SecurityConfig.class
+com\dev10\BraylonMedia\entities\State.class
+com\dev10\BraylonMedia\config\UserDetailsServiceImpl.class
+com\dev10\BraylonMedia\config\SecurityUtils.class
+com\dev10\BraylonMedia\entities\Visit.class
+com\dev10\BraylonMedia\services\LookupServiceImpl.class
+com\dev10\BraylonMedia\entities\Order.class
+com\dev10\BraylonMedia\config\SecurityWebApplicationInitializer.class
