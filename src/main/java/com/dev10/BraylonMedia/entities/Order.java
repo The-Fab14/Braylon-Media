@@ -15,36 +15,36 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 @Entity(name = "crm_order")
-public class Order 
+public class Order
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int orderId;
-	
+
 	@Column(nullable = false)
 	LocalDate dateSubmitted;
-	
+
 	@Column
 	LocalDate dateInstalled;
-	
+
 	@Column
 	LocalDate dateCompleted;
-	
+
 	@Column(nullable = false)
 	double orderTotal;
-	
+
 	@Column(nullable = false)
 	@Size(max = 256)
 	String orderStatus;
-	
+
 	@Column
 	@Size(max = 5000)
 	String orderComments;
-	
+
 	@ManyToOne
     @JoinColumn(name = "clientId", nullable = false)
 	Client client;
-	
+
 	@ManyToMany
     @JoinTable(name = "crm_order_product",
             joinColumns = {@JoinColumn(name = "orderId")},
