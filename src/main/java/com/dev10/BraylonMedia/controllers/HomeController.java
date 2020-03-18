@@ -38,4 +38,10 @@ public class HomeController
         //return function to get clients(userId)
         return null;
     }
+    
+    @GetMapping("/maintenance")
+    public String displayMaintenance()
+    {
+        return "maintenance";
+    }
 }
