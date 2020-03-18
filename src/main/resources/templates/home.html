@@ -40,14 +40,45 @@
     </nav>
 
     <!-- "Search by ____" dropdowns go here -->
+    <select>
+      <option id="customerNumber" value="customerNumber" selected disabled>--Search by Customer Number--</option>
+    </select>
+    <select>
+      <option id="company" value="company" selected disabled>--Search by Company--</option>
+    </select>
+    <select>
+      <option id="contactName" value="contactName" selected disabled>--Search by Contact Name--</option>
+    </select>
+    <!-- LST OPTION ONLY: -->
+    <select>
+      <option id="salesRepId" value="salesRepId" selected disabled>--Search by Sales Rep ID--</option>
+    </select>
 
     <!-- Customer table -->
     <table>
         <thead>
-
+          <tr>
+            <th>Company Name</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+          </tr>
         </thead>
         <tbody>
             <!-- JS displaying stuff here -->
+            <!-- hardcoded example customer -->
+            <tr>
+              <td>Movies and Stuff LLC</td>
+              <td>Johnson</td>
+              <td>Dwayne</td>
+              <td>8014 Bristle Ln</td>
+              <td>Charlotte</td>
+              <td>NC</td>
+              <td>28214</td>
+              <td>555-555-5555</td>
+              <td>therock@gmail.com</td>
+            </tr>
         </tbody>
     </table>
 
