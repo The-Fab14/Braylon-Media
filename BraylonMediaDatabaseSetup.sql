@@ -146,12 +146,12 @@ INSERT INTO state(state_id, state_name)
 	('WI', 'Wisconsin'),
 	('WY', 'Wyoming');
 
-INSERT INTO crm_user (first_name, last_name, user_password, did_password_change, user_role, email_address, state_id) VALUES
-	('George', 'Costanza', 'jerkstore', 2, 'Sales Representative', 'gcostanza@braylonm.com', 'NY'),
-	('Elaine', 'Benes', 'stela123', 2, 'Sales Representative', 'ebenes@braylonm.com', 'NY'),
-	('Cosmo', 'Kramer', 'giddyup', 2, 'Sales Representative', 'ckramer@braylonm.com', 'NY'),
-	('Frank', 'Costanza', 'serenitynow', 2, 'Leadership Team', 'fcostanza@braylonm.com', 'NJ'),
-	('Jay', 'Peterman', 'squirleydan22', 2,  'Leadership Team', 'jpeterman@braylon.com', 'NV');
+INSERT INTO crm_user (user_id, first_name, last_name, user_password, did_password_change, user_role, email_address, state_id) VALUES
+	(1, 'George', 'Costanza', '$2a$10$yOO7PnSu4D.KsoSkXIndHOXCuG3ydIp3CpG5NModp9APR2O7IUFV2', 0, 'ROLE_USER', 'gcostanza@braylonm.com', 'NY'),
+	(2, 'Elaine', 'Benes', '$2a$10$yOO7PnSu4D.KsoSkXIndHOXCuG3ydIp3CpG5NModp9APR2O7IUFV2', 0, 'ROLE_USER', 'ebenes@braylonm.com', 'NY'),
+	(3, 'Cosmo', 'Kramer', '$2a$10$yOO7PnSu4D.KsoSkXIndHOXCuG3ydIp3CpG5NModp9APR2O7IUFV2', 0, 'ROLE_USER', 'ckramer@braylonm.com', 'NY'),
+	(4, 'Frank', 'Costanza', '$2a$10$yOO7PnSu4D.KsoSkXIndHOXCuG3ydIp3CpG5NModp9APR2O7IUFV2', 0, 'ROLE_ADMIN', 'fcostanza@braylonm.com', 'NJ'),
+	(5, 'Jay', 'Peterman', '$2a$10$yOO7PnSu4D.KsoSkXIndHOXCuG3ydIp3CpG5NModp9APR2O7IUFV2', 0,  'ROLE_ADMIN', 'jpeterman@braylon.com', 'NV');
     
 INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('John', 'Martin','Ted Talks', '285 Young Road', 'Apt #301', 'Stone Mountain', '30385','jmartin@gmail.com','6783611390','GA',1);
 INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Alex', 'Cross','Live Sound Prodution', '7816 Monogramm Lane', 'Apt #2200','Mint Hill','28227','cross_sounds@gmail.com','7045521694','NC',2);

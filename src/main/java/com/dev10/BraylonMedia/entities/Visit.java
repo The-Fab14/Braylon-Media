@@ -14,24 +14,24 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Visit
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int visitId;
+public class Visit {
 
-	@Column(nullable = false)
-	LocalDate dateVisited;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int visitId;
 
-	@ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-	User user;
+    @Column(nullable = false)
+    private LocalDate dateVisited;
 
-	@Column(nullable = true)
-	@Size(max = 5000)
-	String visitNotes;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-	@ManyToOne
-    @JoinColumn(name = "clientId", nullable = false)
-	Client client;
+    @Column(nullable = true)
+    @Size(max = 5000)
+    private String visitNotes;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 }
