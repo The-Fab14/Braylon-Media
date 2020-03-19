@@ -6,31 +6,32 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
-
-import org.springframework.data.annotation.Id;
+import lombok.Data;
 
 @Entity
-public class Visit 
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int visitId;
-	
-	@Column(nullable = false)
-	LocalDate dateVisited;
-	
-	@ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-	User user;
-	
-	@Column(nullable = true)
-	@Size(max = 5000)
-	String visitNotes;
-	
-	@ManyToOne
-    @JoinColumn(name = "clientId", nullable = false)
-	Client client;
+@Data
+public class Visit {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int visitId;
+
+    @Column(nullable = false)
+    private LocalDate dateVisited;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Column(nullable = true)
+    @Size(max = 5000)
+    private String visitNotes;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 }
