@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -30,10 +31,17 @@ public class HomeController
         return "home";
     }
     
+    @ResponseBody
     @GetMapping("/clients/{userId}")
     public List<Client> getClients(@PathVariable String userId)
     {
         //return function to get clients(userId)
         return null;
+    }
+    
+    @GetMapping("/maintenance")
+    public String displayMaintenance()
+    {
+        return "maintenance";
     }
 }

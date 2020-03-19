@@ -13,8 +13,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
+import lombok.Data;
 
 @Entity(name = "crm_order")
+@Data
 public class Order
 {
 	@Id
