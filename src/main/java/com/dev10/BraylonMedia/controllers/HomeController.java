@@ -1,8 +1,10 @@
 package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.Client;
+import com.dev10.BraylonMedia.services.ClientService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController 
 {
+    @Autowired
+    ClientService clients;
+    
     @GetMapping({"/", "/home"})
     public String displayHome(Model model, HttpServletRequest request)
     {
@@ -35,8 +40,7 @@ public class HomeController
     @GetMapping("/clients/{userId}")
     public List<Client> getClients(@PathVariable String userId)
     {
-        //return function to get clients(userId)
-        return null;
+        return clients.findAll();
     }
     
     @GetMapping("/maintenance")
