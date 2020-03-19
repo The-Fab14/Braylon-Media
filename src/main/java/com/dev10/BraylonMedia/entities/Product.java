@@ -1,5 +1,6 @@
 package com.dev10.BraylonMedia.entities;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,18 +13,18 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Product
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int productId;
+public class Product {
 
-	@Column(nullable = false)
-	String productName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int productId;
 
-	@Column(nullable = false)
-	double price;
+    @Column(nullable = false)
+    private String productName;
 
-	@ManyToMany(mappedBy = "products")
+    @Column(nullable = false)
+    private BigDecimal price;
+
+    @ManyToMany(mappedBy = "products")
     private List<Order> orders;
 }
