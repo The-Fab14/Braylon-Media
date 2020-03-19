@@ -10,25 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
+import lombok.Data;
 
 @Entity
-public class Visit 
+@Data
+public class Visit
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int visitId;
-	
+
 	@Column(nullable = false)
 	LocalDate dateVisited;
-	
+
 	@ManyToOne
     @JoinColumn(name = "userId", nullable = false)
 	User user;
-	
+
 	@Column(nullable = true)
 	@Size(max = 5000)
 	String visitNotes;
-	
+
 	@ManyToOne
     @JoinColumn(name = "clientId", nullable = false)
 	Client client;

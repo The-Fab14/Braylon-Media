@@ -5,7 +5,7 @@
  */
 package com.dev10.BraylonMedia.services;
 
-import com.dev10.BraylonMedia.data.StateRepository;
+import com.dev10.BraylonMedia.repositories.StateRepository;
 import com.dev10.BraylonMedia.entities.State;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

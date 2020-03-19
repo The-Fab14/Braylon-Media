@@ -16,13 +16,6 @@ public class LoginController
     @GetMapping("/login")
     public String displayLogin()
     {
-        return "login";
-    }
-    
-    @PostMapping("/login")
-    public String login(String userId, String password)
-    {
-        
-        return "redirect:home";
+        return "log_in";
     }
 }
