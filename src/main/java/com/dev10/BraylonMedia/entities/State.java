@@ -13,8 +13,8 @@ public class State
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	String stateId;
+	private String stateId;
 	
 	@Column(nullable = false)
-	String stateName;
+	private String stateName;
 }

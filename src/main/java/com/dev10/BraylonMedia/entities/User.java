@@ -12,35 +12,35 @@ import lombok.Data;
 
 @Entity(name = "crm_user")
 @Data
-public class User
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int userId;
+public class User {
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String firstName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userId;
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String lastName;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String firstName;
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String emailAddress;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String lastName;
 
-	@Column(nullable = false)
-	String userRole;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String emailAddress;
 
-	@Column(nullable = false)
-	String password;
+    @Column(nullable = false)
+    private String userRole;
 
-	@Column(nullable = false)
-	boolean didPasswordChange;
+    @Column(nullable = false)
+    private String userPassword;
 
-	@ManyToOne
-    @JoinColumn(name = "stateId", nullable = false)
-	State state;
+    @Column(nullable = false)
+    private boolean didPasswordChange;
+
+    @ManyToOne
+    @JoinColumn(name = "state_id", nullable = false)
+    private State state;
 
 }

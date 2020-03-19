@@ -12,53 +12,53 @@ import lombok.Data;
 
 @Entity(name = "crm_client")
 @Data
-public class Client
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int clientId;
+public class Client {
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String contactFirstName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int clientId;
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String contactLastName;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String contactFirstName;
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String companyName;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String contactLastName;
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String streetAddress;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String companyName;
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String aptUnit;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String streetAddress;
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String city;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String aptUnit;
 
-	@ManyToOne
-    @JoinColumn(name = "stateId", nullable = false)
-	State state;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String city;
 
-	@Column(nullable = false)
-	@Size(max = 5)
-	int zip;
+    @ManyToOne
+    @JoinColumn(name = "state_id", nullable = false)
+    private State state;
 
-	@ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-	User user;
+    @Column(nullable = false)
+    @Size(max = 5)
+    private int zip;
 
-	@Column(nullable = false)
-	@Size(max = 256)
-	String emailAddress;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-	@Column(nullable = false)
-	@Size(max = 10)
-	String phoneNumber;
+    @Column(nullable = false)
+    @Size(max = 256)
+    private String emailAddress;
+
+    @Column(nullable = false)
+    @Size(max = 10)
+    private String phoneNumber;
 }
