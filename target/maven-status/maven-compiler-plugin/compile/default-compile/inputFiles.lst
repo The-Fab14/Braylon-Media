@@ -1,19 +1,37 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
-C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
-C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\MainController.java
-=======
-=======
->>>>>>> 0587de6728ebc8c9a792c501fbc7f43cde3d22d4
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityConfig.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityWebAppInitializer.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\UserDetailsServiceImpl.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityUtils.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\MainController.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
-<<<<<<< HEAD
->>>>>>> 07cc916571b2f180e16a4a6c289780cdd60a740c
-=======
->>>>>>> 0587de6728ebc8c9a792c501fbc7f43cde3d22d4
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\ClientController.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\SalesRepController.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\repositories\VisitRepository.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\OrderController.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\Visit.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\LookupServiceImpl.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\repositories\StateRepository.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\PWEnc.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\ProductService.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\VisitService.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\LoginController.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\ProductController.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\ClientService.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\repositories\OrderRepository.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\repositories\ProductRepository.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityUtils.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\Client.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\VisitController.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\HomeController.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\repositories\ClientRepository.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\ProductServiceImpl.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\UserServiceImpl.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\VisitServiceImpl.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\State.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\LookupService.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\OrderServiceImpl.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityWebAppInitializer.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\repositories\UserRepository.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\ClientServiceImpl.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityConfig.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\Order.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\UserService.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\Product.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\services\OrderService.java
+C:\Users\chris\OneDrive\Documents\GitHub\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\UserDetailsServiceImpl.java
