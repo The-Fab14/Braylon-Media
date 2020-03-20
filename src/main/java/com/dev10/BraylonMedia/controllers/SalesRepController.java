@@ -31,6 +31,12 @@ public class SalesRepController
     @Autowired
     ClientRepository clients;
     
+    @GetMapping("/add_sales_rep")
+    public String displayAddUser()
+    {
+        return "add_sales_rep";
+    }
+    
     @PostMapping("/add_sales_rep")
     public String displayAddUser(User user)
     {   
