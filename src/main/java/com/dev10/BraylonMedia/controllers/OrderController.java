@@ -1,11 +1,7 @@
 package com.dev10.BraylonMedia.controllers;
 
-import com.dev10.BraylonMedia.services.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -16,30 +12,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class OrderController 
 {
-    @Autowired
-    OrderService orders;
-    
     @GetMapping("/add_new_order")
-    public String displayAddOrder(Model model)
+    public String displayAddOrder()
     {
         return "add_new_order";
     }
     
-    @PostMapping("/add_new_order")
-    public String addOrder()
-    {
-        
-        return "redirect:/orders";
-    }
-    
     @GetMapping("/edit_order")
-    public String displayEditOrder(Model model)
+    public String displayEditOrder()
     {
         return "edit_order";
     }
     
     @GetMapping("/orders")
-    public String displayOrders(Model model)
+    public String displayOrders()
     {
         return "orders";
     }
