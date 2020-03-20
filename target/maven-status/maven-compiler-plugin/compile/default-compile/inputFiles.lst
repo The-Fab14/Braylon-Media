@@ -1,19 +1,37 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
-C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
-C:\Repos\BraylonMediaProject\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\MainController.java
-=======
-=======
->>>>>>> 0587de6728ebc8c9a792c501fbc7f43cde3d22d4
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\BraylonMediaApplication.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityConfig.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityWebAppInitializer.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\UserDetailsServiceImpl.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\config\SecurityUtils.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\controllers\MainController.java
-C:\Repos\Braylon-Media\src\main\java\com\dev10\BraylonMedia\entities\User.java
-<<<<<<< HEAD
->>>>>>> 07cc916571b2f180e16a4a6c289780cdd60a740c
-=======
->>>>>>> 0587de6728ebc8c9a792c501fbc7f43cde3d22d4
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/repositories/VisitRepository.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/BraylonMediaApplication.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/entities/Client.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/controllers/SalesRepController.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/OrderServiceImpl.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/ProductServiceImpl.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/entities/Product.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/PWEnc.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/entities/Visit.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/config/SecurityConfig.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/controllers/ClientController.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/LookupServiceImpl.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/repositories/StateRepository.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/controllers/OrderController.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/LookupService.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/VisitService.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/config/SecurityWebAppInitializer.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/controllers/ProductController.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/repositories/OrderRepository.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/repositories/ClientRepository.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/controllers/LoginController.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/ProductService.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/config/UserDetailsServiceImpl.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/UserService.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/entities/User.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/entities/State.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/controllers/HomeController.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/controllers/VisitController.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/repositories/UserRepository.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/ClientServiceImpl.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/OrderService.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/VisitServiceImpl.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/config/SecurityUtils.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/repositories/ProductRepository.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/ClientService.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/services/UserServiceImpl.java
+/Users/joe/Documents/GitHub/Braylon-Media/src/main/java/com/dev10/BraylonMedia/entities/Order.java
