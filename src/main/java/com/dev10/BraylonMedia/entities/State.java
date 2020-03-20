@@ -5,14 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.Data;
 
 @Entity
+@Data
 public class State 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	String stateId;
+	private String stateId;
 	
 	@Column(nullable = false)
-	String stateName;
+	private String stateName;
 }

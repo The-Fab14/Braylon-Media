@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dev10.BraylonMedia.data;
+package com.dev10.BraylonMedia.repositories;
 
-import com.dev10.BraylonMedia.entities.State;
+import com.dev10.BraylonMedia.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Daniel Bart
+ * @author diego
  */
 @Repository
-public interface StateRepository extends JpaRepository<State, String> {
+public interface ProductRepository extends JpaRepository<Product, Integer>{
     
 }
