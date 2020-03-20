@@ -1,21 +1,18 @@
 $(document).ready(function () {
     
     $.when(getCustomers(userId)).done(function(clients){
-    // display results in each dropdown
-        // customer number sorting
-        // company sorting
-        // contact name sorting
-        // sales rep ID sorting
 
     // display results in alphabetical order (contact last name)
-    displayDefaultCustomerView(clients);
+    displayDefaultClientView(clients);
 
     //populate dropdown search boxes
-    populateSearchByClientIdDropdown(clients);
-    populateSearchByCompanyDropdown(clients);
-    populateSearchByContactLastNameDropdown(clients);
-    populateSearchBySalesRepId(clients);
+    populateDropdownByClientId(clients);
+    populateDropdownByCompany(clients);
+    populateDropdownByContactLastName(clients);
+    populateDropdownBySalesRepId(clients);
     });
+
+    displaySearchResults(clients);
 });
 
 // AJAX call
@@ -32,7 +29,8 @@ function getCustomers(userId){
     });
 }
 
-function displayDefaultCustomerView(clients){
+// Runs on page load to display the default table view of clients (sorted by contact last name)
+function displayDefaultClientView(clients){
     const tbody = $('tbody');
     console.log('clients: ', clients);
 
@@ -61,7 +59,10 @@ function displayDefaultCustomerView(clients){
     });
 }
 
-function populateSearchByClientIdDropdown(clients){
+/*
+    Functions for populating the 'search by' dropdowns
+*/
+function populateDropdownByClientId(clients){
     // sort clients by customer number
     const clientsByClientId = clients.sort((a, b) => {
         if (a.clientId > b.clientId){
@@ -71,7 +72,7 @@ function populateSearchByClientIdDropdown(clients){
     });
 
     // populate dropdown
-    const dropdown = $('#customerNumber');
+    const dropdown = $('#clientId');
     clientsByClientId.forEach(client => {
         dropdown.append('<option' +
             'value="' + client.clientId + '" ' +
@@ -82,7 +83,7 @@ function populateSearchByClientIdDropdown(clients){
     });
 }
 
-function populateSearchByCompanyDropdown(clients){
+function populateDropdownByCompany(clients){
     // sort clients by company name
     const clientsByCompanyName = clients.sort((a, b) => {
         if (a.companyName > b.companyName){
@@ -91,7 +92,6 @@ function populateSearchByCompanyDropdown(clients){
         return false;
     });
 
-    // populate dropdown
     const dropdown = $('#company');
     clientsByCompanyName.forEach(client => {
         dropdown.append('<option' +
@@ -103,7 +103,7 @@ function populateSearchByCompanyDropdown(clients){
     });
 }
 
-function populateSearchByContactLastNameDropdown(clients){
+function populateDropdownByContactLastName(clients){
     // sort clients by contact lastname
     const clientsByContactLastName = clients.sort((a, b) => {
         if (a.contactLastName > b.contactLastName){
@@ -124,9 +124,75 @@ function populateSearchByContactLastNameDropdown(clients){
     });
 }
 
-function populateSearchBySalesRepId(clients){
+function populateDropdownBySalesRepId(clients){
+    // sort clients by Sales Rep ID (lST view only)
+    const clientsBySalesRepId = clients.sort((a, b) => {
+        if (a.user.userId > b.user.userId){
+            return true;
+        }
+        return false;
+    });
+
+    // populate dropdown
+    const dropdown = $('#salesRepId');
+    clientsBySalesRepId.forEach(client => {
+        dropdown.append('<option' +
+            'value="' + client.user.userId + '" ' +
+            'id="' + client.user.userId + '">' + 
+            client.user.userId +
+            '</option>'
+        );
+    });
+}
+
+function matchByClientId(clients, elementId){
+    clients.forEach(client => {
+        if (client.clientId === elementId){
+            
+        }
+    });
+}
+
+function matchByCompanyName(clients, elementId){
 
 }
 
-// Refactoring in progress: pass in an array of clientIds instead of clients, dropdown selector
-//function populateSearchByClientId2(clients)
+function matchByContactLastName(clients, elementId){
+
+}
+
+function matchBySalesRepId(clients, elementId){
+
+}
+
+// displays matching results when an <option> element is clicked
+function displaySearchResults(clients){
+    // dropdown element (<option>) is clicked
+    $('option').click(function (event) { 
+        event.preventDefault();
+        
+        // grab the element's ID
+        const elementId = $(this.attr('id'));
+
+        // grab the element's parent (<select>) ID
+        const searchParameter = $(this).parent().attr('id');
+
+        // display only results that match that element
+        switch(searchParameter){
+            case "clientId":
+                matchByClientId(clients, elementId);
+                break;
+            case "companyName":
+                matchByCompanyName(clients, elementId);
+                break;
+            case "contactLastName":
+                matchByContactLastName(clients, elementId);
+                break;
+            case "salesRepId":
+                matchBySalesRepId(clients, elementId);
+                break;
+            default:
+                alert("Not sure what's going on here");
+        }
+    });
+}
