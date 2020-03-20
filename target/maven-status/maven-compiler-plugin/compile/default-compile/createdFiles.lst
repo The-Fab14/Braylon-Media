@@ -1,6 +1,7 @@
 com\dev10\BraylonMedia\services\ClientService.class
 com\dev10\BraylonMedia\repositories\ClientRepository.class
 com\dev10\BraylonMedia\services\ProductService.class
+com\dev10\BraylonMedia\controllers\SalesRepController.class
 com\dev10\BraylonMedia\repositories\ProductRepository.class
 com\dev10\BraylonMedia\controllers\HomeController.class
 com\dev10\BraylonMedia\services\LookupService.class

@@ -43,8 +43,4 @@ public class User {
     @JoinColumn(name = "state_id", nullable = false)
     private State state;
 
-    @ManyToOne
-    @JoinColumn(name = "state_id", nullable = false)
-    private State state;
-
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class LoginController {
-    
+
     @Autowired
     UserService userService;
 
@@ -36,7 +36,7 @@ public class LoginController {
 
             if (role.equals("ROLE_ADMIN") || role.equals("ROLE_USER")) {
                 return "redirect:/home";
-            } 
+            }
 
         }
 
