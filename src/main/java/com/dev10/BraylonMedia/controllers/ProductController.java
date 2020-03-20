@@ -1,7 +1,8 @@
 package com.dev10.BraylonMedia.controllers;
 
+import com.dev10.BraylonMedia.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
@@ -12,5 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProductController 
 {
-    
+ @Autowired
+ ProductRepository products;
 }
