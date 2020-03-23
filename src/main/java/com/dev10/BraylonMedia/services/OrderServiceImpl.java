@@ -61,4 +61,9 @@ public class OrderServiceImpl implements OrderService {
         return origOrder;
     }
 
+    @Override
+    public int getOrderProductQuantity(int orderId, int productId) {
+        return orderRepo.findOrderProductQuantity(orderId, productId);
+    }
+
 }
