@@ -187,7 +187,7 @@ public class HomeController {
     // Edit client
     @ResponseBody
     @PostMapping("/edit-client/{clientIdString}")
-    public ResponseEntity editClient(@PathVariable String clientIdString, @RequestBody Map<String, String> map) { // OPTIMIZE HERE
+    public ResponseEntity editClient(@PathVariable String clientIdString, @RequestBody Map<String, String> map) {
 
         int clientId = Integer.parseInt(clientIdString);
         String contactFirstName = map.get("contactFirstName");
