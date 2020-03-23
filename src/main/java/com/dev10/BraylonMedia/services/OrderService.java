@@ -13,7 +13,5 @@ public interface OrderService {
     List<Order> getOrdersByClientId(int id);
     List<Order> getOrdersByCompany(String company);
     Order editOrder(int origOrderId, Order editedOrder);
-    
-    int getOrderProductQuantity (int orderId, int productId);
 
 }

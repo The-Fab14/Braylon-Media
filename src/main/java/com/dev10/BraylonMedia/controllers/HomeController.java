@@ -100,7 +100,9 @@ public class HomeController {
     @GetMapping("/load-clients")
     public List<Client> loadClients() {
 
-        User user = userService.getUserFromSession();
+        String username = SecurityUtils.getUserName();
+        int userId = Integer.parseInt(username);
+        User user = userService.findById(userId);
 
         List<Client> clients = new ArrayList<>();
 
@@ -120,7 +122,9 @@ public class HomeController {
     public ResponseEntity<Client> loadClient(@PathVariable String clientIdString) {
         int clientId = Integer.parseInt(clientIdString);
 
-        User user = userService.getUserFromSession();
+        String username = SecurityUtils.getUserName();
+        int userId = Integer.parseInt(username);
+        User user = userService.findById(userId);
 
         Client client = null;
 
@@ -162,7 +166,9 @@ public class HomeController {
         String emailAddress = map.get("emailAddress");
         String phoneNumber = map.get("phoneNumber");
 
-        User user = userService.getUserFromSession();
+        String username = SecurityUtils.getUserName();
+        int userId = Integer.parseInt(username);
+        User user = userService.findById(userId);
 
         Client client = new Client();
 
@@ -204,7 +210,9 @@ public class HomeController {
         String emailAddress = map.get("emailAddress");
         String phoneNumber = map.get("phoneNumber");
 
-        User user = userService.getUserFromSession();
+        String username = SecurityUtils.getUserName();
+        int userId = Integer.parseInt(username);
+        User user = userService.findById(userId);
 
         Client client = new Client();
 
@@ -247,7 +255,9 @@ public class HomeController {
         
         int clientId = Integer.parseInt(clientIdString);
 
-        User user = userService.getUserFromSession();
+        String username = SecurityUtils.getUserName();
+        int userId = Integer.parseInt(username);
+        User user = userService.findById(userId);
         
         if (user.getUserRole().equals("ROLE_USER")) {
             List<Client> clientList = clientService.findAllByUserId(user.getUserId());

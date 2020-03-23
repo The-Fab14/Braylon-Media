@@ -86,7 +86,7 @@
                         <tr th:each="user : ${users}">
                         <td th:text="${user.firstName}"></td>
                         <td th:text="${user.lastName}"></td>
-                        <td><a th:href="@{edit_user(userId=${user.userId})}" th:text="${user.userId}"></a></td>
+                        <td th:text="${user.userId}"></td>
                         <td th:text="${user.state.stateName}"></td>
                         </tr>
           
