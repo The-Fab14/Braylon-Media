@@ -18,4 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends JpaRepository<Order, Integer>{
     @Query(value = "SELECT op.quantity FROM crm_order_product op WHERE op.order_id = ?1 AND op.product_id = ?2", nativeQuery = true)
     int findOrderProductQuantity(int orderId, int productId);
+    
+    @Query(value = "UPDATE crm_order_product op SET op.quantity = ?3 WHERE op.order_id = ?1 AND op.product_id = ?2", nativeQuery = true)
+    void saveOrderProductQuantity(int orderId, int productId, int quantity);
 }
