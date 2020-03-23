@@ -66,20 +66,6 @@ public class LookupServiceTest {
     }
 
     /**
-     * Test of save method, of class LookupService.
-     */
-    @Test
-    public void testSave() {
-        State newState = new State();
-        newState.setStateId("QP");
-        newState.setStateName("New State");
-        sr.save(newState);
-        
-        State fromRepo = sr.findById("QP").orElse(null);
-        assertEquals(newState.getStateId(), fromRepo.getStateId());
-    }
-
-    /**
      * Test of deleteById method, of class LookupService.
      */
     @Test
