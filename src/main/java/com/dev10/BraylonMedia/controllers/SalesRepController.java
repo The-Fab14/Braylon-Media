@@ -1,14 +1,9 @@
 package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.User;
-
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.LookupService;
 import com.dev10.BraylonMedia.services.UserService;
-
-import com.dev10.BraylonMedia.repositories.ClientRepository;
-import com.dev10.BraylonMedia.repositories.UserRepository;
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -32,10 +27,10 @@ public class SalesRepController
     Set<ConstraintViolation<User>> violations = new HashSet<>();
     
     @Autowired
-    UserRepository users;
+    UserService users;
     
     @Autowired
-    ClientRepository clients;
+    ClientService clients;
     
     @Autowired
     LookupService lookup;
@@ -70,7 +65,7 @@ public class SalesRepController
     }
     
     @PostMapping("/edit_user")
-    public String displayEditUser(User user)
+    public String editUser(User user)
     {
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
@@ -79,7 +74,7 @@ public class SalesRepController
             users.save(user);
             return "redirect:/sales_rep_display";
         }
-        return "redirect:/sales_rep_display";
+        return "redirect:/edit_user?userId=" + user.getUserId();
     }
     
     @GetMapping("/sales_rep_display")
