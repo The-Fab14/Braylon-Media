@@ -8,6 +8,7 @@ package com.dev10.BraylonMedia.repositories;
 import com.dev10.BraylonMedia.entities.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
