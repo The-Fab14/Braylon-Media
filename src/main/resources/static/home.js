@@ -8,6 +8,7 @@ $(document).ready(function () {
         displaySearchResults(clients);
     });
 });
+
 // AJAX call
 function getCustomers(userId){
     var token = $("meta[name='_csrf']").attr("content");
@@ -24,10 +25,11 @@ function getCustomers(userId){
         }
     });
 }
+
 // Runs on page load to display the default table view of clients (sorted by contact last name)
 function displayDefaultClientView(clients){
     const tableBody = $('tbody');
-    console.log('clients: ', clients);
+    tableBody.empty();
     // sort clientArray by contactLastName for default view
     const clientsByContactLastName = clients.sort((a, b) => {
         if (a.contactLastName > b.contactLastName){
@@ -56,6 +58,8 @@ function populateQueryDropdown(clients){
     $('#searchParameters').change(function (e) {
         const parameter = $(this).children('option:selected').attr('id');
         const resultDropdown = $('#searchQueries');
+        // set the second dropdown to the default option each time user chooses a search parameter
+        document.getElementById("defaultResult").selected = true;
         switch(parameter){
             case 'clientId':
                 populateWithClientIds(clients, resultDropdown);
@@ -73,6 +77,9 @@ function populateQueryDropdown(clients){
     });
 }
 
+/*
+Each "populate" method populates the second <select> menu with search queries
+*/
 function populateWithClientIds(clients, resultDropdown){
     $('.query').remove();
     // Don't need to filter as client IDs are inherently unique
@@ -109,17 +116,14 @@ function populateWithSalesRepId(clients, resultDropdown){
 }
 
 /*
-Each search function clears the table body and appends any matching search results to it
+Each search function appends any matching search results to the table body
 */
 function searchByClientId(clients, query){
-    const tableBody = $('tbody');
-    // clear table body
-    tableBody.empty();
 
     clients.forEach(client => {
         // 'query' is passed in as a string, hence the double equals operator instead of the triple
         if (client.clientId == query){
-            tableBody.append('<tr class="clientRow">' +
+            $('tbody').append('<tr class="clientRow">' +
             '<td class="clientData">' + client.companyName + '</td>' +
             '<td class="clientData">' + client.contactLastName + '</td>' +
             '<td class="clientData">' + client.contactFirstName + '</td>' +
@@ -134,15 +138,12 @@ function searchByClientId(clients, query){
         }
     });
 }
+
 function searchByCompanyName(clients, query){
-    const tableBody = $('tbody');
-    // clear table body
-    tableBody.empty();
 
     clients.forEach(client => {
-        // 'query' is passed in as a string, hence the double equals operator instead of the triple
         if (client.companyName == query){
-            tableBody.append('<tr class="clientRow">' +
+            $('tbody').append('<tr class="clientRow">' +
             '<td class="clientData">' + client.companyName + '</td>' +
             '<td class="clientData">' + client.contactLastName + '</td>' +
             '<td class="clientData">' + client.contactFirstName + '</td>' +
@@ -157,22 +158,60 @@ function searchByCompanyName(clients, query){
         }
     });
 }
+
 function searchByContactLastName(clients, query){
+
+    clients.forEach(client => {
+        if (client.contactLastName == query){
+            $('tbody').append('<tr class="clientRow">' +
+            '<td class="clientData">' + client.companyName + '</td>' +
+            '<td class="clientData">' + client.contactLastName + '</td>' +
+            '<td class="clientData">' + client.contactFirstName + '</td>' +
+            '<td class="clientData">' + client.streetAddress + '</td>' +
+            '<td class="clientData">' + client.aptUnit + '</td>' +
+            '<td class="clientData">' + client.city + '</td>' +
+            '<td class="clientData">' + client.state.stateId + '</td>' +
+            '<td class="clientData">' + client.zip + '</td>' +
+            '<td class="clientData">' + client.phoneNumber + '</td>' +
+            '<td class="clientData">' + client.emailAddress + '</td>'
+            );
+        }
+    });
 }
+
 function searchBySalesRepId(clients, query){
+
+    clients.forEach(client => {
+        if (client.user.userId == query){
+            $('tbody').append('<tr class="clientRow">' +
+            '<td class="clientData">' + client.companyName + '</td>' +
+            '<td class="clientData">' + client.contactLastName + '</td>' +
+            '<td class="clientData">' + client.contactFirstName + '</td>' +
+            '<td class="clientData">' + client.streetAddress + '</td>' +
+            '<td class="clientData">' + client.aptUnit + '</td>' +
+            '<td class="clientData">' + client.city + '</td>' +
+            '<td class="clientData">' + client.state.stateId + '</td>' +
+            '<td class="clientData">' + client.zip + '</td>' +
+            '<td class="clientData">' + client.phoneNumber + '</td>' +
+            '<td class="clientData">' + client.emailAddress + '</td>'
+            );
+        }
+    });
 }
-// displays matching results when an <option> element is clicked
+
+// displays matching results when an <option> element(search query) is clicked
 function displaySearchResults(clients){
     // dropdown element (<option>) is clicked
     $('#searchQueries').change(function (event) {
         event.preventDefault();
-        console.log('option clicked');
         // grab the element's ID
         const query = $(this).children('option:selected').text();
-        console.log('query: ', query);
         // grab the element's parent (<select>) ID
         const searchParameter = $('#searchParameters').children('option:selected').attr('id');
-        console.log('searchParamter: ', searchParameter);
+
+        // empty the table body
+        $('tbody').empty();
+
         // display only results that match that element
         switch(searchParameter){
             case "clientId":
