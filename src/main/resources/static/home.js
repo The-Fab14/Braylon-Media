@@ -20,13 +20,13 @@ function getCustomers(userId){
         url: "http://localhost:8080/load-clients",
         success: function (response) {},
         error: function(xhr){
-            alert("Request status: " + xhr.status + " Status text: " + xhr.statusText + " " + xhr.responseText);
+            alert("Request status: " + xhr.status + "/nStatus text: " + xhr.statusText + " " + xhr.responseText);
         }
     });
 }
 // Runs on page load to display the default table view of clients (sorted by contact last name)
 function displayDefaultClientView(clients){
-    const tbody = $('tbody');
+    const tableBody = $('tbody');
     console.log('clients: ', clients);
     // sort clientArray by contactLastName for default view
     const clientsByContactLastName = clients.sort((a, b) => {
@@ -37,7 +37,7 @@ function displayDefaultClientView(clients){
     });
     // append client details to rows
     clientsByContactLastName.forEach(client => {
-        tbody.append('<tr class="clientRow">' +
+        tableBody.append('<tr class="clientRow">' +
         '<td class="clientData">' + client.companyName + '</td>' +
         '<td class="clientData">' + client.contactLastName + '</td>' +
         '<td class="clientData">' + client.contactFirstName + '</td>' +
@@ -130,9 +130,9 @@ function displayDefaultClientView(clients){
 //     });
 // }
 function populateQueryDropdown(clients){
-    $('#searchParameter').change(function (e) {
+    $('#searchParameters').change(function (e) {
         const parameter = $(this).children('option:selected').attr('id');
-        const resultDropdown = $('#searchResults');
+        const resultDropdown = $('#searchQueries');
         switch(parameter){
             case 'clientId':
                 populateWithClientIds(clients, resultDropdown);
@@ -140,58 +140,129 @@ function populateQueryDropdown(clients){
             case 'companyName':
                 populateWithCompanyNames(clients, resultDropdown);
                 break;
+            case 'contactLastName':
+                populateWithContactLastName(clients, resultDropdown);
+                break;
+            case 'salesRepId':
+                populateWithSalesRepId(clients, resultDropdown);
+                break;
         }
     });
 }
+
 function populateWithClientIds(clients, resultDropdown){
     $('.query').remove();
+    // Don't need to filter as client IDs are inherently unique
     clients.forEach(client => {
         resultDropdown.append('<option class="query">' + client.clientId + '</option>')
     });
 }
+
 function populateWithCompanyNames(clients, resultDropdown){
     $('.query').remove();
-    clients.forEach(client => {
-        resultDropdown.append('<option class="query">' + client.companyName + '</option>')
+    // get unique company names
+    const companies = [... new Set(clients.map(client => client.companyName))];
+    companies.forEach(company => {
+        resultDropdown.append('<option class="query">' + company + '</option>')
     });
 }
-function matchByClientId(clients, elementId){
+
+function populateWithContactLastName(clients, resultDropdown){
+    $('.query').remove();
+    // get unique last names
+    const lastNames = [... new Set(clients.map(client => client.contactLastName))];
+    lastNames.forEach(lastName => {
+        resultDropdown.append('<option class="query">' + lastName + '</option>')
+    });
+}
+
+function populateWithSalesRepId(clients, resultDropdown){
+    $('.query').remove();
+    // get unique sales rep IDs
+    const salesRepIds = [... new Set(clients.map(client => client.user.userId))];
+    salesRepIds.forEach(salesRepId => {
+        resultDropdown.append('<option class="query">' + salesRepId + '</option>')
+    });
+}
+
+/*
+Each search function clears the table body and appends any matching search results to it
+*/
+function searchByClientId(clients, query){
+    const tableBody = $('tbody');
+    // clear table body
+    tableBody.empty();
+
     clients.forEach(client => {
-        if (client.clientId === elementId){
+        // 'query' is passed in as a string, hence the double equals operator instead of the triple
+        if (client.clientId == query){
+            tableBody.append('<tr class="clientRow">' +
+            '<td class="clientData">' + client.companyName + '</td>' +
+            '<td class="clientData">' + client.contactLastName + '</td>' +
+            '<td class="clientData">' + client.contactFirstName + '</td>' +
+            '<td class="clientData">' + client.streetAddress + '</td>' +
+            '<td class="clientData">' + client.aptUnit + '</td>' +
+            '<td class="clientData">' + client.city + '</td>' +
+            '<td class="clientData">' + client.state.stateId + '</td>' +
+            '<td class="clientData">' + client.zip + '</td>' +
+            '<td class="clientData">' + client.phoneNumber + '</td>' +
+            '<td class="clientData">' + client.emailAddress + '</td>'
+            );
         }
     });
 }
-function matchByCompanyName(clients, elementId){
+function searchByCompanyName(clients, query){
+    const tableBody = $('tbody');
+    // clear table body
+    tableBody.empty();
+
+    clients.forEach(client => {
+        // 'query' is passed in as a string, hence the double equals operator instead of the triple
+        if (client.companyName == query){
+            tableBody.append('<tr class="clientRow">' +
+            '<td class="clientData">' + client.companyName + '</td>' +
+            '<td class="clientData">' + client.contactLastName + '</td>' +
+            '<td class="clientData">' + client.contactFirstName + '</td>' +
+            '<td class="clientData">' + client.streetAddress + '</td>' +
+            '<td class="clientData">' + client.aptUnit + '</td>' +
+            '<td class="clientData">' + client.city + '</td>' +
+            '<td class="clientData">' + client.state.stateId + '</td>' +
+            '<td class="clientData">' + client.zip + '</td>' +
+            '<td class="clientData">' + client.phoneNumber + '</td>' +
+            '<td class="clientData">' + client.emailAddress + '</td>'
+            );
+        }
+    });
 }
-function matchByContactLastName(clients, elementId){
+function searchByContactLastName(clients, query){
 }
-function matchBySalesRepId(clients, elementId){
+function searchBySalesRepId(clients, query){
 }
 // displays matching results when an <option> element is clicked
 function displaySearchResults(clients){
     // dropdown element (<option>) is clicked
-    $('option').click(function (event) {
+    $('#searchQueries').change(function (event) {
         event.preventDefault();
-        alert('option clicked');
+        console.log('option clicked');
         // grab the element's ID
-        const elementId = $(this.attr('id'));
-        console.log('elementId: ', elementId);
+        const query = $(this).children('option:selected').text();
+        console.log('query: ', query);
         // grab the element's parent (<select>) ID
-        const searchParameter = $(this).parent().attr('id');
+        const searchParameter = $('#searchParameters').children('option:selected').attr('id');
         console.log('searchParamter: ', searchParameter);
         // display only results that match that element
         switch(searchParameter){
             case "clientId":
-                matchByClientId(clients, elementId);
+                searchByClientId(clients, query);
                 break;
             case "companyName":
-                matchByCompanyName(clients, elementId);
+                searchByCompanyName(clients, query);
                 break;
             case "contactLastName":
-                matchByContactLastName(clients, elementId);
+                searchByContactLastName(clients, query);
                 break;
             case "salesRepId":
-                matchBySalesRepId(clients, elementId);
+                searchBySalesRepId(clients, query);
                 break;
             default:
                 alert("Not sure what's going on here");
