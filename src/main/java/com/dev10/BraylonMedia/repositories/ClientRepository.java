@@ -17,6 +17,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer>{
-    @Query(value = "SELECT c.* FROM crm_client c INNER JOIN crm_user u ON c.user_id = u.user_id WHERE user_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT c.* FROM crm_client c INNER JOIN crm_user u ON c.user_id = u.user_id WHERE u.user_id = ?1", nativeQuery = true)
     List<Client> findAllByUserId(int userId);
 }
