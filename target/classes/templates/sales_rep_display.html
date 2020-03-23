@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,9 +38,6 @@
                                 <a class="nav-link" th:href="@{edit_user}">Edit User</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{home}">Customers</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" th:href="@{orders}">Orders</a>
                             </li>
                             <li class="nav-item">
@@ -60,18 +60,14 @@
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Search by Contact Name
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                          <button class="dropdown-item" type="button">Action</button>
-                          <button class="dropdown-item" type="button">Another action</button>
-                          <button class="dropdown-item" type="button">Something else here</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <button class="dropdown-item" type="button" th:each="client : ${clients}" th:text="${client.contactFirstName} + ' ' + ${client.contactLastName}" th:value="${client.clientId}">ClientsIds</button>
                         </div>
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Search by Sales Rep Id
-                              </button>
+                        </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <button class="dropdown-item" type="button">Action</button>
-                                <button class="dropdown-item" type="button">Another action</button>
-                                <button class="dropdown-item" type="button">Something else here</button>
+                                <button class="dropdown-item" type="button" th:each="user : ${users}" th:text="${user.userId}" th:value="${user.userId}">UserIds</button>
                               </div>
                       </div>
 
@@ -87,13 +83,18 @@
                     </thead>
           
                     <tbody>
-          
+                        <tr th:each="user : ${users}">
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.userId}"></td>
+                        <td th:text="${user.state.stateName}"></td>
+                        </tr>
           
                     </tbody>
                   </table>
                 </div>
 
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>    
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
