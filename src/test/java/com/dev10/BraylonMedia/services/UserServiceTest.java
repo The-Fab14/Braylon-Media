@@ -81,30 +81,6 @@ public class UserServiceTest {
     public void testExistsById() {
     }
 
-    public class UserServiceImpl implements UserService {
-
-        public User findById(int userId) {
-            return null;
-        }
-
-        public List<User> findAll() {
-            return null;
-        }
-
-        public User save(User user) {
-            return null;
-        }
-
-        public void deleteById(int userId) {
-        }
-
-        public long count() {
-            return 0L;
-        }
-
-        public boolean existsById(int userId) {
-            return false;
-        }
-    }
+    
     
 }
