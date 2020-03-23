@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
@@ -47,7 +49,8 @@ public class Client {
     private State state;
 
     @Column(nullable = false)
-    @Size(max = 5)
+    @Max(99999)
+    @Min(00000)
     private int zip;
 
     @ManyToOne
