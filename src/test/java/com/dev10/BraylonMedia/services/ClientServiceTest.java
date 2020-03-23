@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dev10.BraylonMedia.services;
 
 import com.dev10.BraylonMedia.entities.Client;
+import com.dev10.BraylonMedia.entities.Order;
 import com.dev10.BraylonMedia.entities.State;
 import com.dev10.BraylonMedia.entities.User;
 import com.dev10.BraylonMedia.repositories.ClientRepository;
+import com.dev10.BraylonMedia.repositories.OrderRepository;
 import com.dev10.BraylonMedia.repositories.StateRepository;
 import com.dev10.BraylonMedia.repositories.UserRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -44,6 +42,9 @@ public class ClientServiceTest {
     @Autowired
     UserRepository ur;
     
+    @Autowired
+    OrderRepository or;
+    
     public ClientServiceTest() {
     }
     
@@ -57,6 +58,11 @@ public class ClientServiceTest {
     
     @BeforeEach
     public void setUp() {
+        List<Order> allOrders = or.findAll();
+        for (Order o : allOrders) {
+            or.delete(o);
+        }
+        
         List<Client> allClients = cr.findAll();
         for (Client c : allClients) {
             cr.delete(c);
@@ -100,7 +106,7 @@ public class ClientServiceTest {
         newClient.setStreetAddress("Street");
         newClient.setCity("City");
         newClient.setState(newState);
-        newClient.setZip("12345");
+        newClient.setZip(12345);
         newClient.setUser(newUser);
         newClient.setEmailAddress("email");
         newClient.setPhoneNumber("1234567890");
@@ -147,7 +153,7 @@ public class ClientServiceTest {
         newClient1.setStreetAddress("Street");
         newClient1.setCity("City");
         newClient1.setState(newState);
-        newClient1.setZip("12345");
+        newClient1.setZip(12345);
         newClient1.setUser(newUser);
         newClient1.setEmailAddress("email");
         newClient1.setPhoneNumber("1234567890");
@@ -162,7 +168,7 @@ public class ClientServiceTest {
         newClient2.setStreetAddress("Street");
         newClient2.setCity("City");
         newClient2.setState(newState);
-        newClient2.setZip("12345");
+        newClient2.setZip(12345);
         newClient2.setUser(newUser);
         newClient2.setEmailAddress("email");
         newClient2.setPhoneNumber("1234567890");
@@ -200,7 +206,7 @@ public class ClientServiceTest {
         newClient1.setStreetAddress("Street");
         newClient1.setCity("City");
         newClient1.setState(newState);
-        newClient1.setZip("12345");
+        newClient1.setZip(12345);
         newClient1.setUser(newUser);
         newClient1.setEmailAddress("email");
         newClient1.setPhoneNumber("1234567890");
@@ -238,7 +244,7 @@ public class ClientServiceTest {
         newClient.setStreetAddress("Street");
         newClient.setCity("City");
         newClient.setState(newState);
-        newClient.setZip("12345");
+        newClient.setZip(12345);
         newClient.setUser(newUser);
         newClient.setEmailAddress("email");
         newClient.setPhoneNumber("1234567890");
@@ -287,7 +293,7 @@ public class ClientServiceTest {
         newClient1.setStreetAddress("Street");
         newClient1.setCity("City");
         newClient1.setState(newState);
-        newClient1.setZip("12345");
+        newClient1.setZip(12345);
         newClient1.setUser(newUser);
         newClient1.setEmailAddress("email");
         newClient1.setPhoneNumber("1234567890");
@@ -302,7 +308,7 @@ public class ClientServiceTest {
         newClient2.setStreetAddress("Street");
         newClient2.setCity("City");
         newClient2.setState(newState);
-        newClient2.setZip("12345");
+        newClient2.setZip(12345);
         newClient2.setUser(newUser);
         newClient2.setEmailAddress("email");
         newClient2.setPhoneNumber("1234567890");
@@ -340,7 +346,7 @@ public class ClientServiceTest {
         newClient.setStreetAddress("Street");
         newClient.setCity("City");
         newClient.setState(newState);
-        newClient.setZip("12345");
+        newClient.setZip(12345);
         newClient.setUser(newUser);
         newClient.setEmailAddress("email");
         newClient.setPhoneNumber("1234567890");
@@ -359,7 +365,6 @@ public class ClientServiceTest {
     /**
      * Test of findAllByUserId method, of class ClientService.
      */
-    //Still need to fix
     @Test
     public void testFindAllByUserId() {
         State newState = new State();
@@ -377,7 +382,7 @@ public class ClientServiceTest {
         ur.save(newUser1);
         
         Client newClient1 = new Client();
-        newClient1.setClientId(2);
+        newClient1.setClientId(0);
         newClient1.setContactFirstName("First");
         newClient1.setContactLastName("Last");
         newClient1.setCompanyName("Company");
@@ -385,14 +390,14 @@ public class ClientServiceTest {
         newClient1.setStreetAddress("Street");
         newClient1.setCity("City");
         newClient1.setState(newState);
-        newClient1.setZip("12345");
+        newClient1.setZip(12345);
         newClient1.setUser(newUser1);
         newClient1.setEmailAddress("email");
         newClient1.setPhoneNumber("1234567890");
         cr.save(newClient1);
         
         Client newClient2 = new Client();
-        newClient2.setClientId(3);
+        newClient2.setClientId(0);
         newClient2.setContactFirstName("First");
         newClient2.setContactLastName("Last");
         newClient2.setCompanyName("Company");
@@ -400,19 +405,26 @@ public class ClientServiceTest {
         newClient2.setStreetAddress("Street");
         newClient2.setCity("City");
         newClient2.setState(newState);
-        newClient2.setZip("12345");
+        newClient2.setZip(12345);
         newClient2.setUser(newUser1);
         newClient2.setEmailAddress("email");
         newClient2.setPhoneNumber("1234567890");
         cr.save(newClient2);
         
-        List<User> allUsers = ur.findAll();
-        int userId = 0;
-        for (User u : allUsers) {
-            userId = u.getUserId();
+        List<User> usersInDB = ur.findAll();
+        User u1 = usersInDB.get(0);
+        int userID = u1.getUserId();
+        
+        List<Client> allClients = cr.findAll();
+        List<Client> clients = new ArrayList<>();
+        for (Client c : allClients) {
+            User u = c.getUser();
+            if (u.getUserId() == userID) {
+                clients.add(c);
+            }
         }
         
-        List<Client> clientsByUser = cr.findAllByUserId(userId);
-        assertEquals(clientsByUser.size(), 2);
+        assertEquals(clients.size(), 2);
+        
     }
 }
