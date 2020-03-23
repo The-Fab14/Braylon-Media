@@ -100,7 +100,7 @@ public class ClientServiceTest {
         newClient.setStreetAddress("Street");
         newClient.setCity("City");
         newClient.setState(newState);
-        newClient.setZip("12345");
+        newClient.setZip(12345);
         newClient.setUser(newUser);
         newClient.setEmailAddress("email");
         newClient.setPhoneNumber("1234567890");
@@ -147,7 +147,7 @@ public class ClientServiceTest {
         newClient1.setStreetAddress("Street");
         newClient1.setCity("City");
         newClient1.setState(newState);
-        newClient1.setZip("12345");
+        newClient1.setZip(12345);
         newClient1.setUser(newUser);
         newClient1.setEmailAddress("email");
         newClient1.setPhoneNumber("1234567890");
@@ -162,7 +162,7 @@ public class ClientServiceTest {
         newClient2.setStreetAddress("Street");
         newClient2.setCity("City");
         newClient2.setState(newState);
-        newClient2.setZip("12345");
+        newClient2.setZip(12345);
         newClient2.setUser(newUser);
         newClient2.setEmailAddress("email");
         newClient2.setPhoneNumber("1234567890");
@@ -200,7 +200,7 @@ public class ClientServiceTest {
         newClient1.setStreetAddress("Street");
         newClient1.setCity("City");
         newClient1.setState(newState);
-        newClient1.setZip("12345");
+        newClient1.setZip(12345);
         newClient1.setUser(newUser);
         newClient1.setEmailAddress("email");
         newClient1.setPhoneNumber("1234567890");
@@ -238,7 +238,7 @@ public class ClientServiceTest {
         newClient.setStreetAddress("Street");
         newClient.setCity("City");
         newClient.setState(newState);
-        newClient.setZip("12345");
+        newClient.setZip(12345);
         newClient.setUser(newUser);
         newClient.setEmailAddress("email");
         newClient.setPhoneNumber("1234567890");
@@ -287,7 +287,7 @@ public class ClientServiceTest {
         newClient1.setStreetAddress("Street");
         newClient1.setCity("City");
         newClient1.setState(newState);
-        newClient1.setZip("12345");
+        newClient1.setZip(12345);
         newClient1.setUser(newUser);
         newClient1.setEmailAddress("email");
         newClient1.setPhoneNumber("1234567890");
@@ -302,7 +302,7 @@ public class ClientServiceTest {
         newClient2.setStreetAddress("Street");
         newClient2.setCity("City");
         newClient2.setState(newState);
-        newClient2.setZip("12345");
+        newClient2.setZip(12345);
         newClient2.setUser(newUser);
         newClient2.setEmailAddress("email");
         newClient2.setPhoneNumber("1234567890");
@@ -340,7 +340,7 @@ public class ClientServiceTest {
         newClient.setStreetAddress("Street");
         newClient.setCity("City");
         newClient.setState(newState);
-        newClient.setZip("12345");
+        newClient.setZip(12345);
         newClient.setUser(newUser);
         newClient.setEmailAddress("email");
         newClient.setPhoneNumber("1234567890");
@@ -385,7 +385,7 @@ public class ClientServiceTest {
         newClient1.setStreetAddress("Street");
         newClient1.setCity("City");
         newClient1.setState(newState);
-        newClient1.setZip("12345");
+        newClient1.setZip(12345);
         newClient1.setUser(newUser1);
         newClient1.setEmailAddress("email");
         newClient1.setPhoneNumber("1234567890");
@@ -400,7 +400,7 @@ public class ClientServiceTest {
         newClient2.setStreetAddress("Street");
         newClient2.setCity("City");
         newClient2.setState(newState);
-        newClient2.setZip("12345");
+        newClient2.setZip(12345);
         newClient2.setUser(newUser1);
         newClient2.setEmailAddress("email");
         newClient2.setPhoneNumber("1234567890");
