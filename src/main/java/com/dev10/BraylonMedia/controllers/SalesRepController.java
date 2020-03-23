@@ -51,8 +51,14 @@ public class SalesRepController
         }
     }
     
+    @GetMapping("/edit_user")
+    public String displayEditUser(Model model)
+    {
+        return "edit_user";
+    }
+    
     @PostMapping("/edit_user")
-    public String displayEditUser(User user)
+    public String editUser(User user)
     {
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
