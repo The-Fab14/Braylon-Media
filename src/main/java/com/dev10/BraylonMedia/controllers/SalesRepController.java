@@ -2,6 +2,7 @@ package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.User;
 import com.dev10.BraylonMedia.services.ClientService;
+import com.dev10.BraylonMedia.services.LookupService;
 import com.dev10.BraylonMedia.services.UserService;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,9 +32,13 @@ public class SalesRepController
     @Autowired
     ClientService clients;
     
+    @Autowired
+    LookupService lookup;
+    
     @GetMapping("/add_sales_rep")
-    public String displayAddUser()
+    public String displayAddUser(Model model)
     {
+        model.addAttribute("lookup", lookup.findAll());
         return "add_sales_rep";
     }
     
@@ -55,6 +60,7 @@ public class SalesRepController
     public String displayEditUser(Integer userId, Model model)
     {
         model.addAttribute("user", users.findById(userId));
+        model.addAttribute("lookup", lookup.findAll());
         return "edit_user";
     }
     
