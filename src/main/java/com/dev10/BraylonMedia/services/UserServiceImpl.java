@@ -5,6 +5,7 @@
  */
 package com.dev10.BraylonMedia.services;
 
+import com.dev10.BraylonMedia.config.SecurityUtils;
 import com.dev10.BraylonMedia.repositories.UserRepository;
 import com.dev10.BraylonMedia.entities.User;
 import java.util.List;
@@ -49,6 +50,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean existsById(int userId) {
         return userRepository.existsById(userId);
+    }
+    
+    @Override
+    public User getUserFromSession() {
+        String username = SecurityUtils.getUserName();
+        int userId = Integer.parseInt(username);
+        User user = findById(userId);
+        return user;
     }
 
 }

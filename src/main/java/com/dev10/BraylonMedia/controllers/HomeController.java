@@ -100,9 +100,7 @@ public class HomeController {
     @GetMapping("/load-clients")
     public List<Client> loadClients() {
 
-        String username = SecurityUtils.getUserName();
-        int userId = Integer.parseInt(username);
-        User user = userService.findById(userId);
+        User user = userService.getUserFromSession();
 
         List<Client> clients = new ArrayList<>();
 
@@ -122,9 +120,7 @@ public class HomeController {
     public ResponseEntity<Client> loadClient(@PathVariable String clientIdString) {
         int clientId = Integer.parseInt(clientIdString);
 
-        String username = SecurityUtils.getUserName();
-        int userId = Integer.parseInt(username);
-        User user = userService.findById(userId);
+        User user = userService.getUserFromSession();
 
         Client client = null;
 
@@ -166,9 +162,7 @@ public class HomeController {
         String emailAddress = map.get("emailAddress");
         String phoneNumber = map.get("phoneNumber");
 
-        String username = SecurityUtils.getUserName();
-        int userId = Integer.parseInt(username);
-        User user = userService.findById(userId);
+        User user = userService.getUserFromSession();
 
         Client client = new Client();
 
@@ -193,7 +187,7 @@ public class HomeController {
     // Edit client
     @ResponseBody
     @PostMapping("/edit-client/{clientIdString}")
-    public ResponseEntity editClient(@PathVariable String clientIdString, @RequestBody Map<String, String> map) {
+    public ResponseEntity editClient(@PathVariable String clientIdString, @RequestBody Map<String, String> map) { // OPTIMIZE HERE
 
         int clientId = Integer.parseInt(clientIdString);
         String contactFirstName = map.get("contactFirstName");
@@ -210,9 +204,7 @@ public class HomeController {
         String emailAddress = map.get("emailAddress");
         String phoneNumber = map.get("phoneNumber");
 
-        String username = SecurityUtils.getUserName();
-        int userId = Integer.parseInt(username);
-        User user = userService.findById(userId);
+        User user = userService.getUserFromSession();
 
         Client client = new Client();
 
@@ -255,9 +247,7 @@ public class HomeController {
         
         int clientId = Integer.parseInt(clientIdString);
 
-        String username = SecurityUtils.getUserName();
-        int userId = Integer.parseInt(username);
-        User user = userService.findById(userId);
+        User user = userService.getUserFromSession();
         
         if (user.getUserRole().equals("ROLE_USER")) {
             List<Client> clientList = clientService.findAllByUserId(user.getUserId());

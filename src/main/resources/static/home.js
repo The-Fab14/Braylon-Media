@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+   
     const userId = $('#userId').text();
     $.when(getCustomers(userId)).done(function(clients){
 
@@ -10,15 +10,32 @@ $(document).ready(function () {
     populateQueryDropdown(clients);
 
     displaySearchResults(clients);
+
+    const userId = $('#userId').text();
+    $.when(getCustomers(userId)).done(function(clients){
+        // display results in alphabetical order (contact last name)
+        displayDefaultClientView(clients);
+
+        // populate search queries dropdown when a search parameter is clicked
+        populateQueryDropdown(clients);
+
+        displaySearchResults(clients);
     });
 
 });
 
 // AJAX call
 function getCustomers(userId){
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+
+    $(document).ajaxSend(function (e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+
     return $.ajax({
         type: "GET",
-        url: "http://localhost:8080/clients/" + userId,
+        url: "http://localhost:8080/load-clients",
         success: function (response) {},
         error: function(xhr){
             alert("Request status: " + xhr.status + " Status text: " + xhr.statusText + " " + xhr.responseText);
@@ -144,18 +161,31 @@ function displayDefaultClientView(clients){
 
 function populateQueryDropdown(clients){
     $('#searchParameter').change(function (e) { 
-        alert('selector works');
-
         const parameter = $(this).children('option:selected').attr('id');
         const resultDropdown = $('#searchResults');
 
         switch(parameter){
             case 'clientId':
-                clients.forEach(client => {
-                    resultDropdown.append('<option>' + client.clientId + '</option>')
-                });
+                populateWithClientIds(clients, resultDropdown);
+                break;
+            case 'companyName':
+                populateWithCompanyNames(clients, resultDropdown);
                 break;
         }
+    });
+}
+
+function populateWithClientIds(clients, resultDropdown){
+    $('.query').remove();
+    clients.forEach(client => {
+        resultDropdown.append('<option class="query">' + client.clientId + '</option>')
+    });
+}
+
+function populateWithCompanyNames(clients, resultDropdown){
+    $('.query').remove();
+    clients.forEach(client => {
+        resultDropdown.append('<option class="query">' + client.companyName + '</option>')
     });
 }
 
