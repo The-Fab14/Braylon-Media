@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dev10.BraylonMedia.services;
 
 import com.dev10.BraylonMedia.entities.User;
@@ -16,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author garrettbecker
+ * @author Eric Fass
  */
 public class UserServiceTest {
     
@@ -79,32 +74,6 @@ public class UserServiceTest {
      */
     @Test
     public void testExistsById() {
-    }
-
-    public class UserServiceImpl implements UserService {
-
-        public User findById(int userId) {
-            return null;
-        }
-
-        public List<User> findAll() {
-            return null;
-        }
-
-        public User save(User user) {
-            return null;
-        }
-
-        public void deleteById(int userId) {
-        }
-
-        public long count() {
-            return 0L;
-        }
-
-        public boolean existsById(int userId) {
-            return false;
-        }
     }
     
 }
