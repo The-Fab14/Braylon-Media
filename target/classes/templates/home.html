@@ -1,7 +1,10 @@
 <!-- This is the homepage / view customers page -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="utf-8">
@@ -50,25 +53,32 @@
         </div>
     </nav>
 
-    <!-- "Search by ____" dropdowns go here -->
-    <select id="searchParameter">
+    <!-- "Search by ____" dropdowns -->
+    <select id="searchParameters">
       <option selected disabled>--Search By:--</option>
       <option id="clientId">Client ID</option>
       <option id="companyName">Company Name</option>
       <option id="contactLastName">Contact Last Name</option>
-      <!-- TODO: display only for LST users -->
-      <option id="salesRepId">Sales Rep ID</option>
+      <!-- TODO: display only for LST users - DOES NOT WORK YET -->
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <option id="salesRepId">Sales Rep ID</option>
+    </div>
     </select>
-    <select id="searchResults">
+    <select id="searchQueries">
       <option selected disabled>--Select Result--</option>
     </select>
 
-    <!-- Customer table -->
+    <!-- Test div for getting sec:authorize to work -->
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <p>hasRole() test div. This shouldn't show up when user 1 is logged in.</p>
+    </div>
+
+    <!-- Client table -->
     <table>
         <thead>
         </thead>
         <tbody id="tableBody">
-            <!-- JS displaying stuff here -->
+            <!-- JS adds clients here -->
         </tbody>
     </table>
 

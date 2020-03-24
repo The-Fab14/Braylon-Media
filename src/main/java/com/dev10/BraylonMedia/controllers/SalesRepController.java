@@ -38,6 +38,7 @@ public class SalesRepController
     @GetMapping("/add_sales_rep")
     public String displayAddUser(Model model)
     {
+        
         model.addAttribute("lookup", lookup.findAll());
      //   model.addAttribute("errors", violations);
         return "add_sales_rep";
@@ -55,6 +56,7 @@ public class SalesRepController
         } else {
             return "redirect:/add_sales_rep";
         }
+        
     }
     
     @GetMapping("/edit_user")
