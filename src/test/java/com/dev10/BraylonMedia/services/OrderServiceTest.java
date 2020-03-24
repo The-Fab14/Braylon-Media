@@ -89,7 +89,7 @@ public class OrderServiceTest {
         newUser1.setUserId(0);
         newUser1.setFirstName("First");
         newUser1.setLastName("Last");
-        newUser1.setEmailAddress("email");
+        newUser1.setEmailAddress("email@email.com");
         newUser1.setUserRole("Role");
         newUser1.setUserPassword("Password");
         newUser1.setDidPasswordChange(false);
@@ -107,7 +107,7 @@ public class OrderServiceTest {
         newClient1.setState(newState);
         newClient1.setZip(12345);
         newClient1.setUser(newUser1);
-        newClient1.setEmailAddress("email");
+        newClient1.setEmailAddress("email@email.com");
         newClient1.setPhoneNumber("1234567890");
         cr.save(newClient1);
         
@@ -147,7 +147,7 @@ public class OrderServiceTest {
         newUser1.setUserId(0);
         newUser1.setFirstName("First");
         newUser1.setLastName("Last");
-        newUser1.setEmailAddress("email");
+        newUser1.setEmailAddress("email@email.com");
         newUser1.setUserRole("Role");
         newUser1.setUserPassword("Password");
         newUser1.setDidPasswordChange(false);
@@ -165,7 +165,7 @@ public class OrderServiceTest {
         newClient1.setState(newState);
         newClient1.setZip(12345);
         newClient1.setUser(newUser1);
-        newClient1.setEmailAddress("email");
+        newClient1.setEmailAddress("email@email.com");
         newClient1.setPhoneNumber("1234567890");
         cr.save(newClient1);
         
@@ -202,7 +202,7 @@ public class OrderServiceTest {
         newUser1.setUserId(0);
         newUser1.setFirstName("First");
         newUser1.setLastName("Last");
-        newUser1.setEmailAddress("email");
+        newUser1.setEmailAddress("email@email.com");
         newUser1.setUserRole("Role");
         newUser1.setUserPassword("Password");
         newUser1.setDidPasswordChange(false);
@@ -220,7 +220,7 @@ public class OrderServiceTest {
         newClient1.setState(newState);
         newClient1.setZip(12345);
         newClient1.setUser(newUser1);
-        newClient1.setEmailAddress("email");
+        newClient1.setEmailAddress("email@email.com");
         newClient1.setPhoneNumber("1234567890");
         cr.save(newClient1);
         
@@ -276,7 +276,7 @@ public class OrderServiceTest {
         newUser1.setUserId(0);
         newUser1.setFirstName("First");
         newUser1.setLastName("Last");
-        newUser1.setEmailAddress("email");
+        newUser1.setEmailAddress("email@email.com");
         newUser1.setUserRole("Role");
         newUser1.setUserPassword("Password");
         newUser1.setDidPasswordChange(false);
@@ -287,7 +287,7 @@ public class OrderServiceTest {
         newUser2.setUserId(0);
         newUser2.setFirstName("First2");
         newUser2.setLastName("Last2");
-        newUser2.setEmailAddress("email2");
+        newUser2.setEmailAddress("email2@email.com");
         newUser2.setUserRole("Role2");
         newUser2.setUserPassword("Password2");
         newUser2.setDidPasswordChange(true);
@@ -305,7 +305,7 @@ public class OrderServiceTest {
         newClient1.setState(newState);
         newClient1.setZip(12345);
         newClient1.setUser(newUser1);
-        newClient1.setEmailAddress("email");
+        newClient1.setEmailAddress("email@email.com");
         newClient1.setPhoneNumber("1234567890");
         cr.save(newClient1);
         
@@ -320,7 +320,7 @@ public class OrderServiceTest {
         newClient2.setState(newState);
         newClient2.setZip(12345);
         newClient2.setUser(newUser2);
-        newClient2.setEmailAddress("email");
+        newClient2.setEmailAddress("email@email.com");
         newClient2.setPhoneNumber("1234567890");
         cr.save(newClient2);
         
@@ -395,7 +395,7 @@ public class OrderServiceTest {
         newUser1.setUserId(0);
         newUser1.setFirstName("First");
         newUser1.setLastName("Last");
-        newUser1.setEmailAddress("email");
+        newUser1.setEmailAddress("email@email.com");
         newUser1.setUserRole("Role");
         newUser1.setUserPassword("Password");
         newUser1.setDidPasswordChange(false);
@@ -406,7 +406,7 @@ public class OrderServiceTest {
         newUser2.setUserId(0);
         newUser2.setFirstName("First2");
         newUser2.setLastName("Last2");
-        newUser2.setEmailAddress("email2");
+        newUser2.setEmailAddress("email2@email.com");
         newUser2.setUserRole("Role2");
         newUser2.setUserPassword("Password2");
         newUser2.setDidPasswordChange(true);
@@ -424,7 +424,7 @@ public class OrderServiceTest {
         newClient1.setState(newState);
         newClient1.setZip(12345);
         newClient1.setUser(newUser1);
-        newClient1.setEmailAddress("email");
+        newClient1.setEmailAddress("email@email.com");
         newClient1.setPhoneNumber("1234567890");
         cr.save(newClient1);
         
@@ -439,7 +439,7 @@ public class OrderServiceTest {
         newClient2.setState(newState);
         newClient2.setZip(12345);
         newClient2.setUser(newUser2);
-        newClient2.setEmailAddress("email");
+        newClient2.setEmailAddress("email@email.com");
         newClient2.setPhoneNumber("1234567890");
         cr.save(newClient2);
         
@@ -514,7 +514,7 @@ public class OrderServiceTest {
         newUser1.setUserId(0);
         newUser1.setFirstName("First");
         newUser1.setLastName("Last");
-        newUser1.setEmailAddress("email");
+        newUser1.setEmailAddress("email@email.com");
         newUser1.setUserRole("Role");
         newUser1.setUserPassword("Password");
         newUser1.setDidPasswordChange(false);
@@ -525,7 +525,7 @@ public class OrderServiceTest {
         newUser2.setUserId(0);
         newUser2.setFirstName("First2");
         newUser2.setLastName("Last2");
-        newUser2.setEmailAddress("email2");
+        newUser2.setEmailAddress("email2@email.com");
         newUser2.setUserRole("Role2");
         newUser2.setUserPassword("Password2");
         newUser2.setDidPasswordChange(true);
@@ -543,7 +543,7 @@ public class OrderServiceTest {
         newClient1.setState(newState);
         newClient1.setZip(12345);
         newClient1.setUser(newUser1);
-        newClient1.setEmailAddress("email");
+        newClient1.setEmailAddress("email@email.com");
         newClient1.setPhoneNumber("1234567890");
         cr.save(newClient1);
         
@@ -558,7 +558,7 @@ public class OrderServiceTest {
         newClient2.setState(newState);
         newClient2.setZip(12345);
         newClient2.setUser(newUser2);
-        newClient2.setEmailAddress("email");
+        newClient2.setEmailAddress("email@email.com");
         newClient2.setPhoneNumber("1234567890");
         cr.save(newClient2);
         
@@ -631,7 +631,7 @@ public class OrderServiceTest {
         newUser1.setUserId(0);
         newUser1.setFirstName("First");
         newUser1.setLastName("Last");
-        newUser1.setEmailAddress("email");
+        newUser1.setEmailAddress("email@email.com");
         newUser1.setUserRole("Role");
         newUser1.setUserPassword("Password");
         newUser1.setDidPasswordChange(false);
@@ -649,7 +649,7 @@ public class OrderServiceTest {
         newClient1.setState(newState);
         newClient1.setZip(12345);
         newClient1.setUser(newUser1);
-        newClient1.setEmailAddress("email");
+        newClient1.setEmailAddress("email@email.com");
         newClient1.setPhoneNumber("1234567890");
         cr.save(newClient1);
         
