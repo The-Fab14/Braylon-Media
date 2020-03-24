@@ -29,7 +29,7 @@ function getCustomers(userId){
 // Runs on page load to display the default table view of clients (sorted by contact last name)
 function displayDefaultClientView(clients){
     const tableBody = $('tbody');
-    tableBody.empty();
+    // tableBody.empty();
     // sort clientArray by contactLastName for default view
     const clientsByContactLastName = clients.sort((a, b) => {
         if (a.contactLastName > b.contactLastName){
@@ -49,7 +49,8 @@ function displayDefaultClientView(clients){
         '<td class="clientData">' + client.state.stateId + '</td>' +
         '<td class="clientData">' + client.zip + '</td>' +
         '<td class="clientData">' + client.phoneNumber + '</td>' +
-        '<td class="clientData">' + client.emailAddress + '</td>'
+        '<td class="clientData">' + client.emailAddress + '</td>' + 
+        '<td class="clientData"><button class="btn"><a href="/edit_customer/' + client.clientId + '">Edit</a></button></td>'
         );
     });
 }
