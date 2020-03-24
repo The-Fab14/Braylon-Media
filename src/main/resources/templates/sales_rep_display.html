@@ -66,7 +66,7 @@
                                Search by Sales Rep Id
                         </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <button class="dropdown-item" type="button" th:each="user : ${users}" th:text="${user.userId}" th:value="${user.userId}">UserIds</button>
+                                <button class="dropdown-item" type="button" th:each="user : ${users}" th:text="${user.userId} + ' - ' + ${user.firstName} + ' ' + ${user.lastName}" th:value="${user.userId}">UserIds</button>
                               </div>
                       </div>
 
