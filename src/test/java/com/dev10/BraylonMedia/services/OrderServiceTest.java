@@ -56,7 +56,7 @@ public class OrderServiceTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    public void setUp() {        
         List<Order> allOrders = or.findAll();
         for (Order o : allOrders) {
             or.delete(o);
