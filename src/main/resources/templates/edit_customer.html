@@ -1,7 +1,10 @@
 <!-- This is the edit customer page -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +43,63 @@
                     </ul>
                 </div>
             </nav>
+    <div class = "page-header">
+        <h1 class="text-center">Edit Client</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 offset-sm-4">
+            <form>
+                <div class="form-group">
+                    <label for="companyName">Company Name</label>
+                    <input class="form-control" type="text" id="companyName" placeholder="Company Name" th:value="${client.companyName}">
+                </div>
+                <div class="form-group">
+                    <label for="contactFirstName">First Name</label>
+                    <input class="form-control" type="text" id="contactFirstName" placeholder="First Name" th:value="${client.contactFirstName}">
+                </div>
+                <div class="form-group">
+                    <label for="contactLastName">Last Name</label>
+                    <input class="form-control" type="text" id="contactLastName" placeholder="Last Name" th:value="${client.contactLastName}">
+                </div>
+                <div class='form-group'>
+                    <label for="streetAddress">Street Address</label>
+                    <input class="form-control" type="text" id="streetAddress" placeholder="Street Address" th:value="${client.streetAddress}">
+                </div>
+                <div class='form-group'>
+                    <label for="aptUnit">Apt. #</label>
+                    <input class="form-control" type="text" id="aptUnit" placeholder="Apt. #" th:value="${client.aptUnit}">
+                </div>
+                <div class='form-group'>
+                    <label for="city">City</label>
+                    <input class="form-control" type="text" id="city" placeholder="City" th:value="${client.city}">
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select class="form-control" id="state">
+                        <option disabled>Select a State</option>
+                        <option th:each="state : ${states}" th:value="${state.stateId}" th:text="${state.stateName}" th:selected="${client.state.stateId==state.stateId}"></option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for="zip">Zip Code</label>
+                    <input class="form-control" type="text" id="zip" placeholder="Zip Code" th:value=${client.zip}>
+                </div>
+                <div class='form-group'>
+                    <label for="phone">Phone</label>
+                    <input class="form-control" type="text" id="phone" placeholder="Phone" th:value="${client.phoneNumber}">
+                </div>
+                <div class='form-group'>
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" id="email" placeholder="Email" th:value=${client.emailAddress}>
+                </div>
+                
+                <button type="cancel" class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+
+    
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
