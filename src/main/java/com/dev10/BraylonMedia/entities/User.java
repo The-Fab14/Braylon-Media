@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
@@ -32,6 +34,8 @@ public class User {
     @Column(nullable = false)
     @NotBlank(message = "Email Address must not be empty.")
     @Size(max = 256)
+    @Email(message = "Please enter a valid email.")
+    @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
     private String emailAddress;
 
     @Column(nullable = false)
