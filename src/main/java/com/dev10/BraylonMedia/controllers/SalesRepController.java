@@ -39,6 +39,7 @@ public class SalesRepController
     public String displayAddUser(Model model)
     {
         model.addAttribute("lookup", lookup.findAll());
+        model.addAttribute("errors", violations);
         return "add_sales_rep";
     }
     
@@ -59,13 +60,9 @@ public class SalesRepController
     @GetMapping("/edit_user")
     public String displayEditUser(Integer userId, Model model)
     {
-        if (userId != null) {
-            model.addAttribute("user", users.findById(userId));
-            model.addAttribute("lookup", lookup.findAll());
-            return "edit_user";
-        } else {
-            return "redirect:/sales_rep_display";
-        }
+        model.addAttribute("user", users.findById(userId));
+        model.addAttribute("lookup", lookup.findAll());
+        return "edit_user";
     }
     
     @PostMapping("/edit_user")
