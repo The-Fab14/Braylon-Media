@@ -1,7 +1,8 @@
 package com.dev10.BraylonMedia.controllers;
 import com.dev10.BraylonMedia.entities.User;
-import com.dev10.BraylonMedia.repositories.ClientRepository;
-import com.dev10.BraylonMedia.repositories.OrderRepository;
+import com.dev10.BraylonMedia.services.ClientService;
+import com.dev10.BraylonMedia.services.OrderService;
+import com.dev10.BraylonMedia.services.UserService;
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -20,11 +21,13 @@ public class OrderController
     Set<ConstraintViolation<User>> violations = new HashSet<>();
     
     @Autowired
-    OrderRepository orders;
+    OrderService orders;
     
     @Autowired
-    ClientRepository clients;
+    ClientService clients;
     
+    @Autowired
+    UserService userService;
     
     @GetMapping("/add_new_order")
     public String displayAddOrder()
@@ -35,7 +38,7 @@ public class OrderController
     @GetMapping("/edit_order")
     public String displayEditOrder(Integer orderId, Model model)
     {
-        model.addAttribute("orders", orders.findAll());;
+        model.addAttribute("orders", orders.getAllOrders());;
         violations.clear();
         return "edit_order";
     }
@@ -44,7 +47,8 @@ public class OrderController
     @GetMapping("/orders")
     public String displayOrders(Model model)
     {
-        model.addAttribute("orders", orders.findAll());;
+        User user = userService.getUserFromSession();
+        model.addAttribute("orders", orders.getOrdersByUserId(user.getUserId()));
         violations.clear();
         return "orders";
     }
