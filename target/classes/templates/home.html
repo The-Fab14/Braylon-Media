@@ -10,6 +10,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <title>View Customers</title>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -65,8 +67,8 @@
     </div>
     </select>
     <select id="searchQueries">
-      <option selected disabled>--Select Result--</option>
-    </select>
+      <option id ="defaultResult" selected disabled>--Select Result--</option>
+    </select> 
 
     <!-- Test div for getting sec:authorize to work -->
     <div sec:authorize="hasRole('ROLE_ADMIN')">

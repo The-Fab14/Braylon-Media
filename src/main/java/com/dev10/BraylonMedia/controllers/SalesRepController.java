@@ -62,9 +62,13 @@ public class SalesRepController
     @GetMapping("/edit_user")
     public String displayEditUser(Integer userId, Model model)
     {
-        model.addAttribute("user", users.findById(userId));
-        model.addAttribute("lookup", lookup.findAll());
-        return "edit_user";
+        if (userId != null) {
+            model.addAttribute("user", users.findById(userId));
+            model.addAttribute("lookup", lookup.findAll());
+            return "edit_user";
+        } else {
+            return "redirect:/sales_rep_display";
+        }
     }
     
     @PostMapping("/edit_user")
