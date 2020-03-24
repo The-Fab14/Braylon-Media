@@ -13,17 +13,14 @@
     <meta name="_csrf" th:content="${_csrf.token}" />
     <meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <title>View Customers</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
   <span id="userId" hidden th:text="${userId}"></span>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">Braylon Media</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -59,7 +56,7 @@
       <option id="clientId">Client ID</option>
       <option id="companyName">Company Name</option>
       <option id="contactLastName">Contact Last Name</option>
-      <!-- Display only for LST users -->
+      <!-- TODO: display only for LST users - DOES NOT WORK YET -->
     <div sec:authorize="hasRole('ROLE_ADMIN')">
         <option id="salesRepId">Sales Rep ID</option>
     </div>
@@ -67,7 +64,12 @@
     <select id="searchQueries">
       <option id ="defaultResult" selected disabled>--Select Result--</option>
     </select> 
-    
+
+    <!-- Test div for getting sec:authorize to work -->
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <p>hasRole() test div. This shouldn't show up when user 1 is logged in.</p>
+    </div>
+
     <!-- Client table -->
     <table>
         <thead>

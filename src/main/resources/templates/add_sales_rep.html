@@ -1,87 +1,101 @@
-
 <!-- This is the add new sales rep page -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
+    
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Sales Rep</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Braylon Media</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" th:href="@{home}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{edit_user}">Edit User</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{orders}">Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{sales_rep_display}">Sales Representatives</a>
-            </li>
-            <li class="nav-item">
-                <form method="POST" action="logout">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                    <button type="submit" class="btn">Logout</button>
-                </form>
-            </li>
-        </div>
-    </nav>
+                <a class="navbar-brand" href="#">Braylon Media</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/edit_user}">Edit User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/orders}">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/sales_rep_display}">Sales Representatives</a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="POST" action="logout">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                <button type="submit" class="btn">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+    
     <div class = "page-header">
    <h1 class="text-center">
-Add New Sales Representative
+Add New Sales Representative  
    </h1>
 </div>
     <form action="add_sales_rep" method="POST" class="form">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
- <div class="col-12 m-1 text-center"
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    
+<!-- <div class="col-12 m-1 text-center" 
                     th:if="${!errors.isEmpty()}">
-                    <p class="alert alert-danger" th:each="error : ${errors}"
+                    <p class="alert alert-danger" th:each="error : ${errors}" 
                     th:text="${error.message}">Error message</p>
-               </div>
+               </div>-->
+ 
+        
         <div class="row">
     <div class="col-sm-4 offset-sm-4">
+     
            <div class="form-group">
-          <label for="basicNameInput">First Name</label>
+          <label for="firstNameInput">First Name</label>
           <input class="form-control" type="name" id="firstName" name="firstName" placeholder="First Name">
         </div>
+       
         <div class="form-group">
-          <label for="basicNameInput">Last Name</label>
+          <label for="lastNameInput">Last Name</label>
           <input class="form-control" type="name" id="lastName" name="lastName" placeholder="Last Name">
         </div>
+             
+        
         <div class="form-group">
-                <label for="formControlSelect1">Role</label>
-                <select class="form-control" id="userRole" name="userRole">
-                    <option value="USER_ROLE">Sales Representative</option>
-                    <option value="USER_ADMIN">Leadership Team Administrator</option>
+                <label for="electRole">Role</label>
+                <select class="form-control" id="userRole" name="userRole"> 
+                  <option value="ROLE_USER">Sales Representative</option>
+                  <option value="ROLE_ADMIN">Leadership Team Administrator</option>
+                
                 </select>
         </div>
+        
         <div class="form-group">
-          <label for="basicNameInput">Email</label>
+          <label for="emailInput">Email</label>
           <input class="form-control" type="name" id="emailAddress" name="emailAddress" placeholder="Email">
         </div>
+         
         <div class="form-group">
-          <label for="basicNameInput">Password</label>
+          <label for="passwordInput">Password</label>
           <input class="form-control" type="name" id="userPassword" name="userPassword" placeholder="Password" value="jerkstore" readonly>
         </div>
+        
         <div class="form-group">
-          <input class="form-control" type="hidden" id="didPasswordChange" name="didPasswordChange" value="False">
+          <input class="form-control" type="hidden" id="didPasswordChange" name="didPasswordChange" value="false">
         </div>
+        
+        
              <div class="form-group col">
                             <label for="lookup">State</label>
                                 <select class="col-8 form-control" type="text" id="state"  name="state">
@@ -90,16 +104,22 @@ Add New Sales Representative
                                                 th:text="${state.stateName}">
                                 </select>
              </div>
-          <div class="form-check">
-        </div>
+
+          
+         
           <button type="button" onClick = location.href="sales_rep_display" class="btn btn-danger">Cancel</button>
         <button type="submit" class="btn btn-primary">Save</button>
+          
+               
+        
     </div>
-      </div>
-    </form>
+      </div>     
+    </form>     
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
 </body>
 </html>
