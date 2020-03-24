@@ -192,7 +192,18 @@ INSERT INTO crm_order(date_submitted, date_installed, date_completed, order_tota
 
 INSERT INTO crm_order_product(order_id, product_id, quantity) VALUES
 	(1, 4, 1),
+    (1, 3, 5),
+    (1, 2, 3),
     (2, 2, 1),
+    (2, 5, 4),
+    (2, 1, 3),
+    (2, 3, 2),
     (3, 5, 1),
     (4, 3, 1),
-    (5, 1, 1);
+    (4, 1, 2),
+    (4, 2, 5),
+    (5, 1, 2),
+    (5, 2, 4),
+    (5, 3, 1),
+    (5, 4, 3),
+    (5, 5, 4);

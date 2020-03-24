@@ -4,6 +4,7 @@ import com.dev10.BraylonMedia.entities.Client;
 import com.dev10.BraylonMedia.entities.State;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.LookupService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,6 +61,8 @@ public class ClientController
     {
         Client client = clients.findById(clientId);
         model.addAttribute("client", client);
+        List<State> states = lookUp.findAll();
+        model.addAttribute("states", states);
         return "edit_customer";
     }
     

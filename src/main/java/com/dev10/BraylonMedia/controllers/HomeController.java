@@ -1,6 +1,5 @@
 package com.dev10.BraylonMedia.controllers;
 
-import com.dev10.BraylonMedia.config.SecurityUtils;
 import com.dev10.BraylonMedia.entities.Client;
 import com.dev10.BraylonMedia.entities.State;
 import com.dev10.BraylonMedia.entities.User;

@@ -10,6 +10,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,12 +36,15 @@ public class SalesRepController
     @Autowired
     LookupService lookup;
     
+    @Autowired
+    PasswordEncoder encoder;
+    
     @GetMapping("/add_sales_rep")
     public String displayAddUser(Model model)
     {
         
         model.addAttribute("lookup", lookup.findAll());
-     //   model.addAttribute("errors", violations);
+        model.addAttribute("errors", violations);
         return "add_sales_rep";
     }
     
@@ -51,6 +55,7 @@ public class SalesRepController
         violations = validate.validate(user);
         
         if (violations.isEmpty()) {
+            user.setUserPassword(encoder.encode(user.getUserPassword()));
             users.save(user);
             return "redirect:/sales_rep_display";
         } else {
