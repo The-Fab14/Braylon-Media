@@ -9,9 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Sales Rep</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -76,8 +74,8 @@ Add New Sales Representative
         <div class="form-group">
                 <label for="electRole">Role</label>
                 <select class="form-control" id="userRole" name="userRole"> 
-                  <option>Sales Representative</option>
-                  <option>Leadership Team Administrator</option>
+                  <option value="ROLE_USER">Sales Representative</option>
+                  <option value="ROLE_ADMIN">Leadership Team Administrator</option>
                 
                 </select>
         </div>
@@ -93,7 +91,7 @@ Add New Sales Representative
         </div>
         
         <div class="form-group">
-          <input class="form-control" type="hidden" id="didPasswordChange" name="didPasswordChange" value="False">
+          <input class="form-control" type="hidden" id="didPasswordChange" name="didPasswordChange" value="false">
         </div>
         
         
