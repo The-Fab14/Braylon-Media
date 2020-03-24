@@ -1,4 +1,3 @@
-  
 package com.dev10.BraylonMedia.services;
 
 import com.dev10.BraylonMedia.entities.Order;
@@ -15,5 +14,7 @@ public interface OrderService {
     Order editOrder(int origOrderId, Order editedOrder);
     
     int getOrderProductQuantity (int orderId, int productId);
+    
+    void saveOrderProductQuantity (int orderId, int productId, int quantity);
 
 }

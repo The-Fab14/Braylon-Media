@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
 import lombok.Data;
 
 @Entity
@@ -28,8 +27,4 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private List<Order> orders;
-    
-    @Transient
-    @Column(nullable = true)
-    private int orderProductQuantity;
 }

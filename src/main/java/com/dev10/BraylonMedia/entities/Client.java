@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
@@ -50,7 +49,6 @@ public class Client {
 
     @Column(nullable = false)
     @Max(99999)
-    @Min(00000)
     private int zip;
 
     @ManyToOne

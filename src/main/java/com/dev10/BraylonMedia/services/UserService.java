@@ -54,10 +54,4 @@ public interface UserService {
      */
     boolean existsById(int userId);
     
-    /**
-     * Get User object from session
-     * @return 
-     */
-    User getUserFromSession();
-    
 }
