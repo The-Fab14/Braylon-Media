@@ -27,5 +27,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
             + "crm_client ct ON ct.client_id = ot.client_id INNER JOIN "
             + "crm_user ut ON ct.user_id = ut.user_id WHERE "
             + "ut.user_id = ?1", nativeQuery = true)
-    List<Order> findOrdersByUserId(int userId);
+    List<Order> getOrdersByUserId(int userId);
 }
