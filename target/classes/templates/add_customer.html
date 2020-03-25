@@ -63,11 +63,11 @@ Add New Customer
           <input class="form-control" type="text" id="contactLastName" placeholder="Last Name">
         </div>
         <div class='form-group'>
-          <label for="streetAddress">Street Name</label>
+          <label for="streetAddress">Street Address</label>
           <input class="form-control" type="text" id="streetAddress" placeholder="Street Name">
         </div>
         <div class='form-group'>
-          <label for="aptUnit">Apt. #</label>
+          <label for="aptUnit">Unit #</label>
           <input class="form-control" type="text" id="aptUnit" placeholder="Apt. #">
         </div>
         <div class='form-group'>
@@ -133,7 +133,7 @@ Add New Customer
         </div>
         <div class='form-group'>
           <label for="zip">Zip Code</label>
-          <input class="form-control" type="text" id="zip" placeholder="Zip Code">
+          <input class="form-control" type="text" id="zip" placeholder="Zip Code" pattern="^\d{5,}$" maxlength="5" required>
         </div>
         <div class='form-group'>
           <label for="phone">Phone</label>
@@ -143,7 +143,7 @@ Add New Customer
           <label for="email">Email</label>
           <input class="form-control" type="email" id="email" placeholder="Email">
         </div>
-        <button type="cancel" class="btn btn-danger">Cancel</button>
+        <button type="button" class="btn btn-danger" onClick="location.href='home'">Cancel</button>
         <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </div>

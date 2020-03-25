@@ -48,7 +48,7 @@
     </div>
     <div class="row">
         <div class="col-sm-4 offset-sm-4">
-            <form action="/edit_customer" method="POST" class="form">
+            <form action="/edit_customer" method="POST">
                 <!-- CSRF token -->
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <!-- Hidden clientId for passing to the controller -->
