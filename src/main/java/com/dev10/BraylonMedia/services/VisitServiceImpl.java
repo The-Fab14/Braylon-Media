@@ -34,7 +34,7 @@ public class VisitServiceImpl implements VisitService {
 
     @Override
     public List<Visit> getVisitsByUserId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return visitRepo.getVisitsByUserId(id);
     }
 
     @Override
@@ -43,13 +43,7 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    public Visit editVisit(int origVisitId, Visit editedVisit) {
-        Visit origVisit = visitRepo.findById(origVisitId).orElse(null);
-        origVisit.setDateVisited(editedVisit.getDateVisited());
-        origVisit.setUser(editedVisit.getUser());
-        origVisit.setClient(editedVisit.getClient());
-        origVisit.setVisitNotes(editedVisit.getVisitNotes());
-        
-        return origVisit;
+    public Visit editVisit(Visit editedVisit) {
+        return visitRepo.save(editedVisit);
     }
 }
