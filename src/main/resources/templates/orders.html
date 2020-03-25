@@ -97,8 +97,8 @@
                         <td th:text="${order.client.contactFirstName} + ' ' + ${order.client.contactLastName}"></td>
                         <td th:text="${order.orderId}"></td>
                         <td th:text="${order.dateSubmitted}"></td>
-                        <td th:each="products : ${order.products}">
-                            <li th:text="${products.productName}"</li>
+                        <td >
+                            <li th:each="products : ${order.products}" th:text="${products.productName}"</li>
                         </td>
                         <td>Quantity</td>
                         <td th:text="${order.orderTotal}"></td>
