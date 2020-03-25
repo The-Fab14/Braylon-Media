@@ -16,7 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  *
- * @author Kenji Kaenbyou, Garrett Becker
+ * @author Kenji Kaenbyou
  */
 
 @SpringBootTest
@@ -66,17 +66,12 @@ public class LookupServiceTest {
     }
 
     /**
-     * Test of deleteById method, of class LookupService.
-     */
-    @Test
-    public void testDeleteById() {
-    }
-
-    /**
      * Test of count method, of class LookupService.
      */
     @Test
     public void testCount() {
+        long count = sr.count();
+        assertEquals(count, 52);
     }
 
     /**
@@ -84,6 +79,9 @@ public class LookupServiceTest {
      */
     @Test
     public void testExistsById() {
+        String id = "NC";
+        boolean exists = sr.existsById(id);
+        assertEquals(exists, true);
     }
     
 }
