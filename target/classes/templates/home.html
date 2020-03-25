@@ -14,7 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+        <link rel="stylesheet" href="main.css"/>
+        </head>
 
 <body>
     <span id="userId" hidden th:text="${userId}"></span>
@@ -51,11 +52,16 @@
                     </ul>
                 </div>
             </nav>
-    <h1 style="text-align: center;">Customers</h1>
+    <div class="page-header">
+    <h1 class="text-center">
+      Customers
+    </h1>
+    <hr/>
+    <div class="wrapperButton">
         <button id="create-button" type="button" onClick=location.href="add_customer" class="btn btn-danger">
             Add Customer
         </button>
-    <hr/>
+    </div>
     <!-- "Search by ____" dropdowns -->
     <form class="form-inline">
         <div class="form-group">
