@@ -100,10 +100,21 @@ public class SalesRepController
     }
     
     @GetMapping("/sales_rep_display")
-    public String displaySalesRep(Model model)
+    public String displaySalesRep(Model model, Integer rep_id, Integer client_id)
     {
-        model.addAttribute("users", users.findAll());
-        model.addAttribute("clients", clients.findAll());
+        if (rep_id == null && client_id  == null) {
+            model.addAttribute("allUsers", users.findAll());
+            model.addAttribute("users", users.findAll());
+            model.addAttribute("clients", clients.findAll());
+        } else if (rep_id != null) {
+            model.addAttribute("allUsers", users.findAll());
+            model.addAttribute("users", users.findById(rep_id));
+            model.addAttribute("clients", clients.findAll());
+        } else {
+            model.addAttribute("clients", clients.findAll());
+            model.addAttribute("allUsers", users.findAll());
+            model.addAttribute("users", users.findUserByClientId(client_id));
+        }
         violations.clear();
         customViolations.clear();
         return "sales_rep_display";
