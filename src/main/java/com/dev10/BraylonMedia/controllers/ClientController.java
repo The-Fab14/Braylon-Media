@@ -37,7 +37,7 @@ public class ClientController
     @PostMapping("/add_customer")
     public String addCustomer(HttpServletRequest request, Model model, String companyName, 
             String firstName, String lastName, String streetAddress, 
-            String aptUnit, String city, String stateId, int zip, String phone, String email)
+            String aptUnit, String city, String stateId, String zip, String phone, String email)
     {
         String userId = request.getUserPrincipal().getName();
         Client client = new Client();
@@ -49,7 +49,14 @@ public class ClientController
         client.setCity(city);
         State state = lookUp.findById(stateId);
         client.setState(state);
-        client.setZip(zip);
+        try
+        {
+            client.setZip(Integer.parseInt(zip));
+        }
+        catch(NumberFormatException e)
+        {
+            
+        }
         client.setEmailAddress(email);
         client.setPhoneNumber(phone);
         clients.save(client);
@@ -69,7 +76,7 @@ public class ClientController
     @PostMapping("/edit_customer")
     public String editCustomer(HttpServletRequest request, Model model, String companyName, 
             String firstName, String lastName, String streetAddress, 
-            String aptUnit, String city, String stateId, int zip, String phone, String email,
+            String aptUnit, String city, String stateId, String zip, String phone, String email,
             int clientId)
     {
         Client client = new Client();
@@ -81,7 +88,15 @@ public class ClientController
         client.setCity(city);
         State state = lookUp.findById(stateId);
         client.setState(state);
-        client.setZip(zip);
+        try
+        {
+            client.setZip(Integer.parseInt(zip));
+        }
+        catch(NumberFormatException e)
+        {
+            Client current = clients.findById(clientId);
+            client.setZip(current.getZip());
+        }
         client.setEmailAddress(email);
         client.setPhoneNumber(phone);
         client.setClientId(clientId);
