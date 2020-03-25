@@ -2,8 +2,10 @@ package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.Client;
 import com.dev10.BraylonMedia.entities.State;
+import com.dev10.BraylonMedia.entities.User;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.LookupService;
+import com.dev10.BraylonMedia.services.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class ClientController
     
     @Autowired
     LookupService lookUp;
+    
+    @Autowired
+    UserService users;
     
     @GetMapping("/add_customer")
     public String displayAddCustomer(Model model)
@@ -79,6 +84,7 @@ public class ClientController
             String aptUnit, String city, String stateId, String zip, String phone, String email,
             int clientId)
     {
+        User user = users.getUserFromSession();
         Client client = new Client();
         client.setCompanyName(companyName);
         client.setContactFirstName(firstName);
@@ -100,6 +106,7 @@ public class ClientController
         client.setEmailAddress(email);
         client.setPhoneNumber(phone);
         client.setClientId(clientId);
+        client.setUser(user);
         clients.save(client);
         return "redirect:/orders";
     }
