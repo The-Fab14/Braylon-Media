@@ -10,6 +10,7 @@ import com.dev10.BraylonMedia.repositories.UserRepository;
 import com.dev10.BraylonMedia.entities.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     UserRepository userRepository;
+    
+    @Autowired
+    PasswordEncoder encoder;
 
     @Override
     public User findById(int userId) {
@@ -58,6 +62,13 @@ public class UserServiceImpl implements UserService {
         int userId = Integer.parseInt(username);
         User user = findById(userId);
         return user;
+    }
+    
+    @Override
+    public boolean defaultPasswordChanged(User user) {
+        String oldPassword = encoder.encode("jerkstore");
+        boolean matching = encoder.matches(user.getUserPassword(), oldPassword);
+        return matching;
     }
 
 }
