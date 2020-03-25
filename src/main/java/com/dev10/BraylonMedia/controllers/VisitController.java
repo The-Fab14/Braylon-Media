@@ -6,9 +6,11 @@ import com.dev10.BraylonMedia.entities.Visit;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.UserService;
 import com.dev10.BraylonMedia.services.VisitService;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +41,41 @@ public class VisitController
     ClientService clientService;
     
     @GetMapping("/visit")
-    public String displayVisits(Model model)
+    public String displayVisits(Model model, Integer client_id, Integer user_id, String month)
     {
         User user = userService.getUserFromSession();
-        List<Visit> visits = visitService.getVisitsByUserId(user.getUserId());
+        List<Visit> visits = visitService.getAllVisits();
+        if(user.getUserRole().equals("ROLE_USER"))
+        {
+            user_id = user.getUserId();
+        }
         List<User> users = userService.findAll();
         List<Client> clients = clientService.findAll();
+        if(user_id != null)
+        {
+            visits = visitService.getVisitsByUserId(user_id);
+        }
+        if(client_id != null)
+        {
+            visits = visitService.getVisitsByClientId(client_id);
+        }
+        if(user_id != null && client_id != null)
+        {
+            visits = visitService.findAllByClientAndUser(client_id, user_id);
+        }
+        if(month != null)
+        {
+            List<Visit> newVisits = new ArrayList<>();
+            for(Visit v : visits)
+            {
+                if(v.getDateVisited().getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()).equalsIgnoreCase(month))
+                {
+                    newVisits.add(v);
+                }
+            }
+            visits.clear();
+            visits = newVisits;
+        }
         model.addAttribute("visits", visits);
         model.addAttribute("users", users);
         model.addAttribute("clients", clients);

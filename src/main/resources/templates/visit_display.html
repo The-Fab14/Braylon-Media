@@ -71,11 +71,13 @@
                     Search by Customer
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <button class="dropdown-item" type="button" th:each="client : ${clients}"
-                  th:text="${client.companyName}"
-                  th:value="${client.clientId}">
-                    company
-                </button>
+                    <form th:action="@{/visit}" method="GET">  
+                        <button name="client_id" class="dropdown-item" type="submit" th:each="client : ${clients}"
+                th:text="${client.contactFirstName} + ' ' + ${client.contactLastName}"
+                th:value="${client.clientId}">
+                            ClientsIds
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -86,10 +88,14 @@
                     Search by Sales Rep
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button" th:each="user : ${users}" th:text="${user.firstName} + ' ' + ${user.lastName}"
-                    th:value="${user.userId}">
-                        UserIds
-                    </button>
+                    <form th:action="@{/visit}" method="GET">
+                        <button name="user_id" class="dropdown-item" type="submit" th:each="user : ${users}"
+                th:text="${user.firstName} + ' ' + ${user.lastName}"
+                th:value="${user.userId}">
+                            UserIds
+                        </button>
+                    </form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -100,10 +106,13 @@
                     Search by Month
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                    <button class="dropdown-item" type="button" th:each="month : ${months}" th:text="${month}"
-                    th:value="${month}">
-                        month
-                    </button>
+                    <form th:action="@{/visit}" method="GET">
+                        <button name="month" class="dropdown-item" type="submit" th:each="month : ${months}"
+                        th:text="${month}"
+                        th:value="${month}">
+                            months
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
