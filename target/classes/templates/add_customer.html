@@ -14,7 +14,7 @@
 
 <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Braylon Media</a>
+                <a class="navbar-brand" th:href="@{/home}">Braylon Media</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" th:href="@{/home}">Customers <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/edit_user}">Edit User</a>
@@ -30,7 +30,7 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/orders}">Orders</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/sales_rep_display}">Sales Representatives</a>
                         </li>
                         <li class="nav-item">
@@ -63,11 +63,11 @@ Add New Customer
           <input class="form-control" type="text" id="contactLastName" placeholder="Last Name">
         </div>
         <div class='form-group'>
-          <label for="streetAddress">Street Name</label>
+          <label for="streetAddress">Street Address</label>
           <input class="form-control" type="text" id="streetAddress" placeholder="Street Name">
         </div>
         <div class='form-group'>
-          <label for="aptUnit">Apt. #</label>
+          <label for="aptUnit">Unit #</label>
           <input class="form-control" type="text" id="aptUnit" placeholder="Apt. #">
         </div>
         <div class='form-group'>
@@ -133,7 +133,7 @@ Add New Customer
         </div>
         <div class='form-group'>
           <label for="zip">Zip Code</label>
-          <input class="form-control" type="text" id="zip" placeholder="Zip Code">
+          <input class="form-control" type="text" id="zip" placeholder="Zip Code" pattern="^\d{5,}$" maxlength="5" required>
         </div>
         <div class='form-group'>
           <label for="phone">Phone</label>
@@ -143,7 +143,7 @@ Add New Customer
           <label for="email">Email</label>
           <input class="form-control" type="email" id="email" placeholder="Email">
         </div>
-        <button type="cancel" class="btn btn-danger">Cancel</button>
+        <button type="button" class="btn btn-danger" onClick="location.href='home'">Cancel</button>
         <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </div>
