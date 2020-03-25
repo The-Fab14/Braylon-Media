@@ -73,7 +73,12 @@ public class SalesRepController
             model.addAttribute("customViolations", customViolations);
             return "edit_user";
         } else {
-            return "redirect:/sales_rep_display";
+            User user = users.getUserFromSession();
+            model.addAttribute("user", user);
+            model.addAttribute("lookup", lookup.findAll());
+            model.addAttribute("errors", violations);
+            model.addAttribute("customViolations", customViolations);
+            return "edit_user";
         }
     }
     
