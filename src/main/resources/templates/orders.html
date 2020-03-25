@@ -84,8 +84,8 @@
                         <th>Customer Name</th>
                         <th>Order Number</th>
                         <th>Submission Date</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
+                        <th>Products</th>
+                        <!--<th>Quantity</th>-->
                         <th>Price</th>
                         <th>Status</th>
                         <th>Comments</th>
@@ -98,11 +98,18 @@
                         <td th:text="${order.orderId}"></td>
                         <td th:text="${order.dateSubmitted}"></td>
                         <td >
-                            <li th:each="products : ${order.products}" th:text="${products.productName}"</li>
+                            <table class="table table-borderless">
+                                <tr th:each="products : ${order.products}">
+                                    <td th:text="${products.productName}"></td>
+                                    <td th:text="${products.orderProductQuantity}"></td>
+                                </tr>
+                            </table>
+                            <!--<li th:each="products : ${order.products}" th:text="${products.productName}"</li>-->
                         </td>
+                        <!--
                         <td>
                             <li th:each="products : ${order.products}" th:text="${products.orderProductQuantity}"</li>
-                        </td>
+                        </td>-->
                         <td th:text="${order.orderTotal}"></td>
                         <td th:text="${order.orderStatus}"></td>
                         <td th:text="${order.orderComments}"></td>
