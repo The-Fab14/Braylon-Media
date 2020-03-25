@@ -56,7 +56,7 @@
       </div>
     </nav>
 
-    <h1 style="text-align: center;">Sales Rep Page</h1>
+        <h1 style="text-align: center;">Sales Rep Page</h1>
 
     <button id="create-button" type="button" onClick=location.href="add_sales_rep" class="btn btn-danger">Create
       New</button>
@@ -68,9 +68,11 @@
           Search by Contact Name
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <button class="dropdown-item" type="button" th:each="client : ${clients}"
+            <form th:action="@{/sales_rep_display}" method="GET">
+          <button name="client_id" class="dropdown-item" type="submit" th:each="client : ${clients}"
             th:text="${client.contactFirstName} + ' ' + ${client.contactLastName}"
             th:value="${client.clientId}">ClientsIds</button>
+            </form>
         </div>
       </div>
     </div>
@@ -82,8 +84,10 @@
           Search by Sales Rep Id
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <button class="dropdown-item" type="button" th:each="user : ${users}" th:text="${user.userId}"
+                      <form th:action="@{/sales_rep_display}" method="GET">
+          <button name="rep_id" class="dropdown-item" type="submit" th:each="user : ${allUsers}" th:text="${user.userId} + ' - ' + ${user.firstName} + ' ' + ${user.lastName}"
             th:value="${user.userId}">UserIds</button>
+                      </form>
         </div>
       </div>
     </div>
@@ -96,15 +100,17 @@
           <th>Last Name</th>
           <th>Sales Rep Id</th>
           <th>State</th>
+          <th>Visits</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr th:each="user : ${users}">
-          <td th:text="${user.firstName}"></td>
-          <td th:text="${user.lastName}"></td>
-          <td><a th:href="@{edit_user(userId=${user.userId})}" th:text="${user.userId}"></a></td>
-          <td th:text="${user.state.stateName}"></td>
+        <tr th:each="pair : ${visitMap}">
+          <td th:text="${pair.key.firstName}"></td>
+          <td th:text="${pair.key.lastName}"></td>
+          <td><a th:href="@{edit_user(userId=${pair.key.userId})}" th:text="${pair.key.userId}"></a></td>
+          <td th:text="${pair.key.state.stateName}"></td>
+          <td><a th:text="${pair.value}"></a></td>
         </tr>
 
       </tbody>
