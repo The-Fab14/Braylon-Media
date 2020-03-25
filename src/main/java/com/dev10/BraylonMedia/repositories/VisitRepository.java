@@ -6,7 +6,9 @@
 package com.dev10.BraylonMedia.repositories;
 
 import com.dev10.BraylonMedia.entities.Visit;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +17,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface VisitRepository extends JpaRepository<Visit, Integer>{
-    
+    @Query(value = "SELECT * FROM visit WHERE user_id = ?1", nativeQuery = true)
+    List<Visit> getVisitsByUserId(int id);
 }

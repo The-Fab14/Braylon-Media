@@ -1,10 +1,16 @@
 package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.User;
+import com.dev10.BraylonMedia.entities.Visit;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.LookupService;
 import com.dev10.BraylonMedia.services.UserService;
+import com.dev10.BraylonMedia.services.VisitService;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -36,6 +42,9 @@ public class SalesRepController
     
     @Autowired
     LookupService lookup;
+    
+    @Autowired
+    VisitService visits;
     
     @Autowired
     PasswordEncoder encoder;
@@ -109,8 +118,25 @@ public class SalesRepController
     @GetMapping("/sales_rep_display")
     public String displaySalesRep(Model model)
     {
-        model.addAttribute("users", users.findAll());
+        List<User> userList = users.findAll();
+        userList.sort(Comparator.comparing(User::getUserId));
+        model.addAttribute("users", userList);
         model.addAttribute("clients", clients.findAll());
+        
+        List<Visit> visitList = visits.getAllVisits();
+        List<Integer> userIdFreq = new ArrayList<>();
+        List<Integer> visitFreq = new ArrayList<>();
+        for(Visit visit: visitList) 
+        {
+            userIdFreq.add(visit.getUser().getUserId());
+        }
+        for(User user : userList) 
+        {
+            int freq = Collections.frequency(userIdFreq, user.getUserId());
+            visitFreq.add(freq);
+        }
+        model.addAttribute("visitCount", visitFreq);
+        
         violations.clear();
         customViolations.clear();
         return "sales_rep_display";

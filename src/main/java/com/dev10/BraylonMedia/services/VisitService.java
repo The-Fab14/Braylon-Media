@@ -11,6 +11,6 @@ public interface VisitService {
     List<Visit> getVisitsByClientId(int id);
     List<Visit> getVisitsByUserId(int id);
     List<Visit> getVisitsByStateId(String id);
-    Visit editVisit(int origVisitId, Visit editedVisit);
+    Visit editVisit(Visit editedVisit);
 
 }
