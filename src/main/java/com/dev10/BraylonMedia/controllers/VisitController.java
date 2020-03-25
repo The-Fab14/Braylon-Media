@@ -42,8 +42,11 @@ public class VisitController
     {
         User user = userService.getUserFromSession();
         List<Visit> visits = visitService.getVisitsByUserId(user.getUserId());
-        
+        List<User> users = userService.findAll();
+        List<Client> clients = clientService.findAll();
         model.addAttribute("visits", visits);
+        model.addAttribute("users", users);
+        model.addAttribute("clients", clients);
         return "visit_display";
     }
     

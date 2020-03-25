@@ -59,43 +59,55 @@
         <button id="create-button" type="button" onClick=location.href="add_new_order" class="btn btn-danger">
             Add Visit
         </button>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-                Search by Customer
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <button class="dropdown-item" type="button">
-                    Action
+        <div class="btn-group">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                    Search by Customer
                 </button>
-                <button class="dropdown-item" type="button">
-                    Another action
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <button class="dropdown-item" type="button" th:each="client : ${clients}"
+                  th:text="${client.companyName}"
+                  th:value="${client.clientId}">
+                    company
                 </button>
-                <button class="dropdown-item" type="button">
-                    Something else here
-                </button>
+                </div>
             </div>
-        
-      
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Search by Customer Id
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button">Action</button>
-        <button class="dropdown-item" type="button">Another action</button>
-        <button class="dropdown-item" type="button">Something else here</button>
-      </div>
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Search by Sales Rep Id
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-        <button class="dropdown-item" type="button">Action</button>
-        <button class="dropdown-item" type="button">Another action</button>
-        <button class="dropdown-item" type="button">Something else here</button>
-      </div>
-    </div>
+        </div>
+        <div class="btn-group">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                    Search by Sales Rep
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button" th:each="user : ${users}" th:text="${user.firstName} + ' ' + ${user.lastName}"
+                    th:value="${user.userId}">
+                        UserIds
+                    </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Visit ID</th>
+                    <th>Date</th>
+                    <th>Sales Rep</th>
+                    <th>Customer</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="visit : ${visits}">
+                    <td th:text="${visit.visitId}"></td>
+                    <td th:text="${visit.dateVisited}"></td>
+                    <td th:text="${visit.user.firstName} + ' ' + ${visit.user.lastName}"></td>
+                    <td th:text="${visit.client.contactFirstName} + ' ' + ${visit.client.contactLastName}"></td>
+                    <td th:text="${visit.visitNotes}"></td>
+                </tr>
+            </tbody>
+        </table>
         
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
@@ -106,6 +118,5 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
         </script>
-        <script src="/home.js"></script>
     </body>
 </html>
