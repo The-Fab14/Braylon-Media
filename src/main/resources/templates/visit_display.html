@@ -10,8 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf" th:content="${_csrf.token}" />
     <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-    <title>View Customers</title>
+    <title>Visit Display</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -49,41 +51,7 @@
                 </div>
             </nav>
 
-    <!-- "Search by ____" dropdowns -->
-    <select id="searchParameters">
-      <option selected disabled>--Search By:--</option>
-      <option id="clientId">Client ID</option>
-      <option id="companyName">Company Name</option>
-      <option id="contactLastName">Contact Last Name</option>
-      <!-- Display only for LST users -->
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <option id="salesRepId">Sales Rep ID</option>
-    </div>
-    </select>
-    <select id="searchQueries">
-      <option id ="defaultResult" selected disabled>--Select Result--</option>
-    </select> 
     
-    <!-- Client table -->
-    <table class="table table-striped">
-        <thead>
-              <tr>
-                        <th>Company Name</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Street Address</th>
-                        <th>Unit #</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Zip Code</th>
-                        <th>Phone #</th>
-                        <th>Email</th>
-                      </tr>
-        </thead>
-        <tbody id="tableBody">
-            <!-- JS adds clients here -->
-        </tbody>
-    </table>
 
 
 
