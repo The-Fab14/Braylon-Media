@@ -2,8 +2,10 @@ package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.Client;
 import com.dev10.BraylonMedia.entities.State;
+import com.dev10.BraylonMedia.entities.User;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.LookupService;
+import com.dev10.BraylonMedia.services.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class ClientController
     @Autowired
     LookupService lookUp;
     
+    @Autowired
+    UserService users;
+    
     @GetMapping("/add_customer")
     public String displayAddCustomer(Model model)
     {
@@ -37,7 +42,7 @@ public class ClientController
     @PostMapping("/add_customer")
     public String addCustomer(HttpServletRequest request, Model model, String companyName, 
             String firstName, String lastName, String streetAddress, 
-            String aptUnit, String city, String stateId, int zip, String phone, String email)
+            String aptUnit, String city, String stateId, String zip, String phone, String email)
     {
         String userId = request.getUserPrincipal().getName();
         Client client = new Client();
@@ -49,7 +54,14 @@ public class ClientController
         client.setCity(city);
         State state = lookUp.findById(stateId);
         client.setState(state);
-        client.setZip(zip);
+        try
+        {
+            client.setZip(Integer.parseInt(zip));
+        }
+        catch(NumberFormatException e)
+        {
+            
+        }
         client.setEmailAddress(email);
         client.setPhoneNumber(phone);
         clients.save(client);
@@ -69,9 +81,10 @@ public class ClientController
     @PostMapping("/edit_customer")
     public String editCustomer(HttpServletRequest request, Model model, String companyName, 
             String firstName, String lastName, String streetAddress, 
-            String aptUnit, String city, String stateId, int zip, String phone, String email,
+            String aptUnit, String city, String stateId, String zip, String phone, String email,
             int clientId)
     {
+        User user = users.getUserFromSession();
         Client client = new Client();
         client.setCompanyName(companyName);
         client.setContactFirstName(firstName);
@@ -81,10 +94,19 @@ public class ClientController
         client.setCity(city);
         State state = lookUp.findById(stateId);
         client.setState(state);
-        client.setZip(zip);
+        try
+        {
+            client.setZip(Integer.parseInt(zip));
+        }
+        catch(NumberFormatException e)
+        {
+            Client current = clients.findById(clientId);
+            client.setZip(current.getZip());
+        }
         client.setEmailAddress(email);
         client.setPhoneNumber(phone);
         client.setClientId(clientId);
+        client.setUser(user);
         clients.save(client);
         return "redirect:/orders";
     }
