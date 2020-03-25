@@ -10,6 +10,8 @@ import com.dev10.BraylonMedia.services.ProductService;
 import com.dev10.BraylonMedia.services.UserService;
 import com.dev10.BraylonMedia.services.VisitService;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,15 +61,15 @@ public class HomeController {
 
         // determine if maintenance page shows or not
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.US);
-        String timeNow = LocalTime.now().format(formatter);
-//        String timeNow = "00:01:00";
-        LocalTime startLocalTime = LocalTime.parse("00:00:00", formatter);
-        LocalTime endLocalTime = LocalTime.parse("06:00:00", formatter);
-        LocalTime checkLocalTime = LocalTime.parse(timeNow, formatter);
+//        String timeNow = ZonedDateTime.now(ZoneId.of("America/Chicago")).format(formatter);
+        String timeNow = "00:00:00";
+        LocalTime startTime = LocalTime.parse("00:00:00", formatter);
+        LocalTime endTime = LocalTime.parse("06:00:00", formatter);
+        LocalTime checkTime = LocalTime.parse(timeNow, formatter);
 
         boolean isInBetween = false;
 
-        if (startLocalTime.compareTo(checkLocalTime) <= 0 && endLocalTime.compareTo(checkLocalTime) >= 0) {
+        if (startTime.compareTo(checkTime) <= 0 && endTime.compareTo(checkTime) >= 0) {
             isInBetween = true;
         }
 
@@ -235,7 +237,7 @@ public class HomeController {
             clientService.save(client);
             return new ResponseEntity("Successfully edited client.", HttpStatus.OK);
         }
-        
+
         return new ResponseEntity("I don't know what happened.", HttpStatus.NOT_FOUND);
 
     }
@@ -243,11 +245,11 @@ public class HomeController {
     @ResponseBody
     @PostMapping("/delete-client/{clientIdString}")
     public ResponseEntity deleteBuyerAccount(@PathVariable String clientIdString) {
-        
+
         int clientId = Integer.parseInt(clientIdString);
 
         User user = userService.getUserFromSession();
-        
+
         if (user.getUserRole().equals("ROLE_USER")) {
             List<Client> clientList = clientService.findAllByUserId(user.getUserId());
 
@@ -263,7 +265,7 @@ public class HomeController {
             clientService.deleteById(clientId);
             return new ResponseEntity("Successfully deleted client.", HttpStatus.OK);
         }
-        
+
         return new ResponseEntity("I don't know what happened.", HttpStatus.NOT_FOUND);
 
     }
