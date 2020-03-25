@@ -50,6 +50,18 @@
 </div>
     <form th:object="${user}" action="edit_user" method="POST" class="form">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        
+         <div class="col-12 m-1 text-center"
+                    th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" th:each="error : ${errors}"
+                    th:text="${error.message}">Error message</p>
+         </div>
+        
+        <div class="col-12 m-1 text-center" 
+             th:if="${!customViolations.isEmpty()}">
+            <p class="alert alert-danger" th:each="violation : ${customViolations}"
+               th:text="${violation}">Error message</p>
+        </div>        
     
         <div class="row">
     <div class="col-sm-4 offset-sm-4"> 
@@ -68,7 +80,7 @@
                     <input th:field="*{lastName}" class="form-control" type="text" id="lastName" name="lastName"/>
                 </div>
         <div class="form-group">
-                    <label for="electRole">Role</label>
+                    <label for="selectRole">Role</label>
                      <select th:field="*{userRole}" class="form-control" type="text" id="userRole" name="userRole">
 
 
@@ -84,16 +96,22 @@
                     <input th:field="*{emailAddress}" class="form-control" type="text" id="emailAdress" name="emailAddress"/>
                 </div>
         
-        <div class="form-group">
+                <div th:if="${user.didPasswordChange == True}" class="form-group">
                     <label for="passwordInput">Password</label>
-                    <input th:field="*{userPassword}" class="form-control" type="text" id="userPassword" name="userPassword"/>
+                    <input readonly th:value="*{userPassword}" class="form-control" type="password" id="userPassword" name="userPassword"/>
                 </div>
         
-        <div class="form-group">
-            <label for="didPasswordChangeCheckbox">Did Password Change?</label>
-          <input th:field="*{didPasswordChange}" class="form-control" type="checkbox" id="didPasswordChange" name="didPasswordChange" value="false">
-        </div>
+                <div th:if="${user.didPasswordChange == False}" class="form-group">
+                    <label style="color:red;" for="passwordInput">New User. Please change default password.</label>
+                    <input th:value="*{userPassword}" class="form-control" type="password" id="userPassword" name="userPassword"/>
+                </div>  
         
+        <div class="form-group col align-self-end">
+            <div class="form-check">
+                <input disabled class="form-check-input" type="checkbox" id="didPasswordChange" name="didPasswordChange" th:checked="${user.didPasswordChange}">
+                <label class="form-check-label" for="didPasswordChangeCheckbox">Did Password Change?</label>
+            </div>
+        </div>
         
         
         <div class="form-group col">
