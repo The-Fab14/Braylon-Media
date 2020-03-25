@@ -61,8 +61,8 @@ public class HomeController {
 
         // determine if maintenance page shows or not
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.US);
-//        String timeNow = ZonedDateTime.now(ZoneId.of("America/Chicago")).format(formatter);
-        String timeNow = "00:00:00";
+        String timeNow = ZonedDateTime.now(ZoneId.of("America/Chicago")).format(formatter);
+//        String timeNow = "00:00:00";
         LocalTime startTime = LocalTime.parse("00:00:00", formatter);
         LocalTime endTime = LocalTime.parse("06:00:00", formatter);
         LocalTime checkTime = LocalTime.parse(timeNow, formatter);
