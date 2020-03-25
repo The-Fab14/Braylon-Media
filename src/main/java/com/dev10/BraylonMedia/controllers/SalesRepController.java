@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SalesRepController 
 {
     Set<ConstraintViolation<User>> violations = new HashSet<>();
+    Set<String> customViolations = new HashSet<>();
     
     @Autowired
     UserService users;
@@ -68,6 +69,8 @@ public class SalesRepController
         if (userId != null) {
             model.addAttribute("user", users.findById(userId));
             model.addAttribute("lookup", lookup.findAll());
+            model.addAttribute("errors", violations);
+            model.addAttribute("customViolations", customViolations);
             return "edit_user";
         } else {
             return "redirect:/sales_rep_display";
@@ -80,11 +83,20 @@ public class SalesRepController
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
         
-        if (violations.isEmpty()) {
+        if (violations.isEmpty() && !user.isDidPasswordChange() && !users.defaultPasswordChanged(user)) {
+            user.setUserPassword(encoder.encode(user.getUserPassword()));
+            user.setDidPasswordChange(true);
             users.save(user);
             return "redirect:/sales_rep_display";
+        } else if (!user.isDidPasswordChange() && users.defaultPasswordChanged(user)) {
+            customViolations.add("Initial password must be changed.");
+            return "redirect:/edit_user?userId=" + user.getUserId();
+        } else if (violations.isEmpty()) {
+            users.save(user);
+            return "redirect:/sales_rep_display";
+        } else {
+            return "redirect:/sales_rep_display";
         }
-        return "redirect:/edit_user?userId=" + user.getUserId();
     }
     
     @GetMapping("/sales_rep_display")
@@ -93,6 +105,7 @@ public class SalesRepController
         model.addAttribute("users", users.findAll());
         model.addAttribute("clients", clients.findAll());
         violations.clear();
+        customViolations.clear();
         return "sales_rep_display";
     }
 }

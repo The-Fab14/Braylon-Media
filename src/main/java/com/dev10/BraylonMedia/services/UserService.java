@@ -60,4 +60,9 @@ public interface UserService {
      */
     User getUserFromSession();
     
+     /**
+     * Check that initial password was changed
+     * @return 
+     */
+    boolean defaultPasswordChanged(User user);
 }
