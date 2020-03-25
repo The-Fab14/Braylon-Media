@@ -86,6 +86,6 @@ public class ClientController
         client.setPhoneNumber(phone);
         client.setClientId(clientId);
         clients.save(client);
-        return "redirect:/orders";
+        return "redirect:/home";
     }
 }

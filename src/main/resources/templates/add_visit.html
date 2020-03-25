@@ -19,7 +19,7 @@
     <span id="userId" hidden th:text="${userId}"></span>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Braylon Media</a>
+                <a class="navbar-brand" th:href="@{/home}">Braylon Media</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" th:href="@{/home}">Customers <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/edit_user}">Edit User</a>
@@ -37,6 +37,9 @@
                         </li>
                         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/sales_rep_display}">Sales Representatives</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/visit}">Visits</a>
                         </li>
                         <li class="nav-item">
                             <form method="POST" action="logout">

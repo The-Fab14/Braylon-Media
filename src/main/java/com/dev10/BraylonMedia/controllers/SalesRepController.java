@@ -1,10 +1,16 @@
 package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.User;
+import com.dev10.BraylonMedia.entities.Visit;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.LookupService;
 import com.dev10.BraylonMedia.services.UserService;
+import com.dev10.BraylonMedia.services.VisitService;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -23,23 +29,26 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 
 @Controller
-public class SalesRepController 
+public class SalesRepController
 {
     Set<ConstraintViolation<User>> violations = new HashSet<>();
     Set<String> customViolations = new HashSet<>();
-    
+
     @Autowired
     UserService users;
-    
+
     @Autowired
     ClientService clients;
-    
+
     @Autowired
     LookupService lookup;
-    
+
+    @Autowired
+    VisitService visits;
+
     @Autowired
     PasswordEncoder encoder;
-    
+
     @GetMapping("/add_sales_rep")
     public String displayAddUser(Model model)
     {
@@ -47,13 +56,13 @@ public class SalesRepController
         model.addAttribute("errors", violations);
         return "add_sales_rep";
     }
-    
+
     @PostMapping("/add_sales_rep")
     public String displayAddUser(User user)
-    {   
+    {
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
-        
+
         if (violations.isEmpty()) {
             user.setUserPassword(encoder.encode(user.getUserPassword()));
             users.save(user);
@@ -62,7 +71,7 @@ public class SalesRepController
             return "redirect:/add_sales_rep";
         }
     }
-    
+
     @GetMapping("/edit_user")
     public String displayEditUser(Integer userId, Model model)
     {
@@ -73,16 +82,21 @@ public class SalesRepController
             model.addAttribute("customViolations", customViolations);
             return "edit_user";
         } else {
-            return "redirect:/sales_rep_display";
+            User user = users.getUserFromSession();
+            model.addAttribute("user", user);
+            model.addAttribute("lookup", lookup.findAll());
+            model.addAttribute("errors", violations);
+            model.addAttribute("customViolations", customViolations);
+            return "edit_user";
         }
     }
-    
+
     @PostMapping("/edit_user")
     public String editUser(User user)
     {
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
-        
+
         if (violations.isEmpty() && !user.isDidPasswordChange() && !users.defaultPasswordChanged(user)) {
             user.setUserPassword(encoder.encode(user.getUserPassword()));
             user.setDidPasswordChange(true);
@@ -98,7 +112,7 @@ public class SalesRepController
             return "redirect:/sales_rep_display";
         }
     }
-    
+
     @GetMapping("/sales_rep_display")
     public String displaySalesRep(Model model, Integer rep_id, Integer client_id)
     {
