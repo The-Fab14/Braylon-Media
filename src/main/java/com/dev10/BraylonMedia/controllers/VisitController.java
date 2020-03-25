@@ -127,5 +127,4 @@ public class VisitController
         visitService.editVisit(visit);
         return "redirect:/edit_visit?visitId=" + visit.getVisitId();
     }
-    
 }
