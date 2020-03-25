@@ -65,4 +65,10 @@ public interface UserService {
      * @return 
      */
     boolean defaultPasswordChanged(User user);
+    
+     /**
+     * Find sales rep by clientId
+     * @return 
+     */
+    User findUserByClientId(int clientId);
 }

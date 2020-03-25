@@ -114,13 +114,28 @@ public class SalesRepController
     }
     
     @GetMapping("/sales_rep_display")
-    public String displaySalesRep(Model model)
+    public String displaySalesRep(Model model, Integer rep_id, Integer client_id)
     {
         List<User> userList = users.findAll();
         userList.sort(Comparator.comparing(User::getUserId));
-        model.addAttribute("users", userList);
-        model.addAttribute("clients", clients.findAll());
-        
+//        model.addAttribute("users", userList);
+//        model.addAttribute("clients", clients.findAll());
+        model.addAttribute("allUsers", users.findAll());
+        if (rep_id == null && client_id  == null) 
+        {
+            model.addAttribute("users", users.findAll());
+            model.addAttribute("clients", clients.findAll());
+        } 
+        else if (rep_id != null) 
+        {
+            model.addAttribute("users", users.findById(rep_id));
+            model.addAttribute("clients", clients.findAll());
+        } 
+        else 
+        {
+            model.addAttribute("clients", clients.findAll());
+            model.addAttribute("users", users.findUserByClientId(client_id));
+        }
         List<Visit> visitList = visits.getAllVisits();
         List<Integer> userIdFreq = new ArrayList<>();
         List<Integer> visitFreq = new ArrayList<>();
