@@ -6,6 +6,7 @@ import com.dev10.BraylonMedia.entities.Visit;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.UserService;
 import com.dev10.BraylonMedia.services.VisitService;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +48,20 @@ public class VisitController
         model.addAttribute("visits", visits);
         model.addAttribute("users", users);
         model.addAttribute("clients", clients);
+        List<String> months = new ArrayList<>();
+        months.add("January");
+        months.add("February");
+        months.add("March");
+        months.add("April");
+        months.add("May");
+        months.add("June");
+        months.add("July");
+        months.add("August");
+        months.add("September");
+        months.add("October");
+        months.add("November");
+        months.add("December");
+        model.addAttribute("months", months);
         return "visit_display";
     }
     
