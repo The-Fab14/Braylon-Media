@@ -153,19 +153,20 @@ INSERT INTO crm_user (user_id, first_name, last_name, user_password, did_passwor
 	(4, 'Frank', 'Costanza', '$2a$10$yOO7PnSu4D.KsoSkXIndHOXCuG3ydIp3CpG5NModp9APR2O7IUFV2', 0, 'ROLE_ADMIN', 'fcostanza@braylonm.com', 'NJ'),
 	(5, 'Jay', 'Peterman', '$2a$10$yOO7PnSu4D.KsoSkXIndHOXCuG3ydIp3CpG5NModp9APR2O7IUFV2', 0,  'ROLE_ADMIN', 'jpeterman@braylon.com', 'NV');
     
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('John', 'Martin','Ted Talks', '285 Young Road', 'Apt #301', 'Stone Mountain', '30385','jmartin@gmail.com','6783611390','GA',1);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Doug', 'Smith','Some Company', '285 Young Road', 'Apt #301', 'Stone Mountain', '30385','jmartin@gmail.com','6783611390','GA',1);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Jake', 'Porter','Ted Talks', '7816 Monogramm Lane', 'Apt #2200','Mint Hill','28227','cross_sounds@gmail.com','7045521694','NC',1);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('John', 'Smith','Ted Talks', '7816 Monogramm Lane', 'Apt #2200','Mint Hill','28227','cross_sounds@gmail.com','7045521694','NC',2);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Alex', 'Cross','Live Sound Prodution', '7816 Monogramm Lane', 'Apt #2200','Mint Hill','28227','cross_sounds@gmail.com','7045521694','NC',2);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Casey', 'Jones','Stage Audio', '3000 College Drive', 'Apt #305', 'Savannah', '30385','jstagestudios01@yahoo.com','2290052387','GA', 3);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Meghan', 'Robinson','Sound Peristance', '25001 Venice Dr.', 'Apt #8759', 'Los Angeles','93736','s.persistance@microsoft.com','8063667834','LA',4);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Joey', 'Martin','Creative Sound', '1026 Jay Street', 'Apt# 264', 'Charlotte','28208','creativesound@gmail.com','7048881497','NC', 5);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Meghan', 'Markle','Royal British Studios', '9076 King St', 'Apt# 254', 'London','29837','royalty@royal.uk','8097261743','NC', 5);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Tom', 'Hanks','Warner Bros', '2837 Film Blvd', 'Apt# 25', 'Los Angeles','89283','iamtomhanks@gmail.com','2738279384','CA', 4);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Chris', 'Pratt','Guardians of the Galaxy', '9283 Marvel Way', 'Apt# 975', 'Orlando','87234','starlord@yahoo.com','7289280143','FL', 3);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Tom', 'Holland','Marvel Studios', '2983 Webslinger Street', 'Apt# 273', 'New York City','78374','iamspiderman@gmail.com','9098273721','NY', 3);
-INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES ('Leslie', 'Knope','Parks and Recreation Office', '982 Waffles Road', 'Apt# 254', 'Pawnee','28208','leslieknope@gmail.com','8728172837','IN', 2);
+INSERT INTO crm_client(contact_first_name, contact_last_name, company_name, street_address, apt_unit, city, zip, email_address, phone_number, state_id, user_id) VALUES 
+('John', 'Martin','Ted Talks', '285 Young Road', 'Apt #301', 'Stone Mountain', '30385','jmartin@gmail.com','6783611390','GA',1),
+('Doug', 'Smith','Some Company', '285 Young Road', 'Apt #301', 'Stone Mountain', '30385','jmartin@gmail.com','6783611390','GA',1),
+('Jake', 'Porter','Ted Talks', '7816 Monogramm Lane', 'Apt #2200','Mint Hill','28227','cross_sounds@gmail.com','7045521694','NC',1),
+('John', 'Smith','Ted Talks', '7816 Monogramm Lane', 'Apt #2200','Mint Hill','28227','cross_sounds@gmail.com','7045521694','NC',2),
+('Alex', 'Cross','Live Sound Prodution', '7816 Monogramm Lane', 'Apt #2200','Mint Hill','28227','cross_sounds@gmail.com','7045521694','NC',2),
+('Casey', 'Jones','Stage Audio', '3000 College Drive', 'Apt #305', 'Savannah', '30385','jstagestudios01@yahoo.com','2290052387','GA', 3),
+('Meghan', 'Robinson','Sound Peristance', '25001 Venice Dr.', 'Apt #8759', 'Los Angeles','93736','s.persistance@microsoft.com','8063667834','LA',4),
+('Joey', 'Martin','Creative Sound', '1026 Jay Street', 'Apt# 264', 'Charlotte','28208','creativesound@gmail.com','7048881497','NC', 5),
+('Meghan', 'Markle','Royal British Studios', '9076 King St', 'Apt# 254', 'London','29837','royalty@royal.uk','8097261743','NC', 5),
+('Tom', 'Hanks','Warner Bros', '2837 Film Blvd', 'Apt# 25', 'Los Angeles','89283','iamtomhanks@gmail.com','2738279384','CA', 4),
+('Chris', 'Pratt','Guardians of the Galaxy', '9283 Marvel Way', 'Apt# 975', 'Orlando','87234','starlord@yahoo.com','7289280143','FL', 3),
+('Tom', 'Holland','Marvel Studios', '2983 Webslinger Street', 'Apt# 273', 'New York City','78374','iamspiderman@gmail.com','9098273721','NY', 3),
+('Leslie', 'Knope','Parks and Recreation Office', '982 Waffles Road', 'Apt# 254', 'Pawnee','28208','leslieknope@gmail.com','8728172837','IN', 2);
 
 INSERT INTO visit(date_visited, user_id, client_id)
 	VALUES
@@ -418,11 +419,19 @@ INSERT INTO product(product_name, price) VALUES
     ('Jumbotron Smart 4K XL', 899.99);
     
 INSERT INTO crm_order(date_submitted, date_installed, date_completed, order_total, order_status, order_comments, client_id) VALUES
-	('2020-04-01', '2020-04-05', '2020-04-06', 1299.99, 'Complete', null, 1),
-    ('2020-05-12', '2020-05-14', '2020-05-15', 1099.99, 'Complete', null, 2),
-    ('2020-05-12', '2020-05-14', '2020-05-16', 899.99, 'Complete', null, 3),
-    ('2020-04-15', '2020-04-16', '2020-04-16', 999.99, 'Complete', null, 4),
-    ('2020-06-04', '2020-06-08', '2020-06-10', 799.99, 'Complete', null, 5);
+	('2020-01-02', '2020-01-13', '2020-01-13', 9599.91, 'Complete', null, 1),
+    ('2020-02-24', '2020-02-25', '2020-02-25', 9099.99, 'Complete', null, 2),
+    ('2020-03-17', '2020-03-19', '2020-03-19', 899.99, 'Complete', null, 3),
+    ('2020-04-02', '2020-04-04', '2020-04-04', 5499.95, 'Complete', null, 4),
+    ('2020-05-05', '2020-05-08', '2020-05-10', 14499.86, 'Complete', null, 5),
+    ('2020-06-25', '2020-06-29', '2020-06-29', 3799.96, 'Complete', null, 6),
+    ('2020-07-14', '2020-07-18', '2020-07-19', 6899.94, 'Complete', null, 7),
+    ('2020-08-28', '2020-08-30', '2020-08-30', 3999.96, 'Complete', null, 8),
+    ('2020-09-20', '2020-09-21', '2020-09-22', 3899.97, 'Complete', null, 9),
+    ('2020-10-12', '2020-10-13', '2020-10-15', 6399.94, 'Complete', null, 10),
+    ('2020-11-16', '2020-11-17', '2020-11-19', 1999.98, 'Complete', null, 11),
+    ('2020-12-04', '2020-12-05', '2020-12-05', 7199.94, 'Complete', null, 12),
+    ('2020-12-09', '2020-12-11', '2020-12-11', 1699.98, 'Complete', null, 13);
 
 INSERT INTO crm_order_product(order_id, product_id, quantity) VALUES
 	(1, 4, 1),
@@ -440,4 +449,19 @@ INSERT INTO crm_order_product(order_id, product_id, quantity) VALUES
     (5, 2, 4),
     (5, 3, 1),
     (5, 4, 3),
-    (5, 5, 4);
+    (5, 5, 4),
+    (6, 1, 2),
+    (6, 2, 2),
+    (7, 3, 3),
+    (7, 4, 3),
+    (8, 2, 2),
+    (8, 5, 2),
+    (9, 4, 3),
+    (10, 1, 2),
+    (10, 2, 2),
+    (10, 4, 2),
+    (11, 3, 2),
+    (12, 2, 3),
+    (12, 4, 3),
+    (13, 1, 1),
+    (13, 5, 1);
