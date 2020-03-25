@@ -45,6 +45,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                            <a class="nav-link" th:href="@{/visit}">
+                                Visits
+                            </a>
+                        </li>
+                    <li class="nav-item">
                         <form method="POST" action="logout">
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                             <button type="submit" class="btn">
