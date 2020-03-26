@@ -101,6 +101,8 @@ public class VisitController
     @GetMapping("/add_visit")
     public String displayAddVisit(Model model)
     {
+        User user = userService.getUserFromSession();
+        model.addAttribute("currentUser", user);
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         List<Client> clients = clientService.findAll();
