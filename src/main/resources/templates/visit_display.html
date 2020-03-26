@@ -169,6 +169,7 @@
                     <th>Company</th>
                     <th>Contact</th>
                     <th>Notes</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -179,6 +180,7 @@
                     <td th:text="${visit.client.companyName}"></td>
                     <td th:text="${visit.client.contactFirstName} + ' ' + ${visit.client.contactLastName}"></td>
                     <td th:text="${visit.visitNotes}"></td>
+                    <td><a th:href="@{edit_visit(visitId=${visit.visitId})}">Edit</a></td>
                 </tr>
             </tbody>
         </table>
