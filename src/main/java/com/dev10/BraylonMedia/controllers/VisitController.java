@@ -185,6 +185,6 @@ public class VisitController
         visit.setClient(clientService.findById(clientIdParse));
         visit.setVisitId(visitId);
         visitService.editVisit(visit);
-        return "redirect:/edit_visit?visitId=" + visit.getVisitId();
+        return "redirect:/visit;
     }
 }
