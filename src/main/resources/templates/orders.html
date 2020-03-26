@@ -87,7 +87,7 @@
       </div>
     </div>-->
 
-    <div class="dropdown">
+<!--    <div class="dropdown">
         <form th:action="@{/orders}" method="GET" class="form-horizontal">
             <select name="userIds" id="userIds">
                 <option selected value="null">
@@ -123,7 +123,64 @@
                 Submit
             </button>
         </form>
+    </div>-->
+
+<div class="btn-group">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            --- Search by Sales Rep ---
+        </button>
+         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form th:action="@{/orders}" method="GET">
+                        <button name="userIds" class="dropdown-item" type="submit" th:each="user : ${users}" 
+                        th:text="${user.firstName} + ' ' + ${user.lastName}"
+                        th:value="${user.userId}">
+                            UserId
+                        </button>
+                    </form>
+                    
+                </div>
+        </div>
     </div>
+        <div class="btn-group">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            --- Search by Company ---
+        </button>
+         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form th:action="@{/orders}" method="GET">
+                        <button name="clientIds" class="dropdown-item" type="submit" th:each="client : ${clients}"
+                        th:text="${client.companyName}"
+                        th:value="${client.clientId}">
+                            ClientId
+                        </button>
+                    </form>
+                    
+                </div>
+            </div>
+       </div>
+        <div class="btn-group">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            --- Search by Order No. ---
+        </button>
+         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form th:action="@{/orders}" method="GET">
+                        <button name="orderIds" class="dropdown-item" type="submit" th:each="order : ${ordersAll}"
+                        th:text="${order.orderId}"
+                        th:value="${order.orderId}">
+                            OrderId
+                        </button>
+                    </form>
+                    
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
 
 
     <table class="table table-striped">

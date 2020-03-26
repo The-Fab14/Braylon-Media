@@ -152,8 +152,8 @@ public class VisitController
         return "redirect:/visit";
     }
     
-    @GetMapping("/edit_visit/{visitId}")
-    public String displayEditVisit(Model model, @PathVariable int visitId)
+    @GetMapping("/edit_visit")
+    public String displayEditVisit(Model model, Integer visitId)
     {
         Visit visit = visitService.getVisit(visitId);
         model.addAttribute("visit", visit);
@@ -165,9 +165,27 @@ public class VisitController
     }
     
     @PostMapping("/edit_visit")
-    public String editVisit(Visit visit)
+    public String editVisit(String dateVisited, String userId,
+        String visitNotes, String clientId, int visitId)
     {
+        LocalDate dateVisitedParse = null;
+        int userIdParse = 0;
+        int clientIdParse = 0;
+        try {
+            dateVisitedParse = LocalDate.parse(dateVisited);
+            userIdParse = Integer.parseInt(userId);
+            clientIdParse = Integer.parseInt(clientId);
+        } catch(NumberFormatException | DateTimeParseException e) {
+            //Something bad happened!
+        }
+        
+        Visit visit = new Visit();
+        visit.setDateVisited(dateVisitedParse);
+        visit.setUser(userService.findById(userIdParse));
+        visit.setVisitNotes(visitNotes);
+        visit.setClient(clientService.findById(clientIdParse));
+        visit.setVisitId(visitId);
         visitService.editVisit(visit);
-        return "redirect:/edit_visit?visitId=" + visit.getVisitId();
+        return "redirect:/visit";
     }
 }
