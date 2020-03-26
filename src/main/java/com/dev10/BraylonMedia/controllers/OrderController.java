@@ -163,9 +163,10 @@ public class OrderController {
         return "edit_order";
 
     }
-
+    
     @GetMapping("/orders")
-    public String displayOrders(Model model) {
+    public String displayOrders(Model model, String orderIds, String clientIds, String userIds) 
+    {
         User user = userService.getUserFromSession();
         List<Order> orderList = orderService.getOrdersByUserId(user.getUserId());
 
@@ -176,7 +177,6 @@ public class OrderController {
                 productItem.setOrderProductQuantity(quantity);
             }
         }
-
         model.addAttribute("orders", orderList);
         violations.clear();
         return "orders";

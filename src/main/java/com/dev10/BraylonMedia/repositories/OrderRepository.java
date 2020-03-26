@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -29,4 +30,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
     
     @Query(value = "SELECT o.* FROM crm_order o INNER JOIN crm_client c ON o.client_id = c.client_id INNER JOIN crm_user u ON c.user_id = u.user_id WHERE u.user_id = ?1", nativeQuery = true)
     List<Order> getOrdersByUserId(int userId);
+    
+    @Query(value = "SELECT * FROM crm_order WHERE client_id = ?1", nativeQuery = true)
+    List<Order> getOrdersByClientId(int userId);
 }

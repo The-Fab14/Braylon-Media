@@ -25,8 +25,8 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" th:href="@{home}">Customers <span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{customers}">Customers <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" th:href="@{edit_user}">Edit User</a>
@@ -34,7 +34,7 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{orders}">Orders</a>
           </li>
-          <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+          <li class="nav-item active" sec:authorize="hasRole('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/sales_rep_display}">Sales Representatives</a>
                         </li>
             <li class="nav-item">

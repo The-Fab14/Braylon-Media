@@ -24,8 +24,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/home}">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/customers}">
                             Customers
                             <span class="sr-only">(current)</span>
                         </a>
@@ -45,7 +45,7 @@
                             Sales Representatives
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                             <a class="nav-link" th:href="@{/visit}">
                                 Visits
                             </a>
@@ -66,71 +66,110 @@
       Customer Visits
     </h1>
     <hr/>
-        <div class="wrapperButton">
+    <div class="wrapperButton">
         <button id="create-button" type="button" onClick=location.href="add_visit" class="btn btn-danger">
             Add Visit
         </button>
     </div>
-        <div class="btn-group">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                    Search by Customer
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <form th:action="@{/visit}" method="GET">  
-                        <button name="client_id" class="dropdown-item" type="submit" th:each="client : ${clients}"
-                th:text="${client.contactFirstName} + ' ' + ${client.contactLastName}"
-                th:value="${client.clientId}">
-                            ClientsIds
-                        </button>
-                    </form>
-                </div>
+<!--    <div class="btn-group">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+                Search by Customer
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <form th:action="@{/visit}" method="GET">  
+                    <button name="client_id" class="dropdown-item" type="submit" th:each="client : ${clients}"
+            th:text="${client.contactFirstName} + ' ' + ${client.contactLastName}"
+            th:value="${client.clientId}">
+                        ClientsIds
+                    </button>
+                </form>
             </div>
         </div>
-        <div class="btn-group">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                    Search by Sales Rep
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <form th:action="@{/visit}" method="GET">
-                        <button name="user_id" class="dropdown-item" type="submit" th:each="user : ${users}"
-                th:text="${user.firstName} + ' ' + ${user.lastName}"
-                th:value="${user.userId}">
-                            UserIds
-                        </button>
-                    </form>
-                    </form>
-                </div>
+    </div>
+    <div class="btn-group">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+                Search by Sales Rep
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <form th:action="@{/visit}" method="GET">
+                    <button name="user_id" class="dropdown-item" type="submit" th:each="user : ${users}"
+            th:text="${user.firstName} + ' ' + ${user.lastName}"
+            th:value="${user.userId}">
+                        UserIds
+                    </button>
+                </form>
+                </form>
             </div>
         </div>
-        <div class="btn-group">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                    Search by Month
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                    <form th:action="@{/visit}" method="GET">
-                        <button name="month" class="dropdown-item" type="submit" th:each="month : ${months}"
+    </div>
+    <div class="btn-group">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+                Search by Month
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                <form th:action="@{/visit}" method="GET">
+                    <button name="month" class="dropdown-item" type="submit" th:each="month : ${months}"
+                    th:text="${month}"
+                    th:value="${month}">
+                        months
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>-->
+    <div class="dropdown">
+        <form th:action="@{/visit}" method="GET" class="form-horizontal">
+            <select name="userIds" id="userIds"> 
+                <option selected value="null">
+                    --- Search by Sales Rep ---
+                </option>
+                <option th:each="user : ${users}" 
+                        th:text="${user.firstName} + ' ' + ${user.lastName}"
+                        th:value="${user.userId}">
+                            UserId
+                </option>
+            </select>
+            <select name="clientIds" id="clientIds">
+                <option selected value="null">
+                    --- Search by Company ---
+                </option>
+                <option th:each="client : ${clients}"
+                        th:text="${client.companyName}"
+                        th:value="${client.clientId}">
+                    ClientId
+                </option>
+            </select>
+            <select name="orderIds" id="orderIds">
+                <option selected value="null">
+                    --- Search by Month ---
+                </option>
+                <option th:each="month : ${months}"
                         th:text="${month}"
                         th:value="${month}">
-                            months
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                            Month
+                </option>
+            </select>
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        </form>
+    </div>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Visit ID</th>
                     <th>Date</th>
                     <th>Sales Rep</th>
-                    <th>Customer</th>
+                    <th>Company</th>
+                    <th>Contact</th>
                     <th>Notes</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -138,8 +177,10 @@
                     <td th:text="${visit.visitId}"></td>
                     <td th:text="${visit.dateVisited}"></td>
                     <td th:text="${visit.user.firstName} + ' ' + ${visit.user.lastName}"></td>
+                    <td th:text="${visit.client.companyName}"></td>
                     <td th:text="${visit.client.contactFirstName} + ' ' + ${visit.client.contactLastName}"></td>
                     <td th:text="${visit.visitNotes}"></td>
+                    <td><a th:href="@{edit_visit(visitId=${visit.visitId})}">Edit</a></td>
                 </tr>
             </tbody>
         </table>
