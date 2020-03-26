@@ -57,14 +57,20 @@
   <form action="add_sales_rep" method="POST" class="form">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-     <div class="col-12 m-1 text-center" 
+     <div class="col-12 m-1 text-center"
       th:if="${!errors.isEmpty()}">
-      <p class="alert alert-danger" th:each="error : ${errors}" 
+      <p class="alert alert-danger" th:each="error : ${errors}"
       th:text="${error.message}">Error message</p>
     </div>
     
+    <div class="col-12 m-1 text-center" 
+         th:if="${!customViolations.isEmpty()}">
+        <p class="alert alert-danger" th:each="violation : ${customViolations}"
+           th:text="${violation}">Error message</p>
+    </div>      
+
     <hr />
-    
+
     <div class="row">
       <div class="col-sm-4 offset-sm-4">
 
@@ -72,33 +78,27 @@
           <label for="firstNameInput">First Name</label>
           <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name">
         </div>
-
         <div class="form-group">
           <label for="lastNameInput">Last Name</label>
           <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last Name">
         </div>
-
-
         <div class="form-group">
                 <label for="electRole">Role</label>
-                <select class="form-control" id="userRole" name="userRole"> 
+                <select class="form-control" id="userRole" name="userRole">
                   <option value="ROLE_USER">Sales Representative</option>
                   <option value="ROLE_ADMIN">Leadership Team Administrator</option>
-                
+
                 </select>
         </div>
-
         <div class="form-group">
           <label for="emailInput">Email</label>
           <input class="form-control" type="text" id="emailAddress" name="emailAddress" placeholder="Email">
         </div>
-
         <div class="form-group">
           <label for="passwordInput">Password</label>
           <input class="form-control" type="text" id="userPassword" name="userPassword" placeholder="Password"
             value="jerkstore" readonly>
         </div>
-
         <div class="form-group">
           <input class="form-control" type="hidden" id="didPasswordChange" name="didPasswordChange" value="false">
         </div>
@@ -110,7 +110,7 @@
             <option th:each="state : ${lookup}" th:value="${state.stateId}" th:text="${state.stateName}">
           </select>
         </div>
-          
+
           <hr />
 
 
@@ -123,16 +123,11 @@
 
       </div>
     </div>
-  </form>
-
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+      </div>
+    </form>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-
 </html>
