@@ -43,11 +43,29 @@ public class VisitController
     ClientService clientService;
     
     @GetMapping("/visit")
-    public String displayVisits(Model model, Integer client_id, Integer user_id, String month)
+    public String displayVisits(Model model, String clientIds, String userIds, String month)
     {
         User user = userService.getUserFromSession();
         List<Visit> visits = visitService.getAllVisits();
-        if(user.getUserRole().equals("ROLE_USER"))
+        Integer user_id = null;
+        Integer client_id = null;
+        try
+        {
+            client_id = Integer.parseInt(clientIds);
+        }
+        catch(NumberFormatException e)
+        {
+            
+        }
+        try
+        {
+            user_id = Integer.parseInt(userIds);
+        }
+        catch(NumberFormatException e)
+        {
+            
+        }
+        if(!user.getUserRole().equals("ROLE_ADMIN"))
         {
             user_id = user.getUserId();
         }
