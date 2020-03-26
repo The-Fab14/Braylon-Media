@@ -56,6 +56,7 @@ public class SalesRepController
     {
         model.addAttribute("lookup", lookup.findAll());
         model.addAttribute("errors", violations);
+        model.addAttribute("customViolations", customViolations);
         return "add_sales_rep";
     }
 
@@ -65,10 +66,13 @@ public class SalesRepController
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
 
-        if (violations.isEmpty()) {
+        if (violations.isEmpty() && !users.emailAddressExists(user.getEmailAddress())) {
             user.setUserPassword(encoder.encode(user.getUserPassword()));
             users.save(user);
             return "redirect:/sales_rep_display";
+        } else if (users.emailAddressExists(user.getEmailAddress())) {
+            customViolations.add("'" + user.getEmailAddress()+ "' is already in use. Please enter a new email");
+            return "redirect:/add_sales_rep";
         } else {
             return "redirect:/add_sales_rep";
         }
@@ -99,7 +103,7 @@ public class SalesRepController
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
 
-        if (violations.isEmpty() && !user.isDidPasswordChange() && !users.defaultPasswordChanged(user)) {
+        if (violations.isEmpty() && !user.isDidPasswordChange() && !users.defaultPasswordChanged(user) && !users.emailAddressExists(user.getEmailAddress())) {
             user.setUserPassword(encoder.encode(user.getUserPassword()));
             user.setDidPasswordChange(true);
             users.save(user);
@@ -107,11 +111,14 @@ public class SalesRepController
         } else if (!user.isDidPasswordChange() && users.defaultPasswordChanged(user)) {
             customViolations.add("Initial password must be changed.");
             return "redirect:/edit_user?userId=" + user.getUserId();
-        } else if (violations.isEmpty()) {
+        } else if (users.emailAddressExists(user.getEmailAddress())) {
+            customViolations.add("'" + user.getEmailAddress()+ "' is already in use. Please enter a new email");
+            return "redirect:/edit_user?userId=" + user.getUserId();           
+        } else if (violations.isEmpty() && customViolations.isEmpty()) {
             users.save(user);
             return "redirect:/sales_rep_display";
         } else {
-            return "redirect:/sales_rep_display";
+            return "redirect:/edit_user?userId=" + user.getUserId();
         }
     }
 
