@@ -19,4 +19,10 @@ import org.springframework.stereotype.Repository;
 public interface VisitRepository extends JpaRepository<Visit, Integer>{
     @Query(value = "SELECT * FROM visit WHERE user_id = ?1", nativeQuery = true)
     List<Visit> getVisitsByUserId(int id);
+    
+    @Query(value = "SELECT * FROM visit WHERE client_id = ?1", nativeQuery = true)
+    List<Visit> findAllByClientId(int id);
+    
+    @Query(value = "SELECT * FROM visit WHERE client_id = ?1 AND user_id = ?2", nativeQuery = true)
+    List<Visit> findAllByClientAndUser(int clientId, int userId);
 }
