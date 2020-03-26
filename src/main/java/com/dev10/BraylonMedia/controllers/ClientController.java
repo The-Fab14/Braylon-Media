@@ -108,6 +108,6 @@ public class ClientController
         client.setClientId(clientId);
         client.setUser(user);
         clients.save(client);
-        return "redirect:/orders";
+        return "redirect:/home";
     }
 }
