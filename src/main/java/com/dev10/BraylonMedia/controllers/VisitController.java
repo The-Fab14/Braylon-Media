@@ -152,8 +152,8 @@ public class VisitController
         return "redirect:/visit";
     }
     
-    @GetMapping("/edit_visit/{visitId}")
-    public String displayEditVisit(Model model, @PathVariable int visitId)
+    @GetMapping("/edit_visit")
+    public String displayEditVisit(Model model, Integer visitId)
     {
         Visit visit = visitService.getVisit(visitId);
         model.addAttribute("visit", visit);
