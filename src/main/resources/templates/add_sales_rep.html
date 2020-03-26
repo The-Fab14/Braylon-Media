@@ -10,24 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<style>
-
-    h1{
-        color: graytext;
-        margin-top: 25px;
-        margin-bottom: 25px;
-    }
-
-    hr{
-        background-color: silver;
-    }
-
-    body{
-        background-color: aliceblue;
-    }
-
-</style>
+  <link rel="stylesheet" href="main.css"/>
 </head>
 
     <meta charset="utf-8">
@@ -49,7 +32,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" th:href="@{/home}">Customers <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
@@ -58,7 +41,7 @@
         <li class="nav-item">
           <a class="nav-link" th:href="@{/orders}">Orders</a>
         </li>
-        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+        <li class="nav-item active" sec:authorize="hasRole('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/sales_rep_display}">Sales Representatives</a>
                         </li>
                         <li class="nav-item">
@@ -87,12 +70,12 @@
       <p class="alert alert-danger" th:each="error : ${errors}"
       th:text="${error.message}">Error message</p>
     </div>
-    
-    <div class="col-12 m-1 text-center" 
+
+    <div class="col-12 m-1 text-center"
          th:if="${!customViolations.isEmpty()}">
         <p class="alert alert-danger" th:each="violation : ${customViolations}"
            th:text="${violation}">Error message</p>
-    </div>      
+    </div>
 
     <hr />
 

@@ -1,0 +1,35 @@
+h1{
+    color: graytext;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+hr{
+    background-color: silver;
+}
+
+body{
+    background-color: aliceblue;
+}
+/*#create-button {
+    position: fixed;
+    left: 45%;
+    top: 20%;
+  }*/
+
+  .dropdown {
+    margin-top: 10%
+  }
+
+  .table {
+    margin-top: 5%
+  }
+  
+  .wrapperButton {
+  display: flex;
+  justify-content: center;
+}
+
+button{
+    margin: 0 auto;
+}

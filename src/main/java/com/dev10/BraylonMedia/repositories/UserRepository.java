@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Integer>{
     @Query(value = "SELECT c.user_id FROM crm_client c WHERE client_id = ?1", nativeQuery = true)
     User findUserByClientId(int clientId);
-    
+
     @Query(value = "SELECT u.email_address FROM crm_user u", nativeQuery = true)
     List<String> findAllEmails();
 }

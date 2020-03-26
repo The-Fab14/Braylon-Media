@@ -13,7 +13,8 @@
     <title>Edit Visit</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+        <link rel="stylesheet" href="main.css"/>
+        </head>
 
 <body>
     <span id="userId" hidden th:text="${userId}"></span>
@@ -26,7 +27,7 @@
             
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" th:href="@{/home}">Customers <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
@@ -38,7 +39,7 @@
                         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                             <a class="nav-link" th:href="@{/sales_rep_display}">Sales Representatives</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" th:href="@{/visit}">Visits</a>
                         </li>
                         <li class="nav-item">
@@ -50,7 +51,11 @@
                     </ul>
                 </div>
             </nav>
-
+<div class="page-header">
+    <h1 class="text-center">
+      Edit Visit
+    </h1>
+    <hr/>
     
 
 
