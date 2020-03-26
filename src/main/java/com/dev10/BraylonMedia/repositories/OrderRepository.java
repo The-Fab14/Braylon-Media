@@ -28,4 +28,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
             + "crm_user ut ON ct.user_id = ut.user_id WHERE "
             + "ut.user_id = ?1", nativeQuery = true)
     List<Order> getOrdersByUserId(int userId);
+    
+    @Query(value = "SELECT * FROM crm_order WHERE client_id = ?1", nativeQuery = true)
+    List<Order> getOrdersByClientId(int userId);
 }

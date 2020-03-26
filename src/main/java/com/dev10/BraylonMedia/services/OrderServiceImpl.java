@@ -33,8 +33,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrdersByClientId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Order> getOrdersByClientId(int id) 
+    {
+        return orderRepo.getOrdersByClientId(id);
     }
     
     @Override
