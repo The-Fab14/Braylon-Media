@@ -6,10 +6,12 @@ import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.LookupService;
 import com.dev10.BraylonMedia.services.UserService;
 import com.dev10.BraylonMedia.services.VisitService;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -116,26 +118,55 @@ public class SalesRepController
     }
     
     @GetMapping("/sales_rep_display")
-    public String displaySalesRep(Model model)
+    public String displaySalesRep(Model model, Integer rep_id, Integer client_id)
     {
         List<User> userList = users.findAll();
         userList.sort(Comparator.comparing(User::getUserId));
-        model.addAttribute("users", userList);
-        model.addAttribute("clients", clients.findAll());
+//        model.addAttribute("users", userList);
+//        model.addAttribute("clients", clients.findAll());
+        model.addAttribute("allUsers", users.findAll());
+        List<User> sortedUsers = userList;
+        if (rep_id == null && client_id  == null) 
+        {
+            model.addAttribute("users", users.findAll());
+            model.addAttribute("clients", clients.findAll());
+        } 
+        else if (rep_id != null) 
+        {
+            model.addAttribute("users", users.findById(rep_id));
+            model.addAttribute("clients", clients.findAll());
+            sortedUsers.clear();
+            sortedUsers.add(users.findById(rep_id));
+        } 
+        else 
+        {
+            model.addAttribute("clients", clients.findAll());
+            model.addAttribute("users", users.findUserByClientId(client_id));
+            sortedUsers.clear();
+            sortedUsers.add(users.findUserByClientId(client_id));
+        }
         
+        //Map for visit count
         List<Visit> visitList = visits.getAllVisits();
         List<Integer> userIdFreq = new ArrayList<>();
-        List<Integer> visitFreq = new ArrayList<>();
+        LinkedHashMap<User,Integer> visitMap = new LinkedHashMap<>();    
         for(Visit visit: visitList) 
         {
-            userIdFreq.add(visit.getUser().getUserId());
+            if(visit.getDateVisited().getMonth().equals(LocalDate.now().getMonth()) && visit.getDateVisited().getYear() == LocalDate.now().getYear())
+            {
+                userIdFreq.add(visit.getUser().getUserId());
+            }
         }
+        userList.sort(Comparator.comparing(User::getUserId));
         for(User user : userList) 
         {
             int freq = Collections.frequency(userIdFreq, user.getUserId());
-            visitFreq.add(freq);
+            if(sortedUsers.contains(user))
+            {
+                visitMap.put(user, freq);
+            }
         }
-        model.addAttribute("visitCount", visitFreq);
+        model.addAttribute("visitMap", visitMap);
         
         violations.clear();
         customViolations.clear();

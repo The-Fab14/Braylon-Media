@@ -71,4 +71,8 @@ public class UserServiceImpl implements UserService {
         return matching;
     }
 
+    @Override
+    public User findUserByClientId(int clientId) {
+        return userRepository.findUserByClientId(clientId);
+    }
 }
