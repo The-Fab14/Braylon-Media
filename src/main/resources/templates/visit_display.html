@@ -71,59 +71,8 @@
             Add Visit
         </button>
     </div>
-<!--    <div class="btn-group">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-                Search by Customer
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <form th:action="@{/visit}" method="GET">  
-                    <button name="client_id" class="dropdown-item" type="submit" th:each="client : ${clients}"
-            th:text="${client.contactFirstName} + ' ' + ${client.contactLastName}"
-            th:value="${client.clientId}">
-                        ClientsIds
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="btn-group">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-                Search by Sales Rep
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <form th:action="@{/visit}" method="GET">
-                    <button name="user_id" class="dropdown-item" type="submit" th:each="user : ${users}"
-            th:text="${user.firstName} + ' ' + ${user.lastName}"
-            th:value="${user.userId}">
-                        UserIds
-                    </button>
-                </form>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="btn-group">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-                Search by Month
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                <form th:action="@{/visit}" method="GET">
-                    <button name="month" class="dropdown-item" type="submit" th:each="month : ${months}"
-                    th:text="${month}"
-                    th:value="${month}">
-                        months
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>-->
-    <div class="dropdown">
+
+<!--    <div class="dropdown">
         <form th:action="@{/visit}" method="GET" class="form-horizontal">
             <select name="userIds" id="userIds"> 
                 <option selected value="null">
@@ -159,7 +108,65 @@
                 Submit
             </button>
         </form>
+    </div>-->
+<div class="btn-group">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            --- Search by Sales Rep ---
+        </button>
+         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form th:action="@{/visit}" method="GET">
+                        <button name="userIds" class="dropdown-item" type="submit" th:each="user : ${users}" 
+                        th:text="${user.firstName} + ' ' + ${user.lastName}"
+                        th:value="${user.userId}">
+                            UserId
+                        </button>
+                    </form>
+                    
+                </div>
+        </div>
     </div>
+<div class="btn-group">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            --- Search by Company ---
+        </button>
+         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form th:action="@{/visit}" method="GET">
+                        <button name="clientIds" class="dropdown-item" type="submit" th:each="client : ${clients}"
+                        th:text="${client.companyName}"
+                        th:value="${client.clientId}">
+                            ClientId
+                        </button>
+                    </form>
+                    
+                </div>
+        </div>
+    </div>
+<div class="btn-group">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            
+                    --- Search by Month ---
+        </button>
+         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form th:action="@{/visit}" method="GET">
+                        <button name="month" class="dropdown-item" type="submit" th:each="month : ${months}"
+                        th:text="${month}"
+                        th:value="${month}">
+                            Month
+                        </button>
+                    </form>
+                    
+                </div>
+        </div>
+    </div>
+    </div>
+
+
         <table class="table table-striped">
             <thead>
                 <tr>

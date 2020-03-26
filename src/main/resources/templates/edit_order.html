@@ -73,31 +73,31 @@
          </div>-->
         
         <div class="form-group">
-          <label for="submissionDateInput">Submission Date</label>
-          <input th:value="${orders.dateSubmitted}" class="form-control" type="date" id="dateSubmitted" 
+          <label for="basicNameInput">Submission Date</label>
+          <input th:field="*{dateSubmitted}" class="form-control" type="date" id="dateSubmitted" 
                  name="dateSubmitted" placeholder="Submission Date">
         </div>
        
         <div class="form-group">
           <label for="installationDateInput">Installation Date</label>
-          <input th:value="${orders.dateInstalled}" class="form-control" type="date" id="dateInstalled" 
+          <input th:field="*{dateInstalled}" class="form-control" type="date" id="dateInstalled" 
                  name="dateInstalled" placeholder="Installation Date">
         </div>
         
         <div class="form-group">
           <label for="completionDateInput">Completion Date</label>
-          <input th:value="${orders.dateCompleted}" class="form-control" type="date" id="dateCompleted" 
+          <input th:field="*{dateCompleted}" class="form-control" type="date" id="dateCompleted" 
                  name="dateCompleted" placeholder="Completion Date">
         </div>
         
         <div class="form-group">
           <label for="OrderTotalInput">Order Total</label>
-          <input th:value="${orders.orderTotal}" class="form-control" id="orderTotal" 
+          <input th:field="*{orderTotal}" class="form-control" id="orderTotal" 
                  name="orderTotal" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" Type="decimal" value="" data-type="currency" placeholder="Order Total">
         </div>
         
         <div class="form-group">
-          <label for="orderStatus">Order Status</label>
+          <label for="orderStatus1">Order Status</label>
         <select th:field="*{orderStatus}" class="form-control" id="orderStatus" name="orderStatus">
           <option value="Submitted">Submitted</option>
           <option value="Approved">Approved</option>
@@ -107,22 +107,18 @@
        
         <div class="form-group">
           <label for="orderCommentsText">Order Comments</label>
-          <textarea th:field="*{orderComments}" class="form-control" type="text" id="orderComments" 
-                    name="orderComments" rows="3"></textarea>
+          <textarea th:field="*{orderComments}" class="form-control" type="text" id="orderComments" name="orderComments" rows="3"></textarea>
         </div>
                    
         <div class='form-group'>
           <label for="clientId">Client ID</label>
-        <input th:field="*{client.clientId}" class="form-control" id="client" name="client" readonly>
+        <input th:field="*{client}" class="form-control" id="client" name="client" readonly>
           
         </div>
                    
-        <div class='form-group'>
-          <label for="productId">Product</label>
-        <input th:each="product : ${orders.products}" th:value="${product.productName}" class="form-control" 
-               id="products" name="products" readonly>
-         <input th:each="product : ${orders.products}" th:value="${product.orderProductQuantity}" class="form-control" 
-               id="products" name="products" readonly>
+                    <div class='form-group'>
+          <label for="productId">Product ID</label>
+        <input th:field="*{products}" class="form-control" id="products" name="products" readonly>
          
         </div>
        

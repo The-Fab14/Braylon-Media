@@ -168,6 +168,6 @@ public class VisitController
     public String editVisit(Visit visit)
     {
         visitService.editVisit(visit);
-        return "redirect:/edit_visit?visitId=" + visit.getVisitId();
+        return "redirect:/visit";
     }
 }
