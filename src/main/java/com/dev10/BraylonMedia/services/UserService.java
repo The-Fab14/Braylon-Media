@@ -77,6 +77,14 @@ public interface UserService {
      /**
      * Check if User email exists
      * @param newEmail
+     * @param userId
+     * @return 
+     */
+    boolean emailAddressExists(String newEmail, int userId);
+    
+     /**
+     * Check if User email exists
+     * @param newEmail
      * @return 
      */
     boolean emailAddressExists(String newEmail);
