@@ -1,25 +1,22 @@
 <!-- This is the homepage / view customers page -->
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="_csrf" th:content="${_csrf.token}" />
-    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-    <title>View Customers</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="_csrf" th:content="${_csrf.token}" />
+        <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+        <title>
+            Dashboard
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="main.css"/>
-        </head>
-
-<body>
+    </head>
+    <body>
     <span id="userId" hidden th:text="${userId}"></span>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -31,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" th:href="@{/home}">Customers <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" th:href="@{/customers}">Customers <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/edit_user}">Edit User</a>
@@ -54,44 +51,8 @@
                     </ul>
                 </div>
             </nav>
-    <div class="page-header">
-    <h1 class="text-center">
-      Customers
-    </h1>
-    <hr/>
-    <div class="wrapperButton">
-        <button id="create-button" type="button" onClick=location.href="add_customer" class="btn btn-danger">
-            Add Customer
-        </button>
-    </div>
-    <!-- "Search by ____" dropdowns -->
-    <form class="form-inline">
-        <div class="form-group">
-            <select class="custom-select" id="searchParameters">
-                <option id="viewAllClients" selected>View All Clients</option>
-                <option id="clientId">Client ID</option>
-                <option id="companyName">Company Name</option>
-                <option id="contactLastName">Contact Last Name</option>
-                <!-- Display only for LST users -->
-                <option id="salesRepId" sec:authorize="hasRole('ROLE_ADMIN')">Sales Rep ID</option>
-            </select>
-        </div>
-        <div>
-            <select class="custom-select" id="searchQueries">
-                <option id ="defaultResult" selected disabled>--Select Result--</option>
-            </select>
-        </div>
-    </form>
 
-
-    <!-- Client table -->
-    <table class="table table-striped">
-        <thead>
-        </thead>
-        <tbody id="tableBody">
-            <!-- JS adds clients here -->
-        </tbody>
-    </table>
+    <h1>New Home Page!</h1>
 
 
 
@@ -104,7 +65,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
         </script>
-    <script src="/home.js"></script>
 
 </body>
 
