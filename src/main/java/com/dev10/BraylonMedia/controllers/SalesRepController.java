@@ -123,6 +123,7 @@ public class SalesRepController
 //        model.addAttribute("users", userList);
 //        model.addAttribute("clients", clients.findAll());
         model.addAttribute("allUsers", users.findAll());
+        List<User> sortedUsers = userList;
         if (rep_id == null && client_id  == null) 
         {
             model.addAttribute("users", users.findAll());
@@ -132,11 +133,15 @@ public class SalesRepController
         {
             model.addAttribute("users", users.findById(rep_id));
             model.addAttribute("clients", clients.findAll());
+            sortedUsers.clear();
+            sortedUsers.add(users.findById(rep_id));
         } 
         else 
         {
             model.addAttribute("clients", clients.findAll());
             model.addAttribute("users", users.findUserByClientId(client_id));
+            sortedUsers.clear();
+            sortedUsers.add(users.findUserByClientId(client_id));
         }
         
         //Map for visit count
@@ -154,7 +159,10 @@ public class SalesRepController
         for(User user : userList) 
         {
             int freq = Collections.frequency(userIdFreq, user.getUserId());
-            visitMap.put(user, freq);
+            if(sortedUsers.contains(user))
+            {
+                visitMap.put(user, freq);
+            }
         }
         model.addAttribute("visitMap", visitMap);
         

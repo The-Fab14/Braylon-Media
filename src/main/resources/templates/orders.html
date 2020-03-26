@@ -8,22 +8,7 @@
   <title>Orders Page</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <style type="text/css">
-    #create-button {
-      position: fixed;
-      left: 45%;
-      top: 20%;
-    }
-
-    .dropdown {
-      margin-top: 10%
-    }
-
-    .table {
-      margin-top: 5%
-    }
-  </style>
+<link rel="stylesheet" href="main.css"/>
 </head>
 
 <body>
@@ -37,13 +22,13 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" th:href="@{/home}">Customers <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" th:href="@{/edit_user}">Edit User</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" th:href="@{/orders}">Orders</a>
           </li>
           <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
@@ -61,10 +46,17 @@
         </ul>
       </div>
     </nav>
-    <h1 style="text-align: center;">Orders Page</h1>
+    <div class="page-header">
+    <h1 class="text-center">
+      Orders
+    </h1>
+    <hr/>
 
-    <button id="create-button" type="button" onClick=location.href="add_new_order" class="btn btn-danger">Create
-      New</button>
+    <div class="wrapperButton">
+        <button id="create-button" type="button" onClick=location.href="add_new_order" class="btn btn-danger">
+            Add Order
+        </button>
+    </div>
 
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
