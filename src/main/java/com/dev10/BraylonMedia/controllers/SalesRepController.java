@@ -103,7 +103,7 @@ public class SalesRepController
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
 
-        if (violations.isEmpty() && !user.isDidPasswordChange() && !users.defaultPasswordChanged(user) && !users.emailAddressExists(user.getEmailAddress())) {
+        if (violations.isEmpty() && !user.isDidPasswordChange() && !users.defaultPasswordChanged(user) && !users.emailAddressExists(user.getEmailAddress(), user.getUserId())) {
             user.setUserPassword(encoder.encode(user.getUserPassword()));
             user.setDidPasswordChange(true);
             users.save(user);
@@ -111,7 +111,7 @@ public class SalesRepController
         } else if (!user.isDidPasswordChange() && users.defaultPasswordChanged(user)) {
             customViolations.add("Initial password must be changed.");
             return "redirect:/edit_user?userId=" + user.getUserId();
-        } else if (users.emailAddressExists(user.getEmailAddress())) {
+        } else if (users.emailAddressExists(user.getEmailAddress(), user.getUserId())) {
             customViolations.add("'" + user.getEmailAddress()+ "' is already in use. Please enter a new email");
             return "redirect:/edit_user?userId=" + user.getUserId();           
         } else if (violations.isEmpty() && customViolations.isEmpty()) {

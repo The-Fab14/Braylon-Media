@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -64,6 +65,12 @@ public class OrderController {
 
         return "edit_order";
 
+    }
+    
+    @PostMapping("/edit_order")
+    public String editOrder(Order order, Integer productId) {
+        orderService.saveOrderProductQuantity(order.getOrderId(), productId, 0);
+        return "/orders";
     }
 
     @GetMapping("/orders")
