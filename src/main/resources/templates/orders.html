@@ -58,7 +58,7 @@
         </button>
     </div>
 
-    <div class="dropdown">
+<!--    <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         Search by Order Number
@@ -86,37 +86,79 @@
         <button class="dropdown-item" type="button">Another action</button>
         <button class="dropdown-item" type="button">Something else here</button>
       </div>
+    </div>-->
+
+    <div class="dropdown">
+        <form th:action="@{/orders}" method="GET" class="form-horizontal">
+            <select name="userIds" id="userIds"> 
+                <option selected value="null">
+                    --- Search by Sales Rep ---
+                </option>
+                <option th:each="user : ${users}" 
+                        th:text="${user.firstName} + ' ' + ${user.lastName}"
+                        th:value="${user.userId}">
+                            UserId
+                </option>
+            </select>
+            <select name="clientIds" id="clientIds">
+                <option selected value="null">
+                    --- Search by Company ---
+                </option>
+                <option th:each="client : ${clients}"
+                        th:text="${client.companyName}"
+                        th:value="${client.clientId}">
+                    ClientId
+                </option>
+            </select>
+            <select name="orderIds" id="orderIds">
+                <option selected value="null">
+                    --- Search by Order No. ---
+                </option>
+                <option th:each="order : ${ordersAll}"
+                        th:text="${order.orderId}"
+                        th:value="${order.orderId}">
+                            OrderId
+                </option>
+            </select>
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        </form>
     </div>
 
 
     <table class="table table-striped">
                     <thead>
-                      <tr>
-                        <th>Customer Name</th>
-                        <th>Order Number</th>
-                        <th>Submission Date</th>
-                        <th>Products</th>
-                        <!--<th>Quantity</th>-->
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th>Comments</th>
-                      </tr>
+                        <tr>
+                            <th>Order Number</th>
+                            <th>Company</th>
+                            <th>Contact Name</th>
+                            <th>Sales Rep</th>
+                            <th>Submission Date</th>
+                            <th>Products</th>
+                            <!--<th>Quantity</th>-->
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Comments</th>
+                        </tr>
                     </thead>
           
                     <tbody>
                         <tr th:each="order : ${orders}">
-                        <td th:text="${order.client.contactFirstName} + ' ' + ${order.client.contactLastName}"></td>
-                        <td th:text="${order.orderId}"></td>
-                        <td th:text="${order.dateSubmitted}"></td>
-                        <td >
-                            <table class="table table-borderless">
-                                <tr th:each="products : ${order.products}">
-                                    <td th:text="${products.productName}"></td>
-                                    <td th:text="${products.orderProductQuantity}"></td>
-                                </tr>
-                            </table>
-                            <!--<li th:each="products : ${order.products}" th:text="${products.productName}"</li>-->
-                        </td>
+                            <td th:text="${order.orderId}"></td>
+                            <td th:text="${order.client.companyName}"></td>
+                            <td th:text="${order.client.contactFirstName} + ' ' + ${order.client.contactLastName}"></td>
+                            <td th:text="${order.client.user.firstName} + ' ' + ${order.client.user.lastName}"></td>
+                            <td th:text="${order.dateSubmitted}"></td>
+                            <td >
+                                <table class="table table-borderless">
+                                    <tr th:each="products : ${order.products}">
+                                        <td th:text="${products.productName}"></td>
+                                        <td th:text="${products.orderProductQuantity}"></td>
+                                    </tr>
+                                </table>
+                                <!--<li th:each="products : ${order.products}" th:text="${products.productName}"</li>-->
+                            </td>
                         <!--
                         <td>
                             <li th:each="products : ${order.products}" th:text="${products.orderProductQuantity}"</li>
