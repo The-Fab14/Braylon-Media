@@ -465,3 +465,9 @@ INSERT INTO crm_order_product(order_id, product_id, quantity) VALUES
     (12, 4, 3),
     (13, 1, 1),
     (13, 5, 1);
+    
+    SELECT *
+    FROM crm_user;
+    
+    SELECT *
+    FROM crm_order;
