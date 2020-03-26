@@ -6,6 +6,8 @@ import com.dev10.BraylonMedia.entities.Visit;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.UserService;
 import com.dev10.BraylonMedia.services.VisitService;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -99,12 +101,33 @@ public class VisitController
     @GetMapping("/add_visit")
     public String displayAddVisit(Model model)
     {
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        List<Client> clients = clientService.findAll();
+        model.addAttribute("clients", clients);
         return "add_visit";
     }
     
     @PostMapping("/add_visit")
-    public String addVisit(Visit visit) 
+    public String addVisit(String dateVisited, String userId,
+        String visitNotes, String clientId) 
     {
+        LocalDate dateVisitedParse = null;
+        int userIdParse = 0;
+        int clientIdParse = 0;
+        try {
+            dateVisitedParse = LocalDate.parse(dateVisited);
+            userIdParse = Integer.parseInt(userId);
+            clientIdParse = Integer.parseInt(clientId);
+        } catch(NumberFormatException | DateTimeParseException e) {
+            //Something bad happened!
+        }
+        
+        Visit visit = new Visit();
+        visit.setDateVisited(dateVisitedParse);
+        visit.setUser(userService.findById(userIdParse));
+        visit.setVisitNotes(visitNotes);
+        visit.setClient(clientService.findById(clientIdParse));
         visitService.addVisit(visit);
         return "redirect:/visit";
     }
