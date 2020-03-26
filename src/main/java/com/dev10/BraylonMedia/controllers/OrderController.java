@@ -71,7 +71,7 @@ public class OrderController {
     public String displayOrders(Model model, String orderIds, String clientIds, String userIds) 
     {
         User user = userService.getUserFromSession();
-        List<Order> orderList = orderService.getOrdersByUserId(user.getUserId());
+        List<Order> orderList = orderService.getAllOrders();
         List<User> users = userService.findAll();
         List<Client> clients = clientService.findAll();
         Integer orderId = null;
@@ -111,8 +111,12 @@ public class OrderController {
             orderList.clear();
             orderList = orderService.getOrdersByUserId(user.getUserId());
             userId = user.getUserId();
+            model.addAttribute("ordersAll", orderService.getOrdersByUserId(user.getUserId()));
         }
-        List<Order> ordersAll = orderList;
+        else
+        {
+            model.addAttribute("ordersAll", orderService.getAllOrders());
+        }
         //if user selected an orderId
         if(orderId != null)
         {
@@ -161,7 +165,6 @@ public class OrderController {
         model.addAttribute("users", users);
         model.addAttribute("clients", clients);
         model.addAttribute("orders", orderList);
-        model.addAttribute("ordersAll", ordersAll);
         violations.clear();
         return "orders";
     }
