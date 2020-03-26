@@ -60,4 +60,8 @@ public interface UserService {
      */
     User getUserFromSession();
     
+    boolean defaultPasswordChanged(User user);
+    
+    User findUserByClientId(int clientId);
+    
 }
