@@ -113,7 +113,8 @@
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-            --- Search by Sales Rep ---
+            <span th:if="${userLive}" th:text="${cUser.firstName} + ' ' + ${cUser.lastName}"></span>
+            <span th:unless="${userLive}" th:text="'--- Search by Sales Rep ---'"></span>
         </button>
          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <form th:action="@{/visit}" method="GET">
@@ -131,7 +132,8 @@
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-            --- Search by Company ---
+            <span th:if="${clientLive}" th:text="${uClient.companyName}"></span>
+            <span th:unless="${clientLive}" th:text="'--- Search by Company ---'"></span>
         </button>
          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <form th:action="@{/visit}" method="GET">
@@ -149,8 +151,8 @@
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-            
-                    --- Search by Month ---
+            <span th:if="${monthLive}" th:text="${cMonth}"></span>
+            <span th:unless="${monthLive}" th:text="'--- Search by Month ---'"></span>
         </button>
          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <form th:action="@{/visit}" method="GET">

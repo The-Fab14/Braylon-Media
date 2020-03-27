@@ -49,9 +49,15 @@ public class VisitController
         List<Visit> visits = visitService.getAllVisits();
         Integer user_id = null;
         Integer client_id = null;
+        boolean userLive = false;
+        boolean clientLive = false;
+        boolean monthLive = false;
         try
         {
             client_id = Integer.parseInt(clientIds);
+            clientLive = true;
+            Client uClient = clientService.findById(client_id);
+            model.addAttribute("uClient", uClient);
         }
         catch(NumberFormatException e)
         {
@@ -60,11 +66,16 @@ public class VisitController
         try
         {
             user_id = Integer.parseInt(userIds);
+            User cUser = userService.findById(user_id);
+            model.addAttribute("cUser", cUser);
+            userLive = true;
         }
         catch(NumberFormatException e)
         {
             
         }
+        model.addAttribute("userLive", userLive);
+        model.addAttribute("clientLive", clientLive);
         if(!user.getUserRole().equals("ROLE_ADMIN"))
         {
             user_id = user.getUserId();
@@ -93,9 +104,12 @@ public class VisitController
                     newVisits.add(v);
                 }
             }
+            monthLive = true;
+            model.addAttribute("cMonth", month);
             visits.clear();
             visits = newVisits;
         }
+        model.addAttribute("monthLive", monthLive);
         model.addAttribute("visits", visits);
         model.addAttribute("users", users);
         model.addAttribute("clients", clients);
