@@ -97,7 +97,6 @@ public class SalesRepController {
 
     @GetMapping("/edit_user")
     public String displayEditUser(Integer userId, Model model) {
-        customViolations.clear();
         if (userId != null) {
             model.addAttribute("user", users.findById(userId));
             model.addAttribute("lookup", lookup.findAll());
@@ -105,6 +104,7 @@ public class SalesRepController {
             model.addAttribute("customViolations", customViolations);
             return "edit_user";
         } else {
+            customViolations.clear();
             User user = users.getUserFromSession();
             model.addAttribute("user", user);
             model.addAttribute("lookup", lookup.findAll());
