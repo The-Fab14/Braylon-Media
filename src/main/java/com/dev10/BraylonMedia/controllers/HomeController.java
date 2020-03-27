@@ -2,6 +2,7 @@ package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.Client;
 import com.dev10.BraylonMedia.entities.Order;
+import com.dev10.BraylonMedia.entities.Product;
 import com.dev10.BraylonMedia.entities.State;
 import com.dev10.BraylonMedia.entities.User;
 import com.dev10.BraylonMedia.entities.Visit;
@@ -240,6 +241,36 @@ public class HomeController {
             }
         }
         model.addAttribute("topUserSales", topUser);
+        //products
+        List<Product> products = productService.getAllProducts();
+        orders = orderService.getAllOrders();
+        for(Product product : products)
+        {
+            int monthly = 0;
+            int yearly = 0;
+            int all = 0;
+            for(Order o : orders)
+            {
+                if(o.getProducts().contains(product))
+                {
+                    if(o.getDateSubmitted().getYear() == (LocalDate.now().getYear()))
+                    {
+                        yearly = yearly + orderService.getOrderProductQuantity(o.getOrderId(), product.getProductId());
+                        if(o.getDateSubmitted().getMonth().equals(LocalDate.now().getMonth()))
+                        {
+                            monthly = monthly + orderService.getOrderProductQuantity(o.getOrderId(), product.getProductId());
+                        }
+                    }
+                    all = all + orderService.getOrderProductQuantity(o.getOrderId(), product.getProductId());
+                }
+            }
+            product.setMonthlySales(monthly);
+            product.setYearlySales(yearly);
+            product.setAllSales(all);
+        }
+        model.addAttribute("products", products);
+
+
 
         // determine if maintenance page shows or not
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.US);

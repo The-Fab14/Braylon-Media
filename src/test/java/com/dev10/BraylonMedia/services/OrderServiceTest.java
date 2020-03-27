@@ -4,10 +4,12 @@ import com.dev10.BraylonMedia.entities.Client;
 import com.dev10.BraylonMedia.entities.Order;
 import com.dev10.BraylonMedia.entities.State;
 import com.dev10.BraylonMedia.entities.User;
+import com.dev10.BraylonMedia.entities.Visit;
 import com.dev10.BraylonMedia.repositories.ClientRepository;
 import com.dev10.BraylonMedia.repositories.OrderRepository;
 import com.dev10.BraylonMedia.repositories.StateRepository;
 import com.dev10.BraylonMedia.repositories.UserRepository;
+import com.dev10.BraylonMedia.repositories.VisitRepository;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -44,6 +46,9 @@ public class OrderServiceTest {
     @Autowired
     UserRepository ur;
     
+    @Autowired
+    VisitRepository vr;
+    
     public OrderServiceTest() {
     }
     
@@ -56,7 +61,12 @@ public class OrderServiceTest {
     }
     
     @BeforeEach
-    public void setUp() {
+    public void setUp() {    
+        List<Visit> allVisits = vr.findAll();
+        for (Visit v : allVisits) {
+            vr.delete(v);
+        }
+        
         List<Order> allOrders = or.findAll();
         for (Order o : allOrders) {
             or.delete(o);
