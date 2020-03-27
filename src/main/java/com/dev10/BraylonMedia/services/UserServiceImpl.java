@@ -75,5 +75,35 @@ public class UserServiceImpl implements UserService {
     public User findUserByClientId(int clientId) {
         return userRepository.findUserByClientId(clientId);
     }
-
+    
+    @Override
+    public boolean emailAddressExists(String newEmail, int userId) {
+        List<String> existingEmails = userRepository.findAllEmails();
+        User user = userRepository.findById(userId).orElse(null);
+        boolean emailExists = false;
+        for (String email : existingEmails) {
+            if (email.equals(newEmail)) {
+                if (email.equals(user.getEmailAddress())) {
+                    return false;
+                } else {
+                    emailExists = true;
+                    break;
+                }
+            }
+        }
+        return emailExists;
+    }
+    
+    @Override
+    public boolean emailAddressExists(String newEmail) {
+        List<String> existingEmails = userRepository.findAllEmails();
+        boolean emailExists = false;
+        for (String email : existingEmails) {
+            if (email.equals(newEmail)) {
+                    emailExists = true;
+                    break;
+                }
+            }
+        return emailExists;
+    }
 }

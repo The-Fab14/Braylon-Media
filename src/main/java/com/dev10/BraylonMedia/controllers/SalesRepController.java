@@ -98,6 +98,7 @@ public class SalesRepController {
 
     @GetMapping("/edit_user")
     public String displayEditUser(Integer userId, Model model) {
+        customViolations.clear();
         if (userId != null) {
             model.addAttribute("user", users.findById(userId));
             model.addAttribute("lookup", lookup.findAll());
@@ -116,6 +117,7 @@ public class SalesRepController {
 
     @PostMapping("/edit_user")
     public String editUser(User user) {
+        customViolations.clear();
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(user);
 

@@ -60,8 +60,32 @@ public interface UserService {
      */
     User getUserFromSession();
     
+     /**
+     * Check that initial password was changed
+     * @return 
+     * @param user
+     */
     boolean defaultPasswordChanged(User user);
     
+     /**
+     * Find sales rep by clientId
+     * @param clientId
+     * @return 
+     */
     User findUserByClientId(int clientId);
     
+     /**
+     * Check if User email exists
+     * @param newEmail
+     * @param userId
+     * @return 
+     */
+    boolean emailAddressExists(String newEmail, int userId);
+    
+     /**
+     * Check if User email exists
+     * @param newEmail
+     * @return 
+     */
+    boolean emailAddressExists(String newEmail);
 }

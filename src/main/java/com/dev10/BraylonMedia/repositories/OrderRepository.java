@@ -27,7 +27,10 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
     @Query(value = "UPDATE crm_order_product op SET op.quantity = ?3 WHERE op.order_id = ?1 AND op.product_id = ?2", nativeQuery = true)
     void saveOrderProductQuantity(int orderId, int productId, int quantity);
     
-    @Query(value = "SELECT o.* FROM crm_order o INNER JOIN crm_client c ON o.client_id = c.client_id INNER JOIN crm_user u ON c.user_id = u.user_id WHERE u.user_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM crm_order ot INNER JOIN "
+            + "crm_client ct ON ct.client_id = ot.client_id INNER JOIN "
+            + "crm_user ut ON ct.user_id = ut.user_id WHERE "
+            + "ut.user_id = ?1", nativeQuery = true)
     List<Order> getOrdersByUserId(int userId);
     
     @Query(value = "SELECT * FROM crm_order WHERE client_id = ?1", nativeQuery = true)
