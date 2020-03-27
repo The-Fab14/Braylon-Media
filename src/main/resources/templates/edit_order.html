@@ -86,7 +86,7 @@
         
         <div class="form-group">
           <label for="completionDateInput">Completion Date</label>
-          <input th:value="${dateCompleted}" class="form-control" type="date" id="dateCompleted" 
+          <input th:value="${orders.dateCompleted}" class="form-control" type="date" id="dateCompleted" 
                  name="dateCompleted" placeholder="Completion Date">
         </div>
         
@@ -117,16 +117,25 @@
         </div>
                    
                     <div class='form-group'>
-          <label for="productId">Product</label>
+          
+         
+          
           <div th:each="product : ${orders.products}">
+             <div class="col-md-10">
+                 <label for="product">Product</label>
               <input th:value="${product.productName}" class="form-control" 
-               id="products" name="products" readonly>
+               id="productName" name="productName" readonly>
+             </div>
+              <div class="col-md-2">
+                  <label for="Quantity">Quantity</label>
          <input th:value="${product.orderProductQuantity}" class="form-control" 
-               id="products" name="products" readonly>
+               id="orderProductQuantity" name="orderProductQuantity" readonly>
+              </div>
           </div>
+          
          
         </div>
-       
+             
        
         <button type="button" class="btn btn-danger" onclick="location.href='orders'">Cancel</button>
         <button type="submit" class="btn btn-primary">Save</button>

@@ -145,6 +145,12 @@ public class OrderController {
 
             for (Order item : orderList) {
                 if (item.getOrderId() == orderId) {
+                    List<Product> productListWithinOrder = item.getProducts();
+                    for(Product productItem : productListWithinOrder)
+                    {
+                        int quantity = orderService.getOrderProductQuantity(item.getOrderId(), productItem.getProductId());
+                        productItem.setOrderProductQuantity(quantity);
+                    }
                     model.addAttribute("orders", orderService.getOrder(orderId));
                     violations.clear();
                     return "edit_order";
@@ -155,6 +161,12 @@ public class OrderController {
                 }
             }
         } else if (user.getUserRole().equals("ROLE_ADMIN")) {
+            List<Product> productListWithinOrder = orderService.getOrder(orderId).getProducts();
+                    for(Product productItem : productListWithinOrder)
+                    {
+                        int quantity = orderService.getOrderProductQuantity(orderId, productItem.getProductId());
+                        productItem.setOrderProductQuantity(quantity);
+                    }
             model.addAttribute("orders", orderService.getOrder(orderId));
             violations.clear();
             return "edit_order";
