@@ -91,7 +91,7 @@
         <div class="form-group">
           <label for="OrderTotalInput">Order Total</label>
           <input th:value="${orders.orderTotal}" class="form-control" id="orderTotal" 
-                 name="orderTotal" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" Type="decimal" value="" data-type="currency" placeholder="Order Total">
+                 name="orderTotal" step=".01" min="0" max="99999999" type="number" placeholder="Order Total">
         </div>
         
         <div class="form-group">
