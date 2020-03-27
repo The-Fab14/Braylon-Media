@@ -11,10 +11,11 @@
         <title>
             Dashboard
         </title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="main.css"/>
+          <!-- Chart.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     </head>
     <body>
         <span id="userId" hidden th:text="${userId}"></span>
@@ -68,32 +69,37 @@
             Dashboard
         </h1>
     <hr/>
-    <div class="userStats col-10">
-        <h2>
-            Your Current Stats
-        </h2>
-        <table class="table table-striped">
-            <thead>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Visits this Month</td>
-                    <td th:text="${userVisits}"></td>
-                </tr>
-                <tr>
-                    <td>Top Customer</td>
-                    <td th:text="${userTopClient.contactFirstName} + ' ' + ${userTopClient.contactLastName} + ' with ' + ${userTopClient.companyName}"></td>
-                </tr>
-                <tr>
-                    <td>Unsubmitted Orders</td>
-                    <td th:text="${unsubmitted}"></td>
-                </tr>
-                <tr>
-                    <td>Sales this Month</td>
-                    <td th:text="${userSalesMonth}"></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="userStats col-sm-6">
+            <h2>
+                Your Current Stats
+            </h2>
+            <table class="table table-striped">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Visits this Month</td>
+                        <td th:text="${userVisits}"></td>
+                    </tr>
+                    <tr>
+                        <td>Top Customer</td>
+                        <td th:text="${userTopClient.contactFirstName} + ' ' + ${userTopClient.contactLastName} + ' with ' + ${userTopClient.companyName}"></td>
+                    </tr>
+                    <tr>
+                        <td>Unsubmitted Orders</td>
+                        <td th:text="${unsubmitted}"></td>
+                    </tr>
+                    <tr>
+                        <td>Sales this Month</td>
+                        <td th:text="${userSalesMonth}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="graphCol" class="col-sm-4 offset-sm-2">
+            <canvas id="barGraph" width="400" height="200"></canvas>
+        </div>
     </div>
     <div class="allStats col-10">
         <h2>
@@ -148,7 +154,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
         </script>
-
+    <script src="/dashboard.js"></script>
 </body>
 
 </html>
