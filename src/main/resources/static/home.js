@@ -29,7 +29,7 @@ function getCustomers(userId){
 // Runs on page load to display the default table view of clients (sorted by contact last name)
 function displayDefaultClientView(clients){
     const tableBody = $('tbody');
-    tableBody.empty();
+    // tableBody.empty();
     // sort clientArray by contactLastName for default view
     const clientsByContactLastName = clients.sort((a, b) => {
         if (a.contactLastName > b.contactLastName){
@@ -49,7 +49,8 @@ function displayDefaultClientView(clients){
         '<td class="clientData">' + client.state.stateId + '</td>' +
         '<td class="clientData">' + client.zip + '</td>' +
         '<td class="clientData">' + client.phoneNumber + '</td>' +
-        '<td class="clientData">' + client.emailAddress + '</td>'
+        '<td class="clientData">' + client.emailAddress + '</td>' + 
+        '<td class="clientData"><button class="btn btn-link"><a href="/edit_customer/' + client.clientId + '">Edit</a></button></td>'
         );
     });
 }
@@ -72,6 +73,14 @@ function populateQueryDropdown(clients){
                 break;
             case 'salesRepId':
                 populateWithSalesRepId(clients, resultDropdown);
+                break;
+            // Does NOT populate the dropdown, displays the default client view
+            case 'viewAllClients':
+                clearQueries();
+                displayDefaultClientView(clients);
+                break;
+            default:
+                alert('You broke this somehow');
                 break;
         }
     });
@@ -115,6 +124,11 @@ function populateWithSalesRepId(clients, resultDropdown){
     });
 }
 
+// Executes when 'View All Clients' is clicked, as query dropdown needs to be empty.
+function clearQueries(){
+    $('.query').remove();
+}
+
 /*
 Each search function appends any matching search results to the table body
 */
@@ -133,7 +147,8 @@ function searchByClientId(clients, query){
             '<td class="clientData">' + client.state.stateId + '</td>' +
             '<td class="clientData">' + client.zip + '</td>' +
             '<td class="clientData">' + client.phoneNumber + '</td>' +
-            '<td class="clientData">' + client.emailAddress + '</td>'
+            '<td class="clientData">' + client.emailAddress + '</td>' + 
+            '<td class="clientData"><button class="btn btn-link"><a href="/edit_customer/' + client.clientId + '">Edit</a></button></td>'
             );
         }
     });
@@ -153,7 +168,8 @@ function searchByCompanyName(clients, query){
             '<td class="clientData">' + client.state.stateId + '</td>' +
             '<td class="clientData">' + client.zip + '</td>' +
             '<td class="clientData">' + client.phoneNumber + '</td>' +
-            '<td class="clientData">' + client.emailAddress + '</td>'
+            '<td class="clientData">' + client.emailAddress + '</td>' + 
+            '<td class="clientData"><button class="btn btn-link"><a href="/edit_customer/' + client.clientId + '">Edit</a></button></td>'
             );
         }
     });
@@ -173,7 +189,8 @@ function searchByContactLastName(clients, query){
             '<td class="clientData">' + client.state.stateId + '</td>' +
             '<td class="clientData">' + client.zip + '</td>' +
             '<td class="clientData">' + client.phoneNumber + '</td>' +
-            '<td class="clientData">' + client.emailAddress + '</td>'
+            '<td class="clientData">' + client.emailAddress + '</td>' + 
+            '<td class="clientData"><button class="btn btn-link"><a href="/edit_customer/' + client.clientId + '">Edit</a></button></td>'
             );
         }
     });
@@ -193,13 +210,14 @@ function searchBySalesRepId(clients, query){
             '<td class="clientData">' + client.state.stateId + '</td>' +
             '<td class="clientData">' + client.zip + '</td>' +
             '<td class="clientData">' + client.phoneNumber + '</td>' +
-            '<td class="clientData">' + client.emailAddress + '</td>'
+            '<td class="clientData">' + client.emailAddress + '</td>' + 
+            '<td class="clientData"><button class="btn btn-link"><a href="/edit_customer/' + client.clientId + '">Edit</a></button></td>'
             );
         }
     });
 }
 
-// displays matching results when an <option> element(search query) is clicked
+// displays matching results when an <option> element(search query) is clicked. (Will not execute when 'View All Clients' is clicked)
 function displaySearchResults(clients){
     // dropdown element (<option>) is clicked
     $('#searchQueries').change(function (event) {
@@ -208,7 +226,7 @@ function displaySearchResults(clients){
         const query = $(this).children('option:selected').text();
         // grab the element's parent (<select>) ID
         const searchParameter = $('#searchParameters').children('option:selected').attr('id');
-
+        console.log('searchParameter: ', searchParameter);
         // empty the table body
         $('tbody').empty();
 
@@ -227,7 +245,8 @@ function displaySearchResults(clients){
                 searchBySalesRepId(clients, query);
                 break;
             default:
-                alert("Not sure what's going on here");
+                alert("Congrats, you broke this");
+                break;
         }
     });
 }

@@ -2,6 +2,7 @@ package com.dev10.BraylonMedia.controllers;
 
 import com.dev10.BraylonMedia.entities.Client;
 import com.dev10.BraylonMedia.entities.State;
+import com.dev10.BraylonMedia.entities.User;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.LookupService;
 import com.dev10.BraylonMedia.services.OrderService;
@@ -36,8 +37,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 
 @Controller
-public class ClientController
-{
+public class ClientController 
+{    
     @Autowired
     ClientService clientService;
 
@@ -55,19 +56,19 @@ public class ClientController
 
     @Autowired
     VisitService visitService;
-
+    
     @GetMapping("/add_customer")
     public String displayAddCustomer(Model model)
     {
         return "add_customer";
     }
-
+    
     @PostMapping("/add_customer")
-    public String addCustomer(HttpServletRequest request, Model model, String companyName,
-            String firstName, String lastName, String streetAddress,
-            String aptUnit, String city, String stateId, int zip, String phone, String email)
+    public String addCustomer(HttpServletRequest request, Model model, String companyName, 
+            String firstName, String lastName, String streetAddress, 
+            String aptUnit, String city, String stateId, String zip, String phone, String email)
     {
-        String userId = request.getUserPrincipal().getName();
+        User user = userService.getUserFromSession();
         Client client = new Client();
         client.setCompanyName(companyName);
         client.setContactFirstName(firstName);
@@ -77,13 +78,21 @@ public class ClientController
         client.setCity(city);
         State state = lookupService.findById(stateId);
         client.setState(state);
-        client.setZip(zip);
+        try
+        {
+            client.setZip(Integer.parseInt(zip));
+        }
+        catch(NumberFormatException e)
+        {
+            
+        }
         client.setEmailAddress(email);
         client.setPhoneNumber(phone);
+        client.setUser(user);
         clientService.save(client);
-        return "redirect:/home";
+        return "redirect:/customers";
     }
-
+    
     @GetMapping("/edit_customer/{clientId}")
     public String displayEditCustomer(Model model, @PathVariable int clientId)
     {
@@ -93,11 +102,11 @@ public class ClientController
         model.addAttribute("states", states);
         return "edit_customer";
     }
-
+    
     @PostMapping("/edit_customer")
-    public String editCustomer(HttpServletRequest request, Model model, String companyName,
-            String firstName, String lastName, String streetAddress,
-            String aptUnit, String city, String stateId, int zip, String phone, String email,
+    public String editCustomer(HttpServletRequest request, Model model, String companyName, 
+            String firstName, String lastName, String streetAddress, 
+            String aptUnit, String city, String stateId, String zip, String phone, String email,
             int clientId)
     {
         User user = userService.getUserFromSession();
@@ -124,14 +133,14 @@ public class ClientController
         client.setClientId(clientId);
         client.setUser(user);
         clientService.save(client);
-        return "redirect:/home";
+        return "redirect:/customers";
     }
-
-
+    
+    
 
     // load home page if not in maintenance window
     @GetMapping("/customers")
-    public String displayHome(Model model)
+    public String displayHome(Model model) 
     {
         return "customer_display";
     }

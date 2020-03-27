@@ -15,6 +15,8 @@ import com.dev10.BraylonMedia.services.VisitService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -63,7 +65,7 @@ public class HomeController {
 
     // load home page if not in maintenance window
     @GetMapping({"/", "/home"})
-    public String displayHome(Model model)
+    public String displayHome(Model model) 
     {
         User user = userService.getUserFromSession();
         //find number of visits this month
@@ -118,7 +120,7 @@ public class HomeController {
             }
         }
         model.addAttribute("userSalesMonth", userSalesMonth);
-
+        
         //total visits for all this month
         List<Visit> visitsAll = visitService.getAllVisits();
         int allVisits = 0;
@@ -130,7 +132,7 @@ public class HomeController {
             }
         }
         model.addAttribute("allVisits", allVisits);
-
+        
         //top customer (company wide)
         orders = orderService.getAllOrders();
         Map<String, List<Order>> groupedByCompanyName = orders.stream()
@@ -154,7 +156,7 @@ public class HomeController {
             }
         }
         model.addAttribute("topCompany", topCompany);
-        //top contact
+        //top contact 
         Map<Client, List<Order>> groupedByClientAll = orders.stream()
                 .collect(Collectors.groupingBy(Order::getClient));
         sum = BigDecimal.ZERO;
@@ -267,11 +269,11 @@ public class HomeController {
             product.setMonthlySales(monthly);
             product.setYearlySales(yearly);
             product.setAllSales(all);
-        }
+        }               
         model.addAttribute("products", products);
-
-
-
+        
+        
+        
         // determine if maintenance page shows or not
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.US);
         String timeNow = ZonedDateTime.now(ZoneId.of("America/Chicago")).format(formatter);
@@ -281,16 +283,16 @@ public class HomeController {
 
         boolean isInBetween = false;
 
-        if (startTime.compareTo(checkTime) <= 0 && endTime.compareTo(checkTime) >= 0)
+        if (startTime.compareTo(checkTime) <= 0 && endTime.compareTo(checkTime) >= 0) 
         {
             isInBetween = true;
         }
 
-        if (isInBetween)
+        if (isInBetween) 
         {
             SecurityContextHolder.getContext().setAuthentication(null);
             return "redirect:/maintenance";
-        } else
+        } else 
         {
             return "home";
         }
@@ -298,7 +300,7 @@ public class HomeController {
 
     // load maintenance page
     @GetMapping("/maintenance")
-    public String displayMaintenance(Model model)
+    public String displayMaintenance(Model model) 
     {
         return "maintenance";
     }

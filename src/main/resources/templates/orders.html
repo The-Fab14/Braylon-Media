@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,11 +90,11 @@
 
 <!--    <div class="dropdown">
         <form th:action="@{/orders}" method="GET" class="form-horizontal">
-            <select name="userIds" id="userIds">
+            <select name="userIds" id="userIds"> 
                 <option selected value="null">
                     --- Search by Sales Rep ---
                 </option>
-                <option th:each="user : ${users}"
+                <option th:each="user : ${users}" 
                         th:text="${user.firstName} + ' ' + ${user.lastName}"
                         th:value="${user.userId}">
                             UserId
@@ -201,7 +202,7 @@
                             <th>Comments</th>
                         </tr>
                     </thead>
-
+          
                     <tbody>
                         <tr th:each="order : ${orders}">
                             <td th:text="${order.orderId}"></td>
@@ -225,13 +226,20 @@
                         <td th:text="${order.orderTotal}"></td>
                         <td th:text="${order.orderStatus}"></td>
                         <td th:text="${order.orderComments}"></td>
+                        <td><a th:href="@{edit_order(orderId=${order.orderId})}" >Edit</a></td>
                         </tr>
                     </tbody>
                   </table>
-                </div>
+  </div>
 
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

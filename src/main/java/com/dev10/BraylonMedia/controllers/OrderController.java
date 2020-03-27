@@ -169,6 +169,12 @@ public class OrderController {
 
     }
     
+    @PostMapping("/edit_order")
+    public String editOrder()
+    {
+        return "redirect:/orders";
+    }
+    
     @GetMapping("/orders")
     public String displayOrders(Model model, String orderIds, String clientIds, String userIds) 
     {

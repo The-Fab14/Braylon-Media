@@ -34,7 +34,7 @@ public class User {
     @Column(nullable = false)
     @NotBlank(message = "Email Address must not be empty.")
     @Size(max = 256)
-    //@Email(message = "Please enter a valid email.")
+    @Email(message = "Please enter a valid email.")
     @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
     private String emailAddress;
 
