@@ -116,8 +116,13 @@
         </div>
 
                     <div class='form-group'>
-          <label for="productId">Product ID</label>
-        <input th:field="*{products}" class="form-control" id="products" name="products" readonly>
+          <label for="productId">Product</label>
+          <div th:each="product : ${orders.products}">
+              <input th:value="${product.productName}" class="form-control"
+               id="products" name="products" readonly>
+         <input th:value="${product.orderProductQuantity}" class="form-control"
+               id="products" name="products" readonly>
+          </div>
 
         </div>
 
