@@ -72,31 +72,31 @@
         
         <div class="form-group">
           <label for="basicNameInput">Submission Date</label>
-          <input th:field="*{dateSubmitted}" class="form-control" type="date" id="dateSubmitted" 
+          <input th:value="${orders.dateSubmitted}" class="form-control" type="date" id="dateSubmitted" 
                  name="dateSubmitted" placeholder="Submission Date">
         </div>
        
         <div class="form-group">
           <label for="installationDateInput">Installation Date</label>
-          <input th:field="*{dateInstalled}" class="form-control" type="date" id="dateInstalled" 
+          <input th:value="${orders.dateInstalled}" class="form-control" type="date" id="dateInstalled" 
                  name="dateInstalled" placeholder="Installation Date">
         </div>
         
         <div class="form-group">
           <label for="completionDateInput">Completion Date</label>
-          <input th:field="*{dateCompleted}" class="form-control" type="date" id="dateCompleted" 
+          <input th:value="${orders.dateCompleted}" class="form-control" type="date" id="dateCompleted" 
                  name="dateCompleted" placeholder="Completion Date">
         </div>
         
         <div class="form-group">
           <label for="OrderTotalInput">Order Total</label>
-          <input th:field="*{orderTotal}" class="form-control" id="orderTotal" 
+          <input th:value="${orders.orderTotal}" class="form-control" id="orderTotal" 
                  name="orderTotal" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" Type="decimal" value="" data-type="currency" placeholder="Order Total">
         </div>
         
         <div class="form-group">
           <label for="orderStatus1">Order Status</label>
-        <select th:field="*{orderStatus}" class="form-control" id="orderStatus" name="orderStatus">
+        <select th:value="${orders.orderStatus}" class="form-control" id="orderStatus" name="orderStatus">
           <option value="Submitted">Submitted</option>
           <option value="Approved">Approved</option>
           <option value="Complete">Complete</option>
@@ -105,12 +105,12 @@
        
         <div class="form-group">
           <label for="orderCommentsText">Order Comments</label>
-          <textarea th:field="*{orderComments}" class="form-control" type="text" id="orderComments" name="orderComments" rows="3"></textarea>
+          <textarea th:text="${orders.orderComments}" class="form-control" type="text" id="orderComments" name="orderComments" rows="3"></textarea>
         </div>
                    
         <div class='form-group'>
           <label for="clientId">Client ID</label>
-        <input th:field="*{client}" class="form-control" id="client" name="client" readonly>
+        <input th:value="${orders.client.clientId}" class="form-control" id="client" name="client" readonly>
           
         </div>
                    
