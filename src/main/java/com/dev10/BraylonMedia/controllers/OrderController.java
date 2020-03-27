@@ -6,6 +6,7 @@ import com.dev10.BraylonMedia.entities.Product;
 import com.dev10.BraylonMedia.entities.User;
 import com.dev10.BraylonMedia.services.ClientService;
 import com.dev10.BraylonMedia.services.OrderService;
+import com.dev10.BraylonMedia.services.ProductService;
 import com.dev10.BraylonMedia.services.UserService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -40,10 +41,16 @@ public class OrderController {
 
     @Autowired
     UserService userService;
+    
+    @Autowired
+    ProductService productService;
 
     @GetMapping("/add_new_order")
     public String displayAddOrder(Model model) {
+        User user = userService.getUserFromSession();
         model.addAttribute("customViolations", customViolations);
+        model.addAttribute("clients", clientService.findAllByUserId(user.getUserId()));
+        model.addAttribute("products", productService.getAllProducts());
         return "add_new_order";
     }
 
@@ -134,7 +141,7 @@ public class OrderController {
         orderService.saveOrderProductQuantity(order.getOrderId(), productIdInt, productQuantityInt);
         
         customViolations.clear();
-        return "redirect:/home";
+        return "redirect:/orders";
     }
 
     @GetMapping("/edit_order")
