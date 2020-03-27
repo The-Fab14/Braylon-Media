@@ -88,7 +88,7 @@ public class HomeController {
             sum = BigDecimal.ZERO;
             for(Order o : groupedByClient.get(c))
             {
-                sum.add(o.getOrderTotal());
+                sum = sum.add(o.getOrderTotal());
             }
             if(sum.compareTo(max) >= 0)
             {
@@ -144,7 +144,7 @@ public class HomeController {
             sum = BigDecimal.ZERO;
             for(Order o : groupedByCompanyName.get(comp))
             {
-                sum.add(o.getOrderTotal());
+                sum = sum.add(o.getOrderTotal());
             }
             if(sum.compareTo(max) >= 0)
             {
@@ -164,7 +164,7 @@ public class HomeController {
             sum = BigDecimal.ZERO;
             for(Order o : groupedByClientAll.get(c))
             {
-                sum.add(o.getOrderTotal());
+                sum = sum.add(o.getOrderTotal());
             }
             if(sum.compareTo(max) >= 0)
             {
@@ -230,7 +230,7 @@ public class HomeController {
             {
                 if(!o.getOrderStatus().equals("Quoted") && !o.getOrderStatus().equals("Pending"))
                 {
-                    sum.add(o.getOrderTotal());
+                    sum = sum.add(o.getOrderTotal());
                 }
             }
             if(sum.compareTo(max) >= 0)
