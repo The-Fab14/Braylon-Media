@@ -4,10 +4,12 @@ import com.dev10.BraylonMedia.entities.Client;
 import com.dev10.BraylonMedia.entities.Order;
 import com.dev10.BraylonMedia.entities.State;
 import com.dev10.BraylonMedia.entities.User;
+import com.dev10.BraylonMedia.entities.Visit;
 import com.dev10.BraylonMedia.repositories.ClientRepository;
 import com.dev10.BraylonMedia.repositories.OrderRepository;
 import com.dev10.BraylonMedia.repositories.StateRepository;
 import com.dev10.BraylonMedia.repositories.UserRepository;
+import com.dev10.BraylonMedia.repositories.VisitRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -45,6 +47,9 @@ public class ClientServiceTest {
     @Autowired
     OrderRepository or;
     
+    @Autowired
+    VisitRepository vr;
+    
     public ClientServiceTest() {
     }
     
@@ -58,6 +63,11 @@ public class ClientServiceTest {
     
     @BeforeEach
     public void setUp() {
+        List<Visit> allVisits = vr.findAll();
+        for (Visit v : allVisits) {
+            vr.delete(v);
+        }
+        
         List<Order> allOrders = or.findAll();
         for (Order o : allOrders) {
             or.delete(o);
