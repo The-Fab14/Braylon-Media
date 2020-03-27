@@ -117,12 +117,13 @@
         </div>
                    
                     <div class='form-group'>
-          <label for="productId">Products</label>
-        <input th:each="product : ${orders.products}" th:value="${product.productName}" 
-               class="form-control" id="products" name="products">
-        <input th:each="product : ${orders.products}" th:value="${product.orderProductQuantity}" 
-               class="form-control" id="products" name="products">
-         
+          <label for="productId">Product</label>
+          <div th:each="product : ${orders.products}">
+              <input th:value="${product.productName}" class="form-control" 
+               id="products" name="products" readonly>
+         <input th:value="${product.orderProductQuantity}" class="form-control" 
+               id="products" name="products" readonly>
+          </div>
          
         </div>
        
