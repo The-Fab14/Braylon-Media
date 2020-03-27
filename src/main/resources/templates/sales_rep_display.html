@@ -65,7 +65,8 @@
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Search by Contact Name
+            <span th:if="${clientLive}" th:text="${uClient.contactFirstName} + ' ' + ${uClient.contactLastName}"></span>
+            <span th:unless="${clientLive}" th:text="'--- Search by Company ---'"></span>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <form th:action="@{/sales_rep_display}" method="GET">
@@ -81,7 +82,8 @@
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Search by Sales Rep Id
+          <span th:if="${userLive}" th:text="${cUser.firstName} + ' ' + ${cUser.lastName}"></span>
+            <span th:unless="${userLive}" th:text="'--- Search by Sales Rep ---'"></span>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                       <form th:action="@{/sales_rep_display}" method="GET">
