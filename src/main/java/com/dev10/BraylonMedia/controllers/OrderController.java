@@ -186,9 +186,14 @@ public class OrderController {
         Integer orderId = null;
         Integer clientId = null;
         Integer userId = null;
+        boolean userLive = false;
+        boolean clientLive = false;
+        boolean orderLive = false;
         try
         {
             orderId = Integer.parseInt(orderIds);
+            orderLive = true;
+            model.addAttribute("cOrder", orderService.getOrder(orderId));
         }
         catch(NumberFormatException e)
         {
@@ -197,6 +202,8 @@ public class OrderController {
         try
         {
             clientId = Integer.parseInt(clientIds);
+            clientLive = true;
+            model.addAttribute("uClient", clientService.findById(clientId));
         }
         catch(NumberFormatException e)
         {
@@ -205,11 +212,16 @@ public class OrderController {
         try
         {
             userId = Integer.parseInt(userIds);
+            userLive = true;
+            model.addAttribute("cUser", userService.findById(userId));
         }
         catch(NumberFormatException e)
         {
             
         }
+        model.addAttribute("clientLive", clientLive);
+        model.addAttribute("userLive", userLive);
+        model.addAttribute("orderLive", orderLive);
         //limits list if user isn't an admin to only their stuff
         if(!user.getUserRole().equals("ROLE_ADMIN"))
         {
