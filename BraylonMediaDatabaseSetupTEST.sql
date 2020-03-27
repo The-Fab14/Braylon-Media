@@ -81,7 +81,7 @@ CREATE TABLE product (
 CREATE TABLE crm_order_product (
 	order_id INT NOT NULL,
     product_id INT NOT NULL,
-    quantity INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
     PRIMARY KEY pk_crm_order_product (order_id, product_id),
     CONSTRAINT fk_crm_order_product_crm_order 
 		FOREIGN KEY (order_id)
