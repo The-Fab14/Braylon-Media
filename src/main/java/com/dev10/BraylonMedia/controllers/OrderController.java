@@ -173,8 +173,65 @@ public class OrderController {
         }
 
         return "edit_order";
-
     }
+    
+    @PostMapping("/edit_order")
+    public String editOrder(@RequestBody OrderMetaInfo orderInfo) {
+        LocalDate dateSubmittedLocalDate;
+        LocalDate dateInstalledLocalDate;
+        LocalDate dateCompletedLocalDate;
+        BigDecimal orderTotalBigDecimal;
+        int clientIdInt;
+        int productIdInt;
+        int productQuantityInt;
+        try {
+            dateSubmittedLocalDate = order.getDateSubmitted();
+        } catch (Exception e) {
+            customViolations.add("Date submitted format is incorrect.");
+            return "redirect:/edit_order?orderId=" + order.getOrderId();
+        }
+        try {
+            dateInstalledLocalDate = order.getDateInstalled();
+        } catch (Exception e) {
+            customViolations.add("Date installed format is incorrect.");
+            return "redirect:/edit_order?orderId=" + order.getOrderId();
+        }
+        try {
+            dateCompletedLocalDate = order.getDateCompleted();
+        } catch (Exception e) {
+            customViolations.add("Date completed format is incorrect.");
+            return "redirect:/edit_order?orderId=" + order.getOrderId();
+        }
+        try {
+            orderTotalBigDecimal = order.getOrderTotal();
+        } catch (Exception e) {
+            customViolations.add("Order total format is incorrect.");
+            return "redirect:/edit_order?orderId=" + order.getOrderId();
+        }
+        try {
+            clientIdInt = order.getClient().getClientId();
+        } catch (Exception e) {
+            customViolations.add("Client Id format is incorrect.");
+            return "redirect:/edit_order?orderId=" + order.getOrderId();
+        }
+        try {
+            productIdInt = order.getProducts().get(0).getProductId();
+        } catch (Exception e) {
+            customViolations.add("Product Id format is incorrect.");
+            return "redirect:/edit_order?orderId=" + order.getOrderId();
+        }
+        try {
+            productQuantityInt = order.getProducts().get(0).getOrderProductQuantity();
+        } catch (Exception e) {
+            customViolations.add("Product quantity format is incorrect.");
+            return "redirect:/edit_order?orderId=" + order.getOrderId();
+        }
+        User userId = userService.getUserFromSession();
+        order.setProducts(order.getProducts());
+        orderService.saveOrderProductQuantity(productIdInt, productIdInt, clientIdInt);
+        customViolations.clear();
+        return "redirect:/home";
+    }    
     
     @GetMapping("/orders")
     public String displayOrders(Model model, String orderIds, String clientIds, String userIds) 
