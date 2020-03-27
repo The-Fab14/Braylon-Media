@@ -32,4 +32,16 @@ public class Product {
     @Transient
     @Column(nullable = true)
     private int orderProductQuantity;
+    
+    @Transient
+    @Column(nullable = true)
+    private int monthlySales;
+    
+    @Transient
+    @Column(nullable = true)
+    private int yearlySales;
+    
+    @Transient
+    @Column(nullable = true)
+    private int allSales;
 }

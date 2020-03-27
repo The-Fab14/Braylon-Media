@@ -98,7 +98,6 @@ public class SalesRepController {
 
     @GetMapping("/edit_user")
     public String displayEditUser(Integer userId, Model model) {
-        customViolations.clear();
         if (userId != null) {
             model.addAttribute("user", users.findById(userId));
             model.addAttribute("lookup", lookup.findAll());
@@ -106,6 +105,7 @@ public class SalesRepController {
             model.addAttribute("customViolations", customViolations);
             return "edit_user";
         } else {
+            customViolations.clear();
             User user = users.getUserFromSession();
             model.addAttribute("user", user);
             model.addAttribute("lookup", lookup.findAll());
@@ -153,6 +153,8 @@ public class SalesRepController {
 //        model.addAttribute("clients", clients.findAll());
             model.addAttribute("allUsers", users.findAll());
             List<User> sortedUsers = userList;
+            boolean clientLive = false;
+            boolean userLive = false;
             if (rep_id == null && client_id == null) {
                 model.addAttribute("users", users.findAll());
                 model.addAttribute("clients", clients.findAll());
@@ -167,7 +169,24 @@ public class SalesRepController {
                 sortedUsers.clear();
                 sortedUsers.add(users.findUserByClientId(client_id));
             }
-
+            if(rep_id != null)
+            {
+                userLive = true;
+            }
+            if(client_id != null)
+            {
+                clientLive = true;
+            }
+            if(userLive)
+            {
+                model.addAttribute("cUser", users.findById(rep_id));
+            }
+            if(clientLive)
+            {
+                model.addAttribute("uClient", clients.findById(client_id));
+            }
+            model.addAttribute("userLive", userLive);
+            model.addAttribute("clientLive", clientLive);
             //Map for visit count
             List<Visit> visitList = visits.getAllVisits();
             List<Integer> userIdFreq = new ArrayList<>();

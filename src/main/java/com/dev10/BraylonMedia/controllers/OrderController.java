@@ -193,6 +193,9 @@ public class OrderController {
         } catch (NumberFormatException e) {
 
         }
+        model.addAttribute("clientLive", clientLive);
+        model.addAttribute("userLive", userLive);
+        model.addAttribute("orderLive", orderLive);
         //limits list if user isn't an admin to only their stuff
         if (!user.getUserRole().equals("ROLE_ADMIN")) {
             users.clear();
