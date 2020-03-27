@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class OrderController {
 
     Set<ConstraintViolation<User>> violations = new HashSet<>();
-    Set<String> customViolations = new HashSet<>();
+    Set<String> customViolations = new HashSet<>();    
 
     @Autowired
     OrderService orderService;
@@ -101,7 +101,7 @@ public class OrderController {
             customViolations.add("Product Id format is incorrect.");
             return "redirect:/add_new_order";
         }
-
+        
         try {
             productQuantityInt = Integer.parseInt(productQuantity);
         } catch (Exception e) {
@@ -130,9 +130,9 @@ public class OrderController {
         order.setProducts(productList);
 
         order = orderService.addOrder(order);
-
+        
         orderService.saveOrderProductQuantity(order.getOrderId(), productIdInt, productQuantityInt);
-
+        
         customViolations.clear();
         return "redirect:/home";
     }
@@ -145,16 +145,28 @@ public class OrderController {
 
             for (Order item : orderList) {
                 if (item.getOrderId() == orderId) {
-                    model.addAttribute("orders", orderService.getOrder(orderId));
-                    violations.clear();
-                    return "edit_order";
+                    List<Product> productListWithinOrder = item.getProducts();    
+                    for(Product productItem : productListWithinOrder) 
+                    {
+                        int quantity = orderService.getOrderProductQuantity(item.getOrderId(), productItem.getProductId());
+                        productItem.setOrderProductQuantity(quantity);
+                    }
+                        model.addAttribute("orders", orderService.getOrder(orderId));
+                        violations.clear();
+                        return "edit_order";
                 } else {
                     // add violation here
                     model.addAttribute("orders", null);
                     return "edit_order";
                 }
             }
-        } else if (user.getUserRole().equals("ROLE_ADMIN")) {
+        } else if (user.getUserRole().equals("ROLE_ADMIN")) { 
+            List<Product> productListWithinOrder = orderService.getOrder(orderId).getProducts();    
+            for(Product productItem : productListWithinOrder) 
+            {
+                int quantity = orderService.getOrderProductQuantity(orderId, productItem.getProductId());
+                productItem.setOrderProductQuantity(quantity);
+            }            
             model.addAttribute("orders", orderService.getOrder(orderId));
             violations.clear();
             return "edit_order";
@@ -163,9 +175,9 @@ public class OrderController {
         return "edit_order";
 
     }
-
+    
     @GetMapping("/orders")
-    public String displayOrders(Model model, String orderIds, String clientIds, String userIds)
+    public String displayOrders(Model model, String orderIds, String clientIds, String userIds) 
     {
         User user = userService.getUserFromSession();
         List<Order> orderList = orderService.getAllOrders();
@@ -180,7 +192,7 @@ public class OrderController {
         }
         catch(NumberFormatException e)
         {
-
+            
         }
         try
         {
@@ -188,7 +200,7 @@ public class OrderController {
         }
         catch(NumberFormatException e)
         {
-
+            
         }
         try
         {
@@ -196,7 +208,7 @@ public class OrderController {
         }
         catch(NumberFormatException e)
         {
-
+            
         }
         //limits list if user isn't an admin to only their stuff
         if(!user.getUserRole().equals("ROLE_ADMIN"))
@@ -220,21 +232,21 @@ public class OrderController {
             orderList.clear();
             orderList.add(orderService.getOrder(orderId));
         }
-
+        
         //if user selected a user
         if(userId != null)
         {
             orderList.clear();
             orderList = orderService.getOrdersByUserId(userId);
         }
-
+        
         //if user selected a client
         if(clientId != null)
         {
             orderList.clear();
             orderList = orderService.getOrdersByClientId(clientId);
         }
-
+        
         //if user selected user and client
         if(userId != null && clientId != null)
         {
@@ -248,17 +260,17 @@ public class OrderController {
                 }
             }
         }
-
-        for(Order orderItem : orderList)
+        
+        for(Order orderItem : orderList) 
         {
             List<Product> productListWithinOrder = orderItem.getProducts();
-            for(Product productItem : productListWithinOrder)
+            for(Product productItem : productListWithinOrder) 
             {
                 int quantity = orderService.getOrderProductQuantity(orderItem.getOrderId(), productItem.getProductId());
                 productItem.setOrderProductQuantity(quantity);
             }
         }
-
+        
         model.addAttribute("users", users);
         model.addAttribute("clients", clients);
         model.addAttribute("orders", orderList);

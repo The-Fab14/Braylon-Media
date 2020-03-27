@@ -98,7 +98,6 @@ public class SalesRepController {
 
     @GetMapping("/edit_user")
     public String displayEditUser(Integer userId, Model model) {
-        customViolations.clear();
         if (userId != null) {
             model.addAttribute("user", users.findById(userId));
             model.addAttribute("lookup", lookup.findAll());
@@ -106,6 +105,7 @@ public class SalesRepController {
             model.addAttribute("customViolations", customViolations);
             return "edit_user";
         } else {
+            customViolations.clear();
             User user = users.getUserFromSession();
             model.addAttribute("user", user);
             model.addAttribute("lookup", lookup.findAll());
@@ -129,14 +129,11 @@ public class SalesRepController {
         } else if (!user.isDidPasswordChange() && users.defaultPasswordChanged(user)) {
             customViolations.add("Initial password must be changed.");
             return "redirect:/edit_user?userId=" + user.getUserId();
-        } else if (users.emailAddressExists(user.getEmailAddress(), user.getUserId())) {
-            customViolations.add("'" + user.getEmailAddress()+ "' is already in use. Please enter a new email");
-            return "redirect:/edit_user?userId=" + user.getUserId();
-        } else if (violations.isEmpty() && customViolations.isEmpty()) {
+        } else if (violations.isEmpty()) {
             users.save(user);
             return "redirect:/sales_rep_display";
         } else {
-            return "redirect:/edit_user?userId=" + user.getUserId();
+            return "redirect:/sales_rep_display";
         }
     }
 
