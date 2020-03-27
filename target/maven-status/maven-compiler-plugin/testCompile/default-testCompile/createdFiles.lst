@@ -1,6 +1,6 @@
-com\dev10\BraylonMedia\services\ClientServiceTest.class
-com\dev10\BraylonMedia\services\UserServiceTest.class
-com\dev10\BraylonMedia\services\LookupServiceTest.class
-com\dev10\BraylonMedia\services\ProductServiceTest.class
-com\dev10\BraylonMedia\services\OrderServiceTest.class
-com\dev10\BraylonMedia\services\VisitServiceTest.class
+com/dev10/BraylonMedia/services/LookupServiceTest.class
+com/dev10/BraylonMedia/services/ClientServiceTest.class
+com/dev10/BraylonMedia/services/OrderServiceTest.class
+com/dev10/BraylonMedia/services/VisitServiceTest.class
+com/dev10/BraylonMedia/services/UserServiceTest.class
+com/dev10/BraylonMedia/services/ProductServiceTest.class
