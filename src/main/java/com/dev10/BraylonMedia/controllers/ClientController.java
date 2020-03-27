@@ -68,7 +68,7 @@ public class ClientController
             String firstName, String lastName, String streetAddress, 
             String aptUnit, String city, String stateId, String zip, String phone, String email)
     {
-        String userId = request.getUserPrincipal().getName();
+        User user = userService.getUserFromSession();
         Client client = new Client();
         client.setCompanyName(companyName);
         client.setContactFirstName(firstName);
@@ -88,8 +88,9 @@ public class ClientController
         }
         client.setEmailAddress(email);
         client.setPhoneNumber(phone);
+        client.setUser(user);
         clientService.save(client);
-        return "redirect:/home";
+        return "redirect:/customers";
     }
     
     @GetMapping("/edit_customer/{clientId}")
@@ -132,7 +133,7 @@ public class ClientController
         client.setClientId(clientId);
         client.setUser(user);
         clientService.save(client);
-        return "redirect:/home";
+        return "redirect:/customers";
     }
     
     

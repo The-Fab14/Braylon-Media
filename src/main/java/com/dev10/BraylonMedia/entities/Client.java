@@ -35,7 +35,7 @@ public class Client {
     @Size(max = 256)
     private String streetAddress;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     @Size(max = 256)
     private String aptUnit;
 
