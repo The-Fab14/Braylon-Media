@@ -43,11 +43,29 @@ public class VisitController
     ClientService clientService;
     
     @GetMapping("/visit")
-    public String displayVisits(Model model, Integer client_id, Integer user_id, String month)
+    public String displayVisits(Model model, String clientIds, String userIds, String month)
     {
         User user = userService.getUserFromSession();
         List<Visit> visits = visitService.getAllVisits();
-        if(user.getUserRole().equals("ROLE_USER"))
+        Integer user_id = null;
+        Integer client_id = null;
+        try
+        {
+            client_id = Integer.parseInt(clientIds);
+        }
+        catch(NumberFormatException e)
+        {
+            
+        }
+        try
+        {
+            user_id = Integer.parseInt(userIds);
+        }
+        catch(NumberFormatException e)
+        {
+            
+        }
+        if(!user.getUserRole().equals("ROLE_ADMIN"))
         {
             user_id = user.getUserId();
         }
@@ -101,6 +119,8 @@ public class VisitController
     @GetMapping("/add_visit")
     public String displayAddVisit(Model model)
     {
+        User user = userService.getUserFromSession();
+        model.addAttribute("currentUser", user);
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         List<Client> clients = clientService.findAll();
@@ -132,8 +152,8 @@ public class VisitController
         return "redirect:/visit";
     }
     
-    @GetMapping("/edit_visit/{visitId}")
-    public String displayEditVisit(Model model, @PathVariable int visitId)
+    @GetMapping("/edit_visit")
+    public String displayEditVisit(Model model, Integer visitId)
     {
         Visit visit = visitService.getVisit(visitId);
         model.addAttribute("visit", visit);
@@ -145,9 +165,27 @@ public class VisitController
     }
     
     @PostMapping("/edit_visit")
-    public String editVisit(Visit visit)
+    public String editVisit(String dateVisited, String userId,
+        String visitNotes, String clientId, int visitId)
     {
+        LocalDate dateVisitedParse = null;
+        int userIdParse = 0;
+        int clientIdParse = 0;
+        try {
+            dateVisitedParse = LocalDate.parse(dateVisited);
+            userIdParse = Integer.parseInt(userId);
+            clientIdParse = Integer.parseInt(clientId);
+        } catch(NumberFormatException | DateTimeParseException e) {
+            //Something bad happened!
+        }
+        
+        Visit visit = new Visit();
+        visit.setDateVisited(dateVisitedParse);
+        visit.setUser(userService.findById(userIdParse));
+        visit.setVisitNotes(visitNotes);
+        visit.setClient(clientService.findById(clientIdParse));
+        visit.setVisitId(visitId);
         visitService.editVisit(visit);
-        return "redirect:/edit_visit?visitId=" + visit.getVisitId();
+        return "redirect:/visit";
     }
 }

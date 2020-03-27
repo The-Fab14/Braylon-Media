@@ -1,109 +1,143 @@
 <!-- This is the homepage / view customers page -->
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="_csrf" th:content="${_csrf.token}" />
-    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-    <title>View Customers</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="_csrf" th:content="${_csrf.token}" />
+        <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+        <title>
+            Dashboard
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="main.css"/>
-        </head>
-
-<body>
-    <span id="userId" hidden th:text="${userId}"></span>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" th:href="@{/home}">Braylon Media</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" th:href="@{/home}">Customers <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/edit_user}">Edit User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/orders}">Orders</a>
-                        </li>
-                        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a class="nav-link" th:href="@{/sales_rep_display}">Sales Representatives</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/visit}">Visits</a>
-                        </li>
-                        <li class="nav-item">
-                            <form method="POST" action="logout">
-                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                                <button type="submit" class="btn">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+    </head>
+    <body>
+        <span id="userId" hidden th:text="${userId}"></span>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" th:href="@{/home}">
+                Braylon Media
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/customers}">
+                            Customers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/edit_user}">
+                            Edit User
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/orders}">
+                            Orders
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" th:href="@{/sales_rep_display}">
+                            Sales Representatives
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/visit}">
+                            Visits
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="POST" action="logout">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            <button type="submit" class="btn">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     <div class="page-header">
-    <h1 class="text-center">
-      Customers
-    </h1>
+        <h1 class="text-center">
+            Dashboard
+        </h1>
     <hr/>
-    <div class="wrapperButton">
-        <button id="create-button" type="button" onClick=location.href="add_customer" class="btn btn-danger">
-            Add Customer
-        </button>
+    <div class="userStats col-10">
+        <h2>
+            Your Current Stats
+        </h2>
+        <table class="table table-striped">
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Visits this Month</td>
+                    <td th:text="${userVisits}"></td>
+                </tr>
+                <tr>
+                    <td>Top Customer</td>
+                    <td th:text="${userTopClient.contactFirstName} + ' ' + ${userTopClient.contactLastName} + ' with ' + ${userTopClient.companyName}"></td>
+                </tr>
+                <tr>
+                    <td>Unsubmitted Orders</td>
+                    <td th:text="${unsubmitted}"></td>
+                </tr>
+                <tr>
+                    <td>Sales this Month</td>
+                    <td th:text="${userSalesMonth}"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <!-- "Search by ____" dropdowns -->
-    <form class="form-inline">
-        <div class="form-group">
-            <select class="custom-select" id="searchParameters">
-                <option id="viewAllClients" selected>View All Clients</option>
-                <option id="clientId">Client ID</option>
-                <option id="companyName">Company Name</option>
-                <option id="contactLastName">Contact Last Name</option>
-                <!-- Display only for LST users -->
-                <option id="salesRepId" sec:authorize="hasRole('ROLE_ADMIN')">Sales Rep ID</option>
-            </select>
-        </div>
-        <div>
-            <select class="custom-select" id="searchQueries">
-                <option id ="defaultResult" selected disabled>--Select Result--</option>
-            </select>
-        </div>
-    </form>
-
-    
-    <!-- Client table -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Company Name</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Street Address</th>
-                <th>Unit #</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zip Code</th>
-                <th>Phone #</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <!-- JS adds clients here -->
-        </tbody>
-    </table>
-
-
+    <div class="allStats col-10">
+        <h2>
+            Braylon Media Stats
+        </h2>
+        <table class="table table-striped">
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Visits this Month</td>
+                    <td th:text="${allVisits}"></td>
+                </tr>
+                <tr>
+                    <td>Top Customer (Company)</td>
+                    <td th:text="${topCompany}"></td>
+                </tr>
+                <tr>
+                    <td>Top Customer (Contact)</td>
+                    <td th:text="${topClient.contactFirstName} + ' ' + ${topClient.contactLastName} + ' with ' + ${topClient.companyName}"></td>
+                </tr>
+                <tr>
+                    <td>Incomplete Orders</td>
+                    <td th:text="${incompletes}"></td>
+                </tr>
+                <tr>
+                    <td>Sales this Month</td>
+                    <td th:text="${allSalesMonth}"></td>
+                </tr>
+                <tr>
+                    <td>Top Sales Rep (# Visits)</td>
+                    <td th:text="${topUserVisits.firstName} + ' ' + ${topUserVisits.lastName}"></td>
+                </tr>
+                <tr>
+                    <td>Top Sales Rep (# Clients)</td>
+                    <td th:text="${topUserClients.firstName} + ' ' + ${topUserClients.lastName}"></td>
+                </tr>
+                <tr>
+                    <td>Top Sales Rep (Sales)</td>
+                    <td th:text="${topUserSales.firstName} + ' ' + ${topUserSales.lastName}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
@@ -114,7 +148,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
         </script>
-    <script src="/home.js"></script>
 
 </body>
 
