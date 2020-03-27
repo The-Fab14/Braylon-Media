@@ -101,7 +101,7 @@
             <canvas id="barGraph" width="400" height="200"></canvas>
         </div>
     </div>
-    <div class="allStats col-10">
+    <div class="allStats col-10" sec:authorize="hasRole('ROLE_ADMIN')">
         <h2>
             Braylon Media Stats
         </h2>
@@ -140,6 +140,32 @@
                 <tr>
                     <td>Top Sales Rep (Sales)</td>
                     <td th:text="${topUserSales.firstName} + ' ' + ${topUserSales.lastName}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="allStats col-10" sec:authorize="hasRole('ROLE_ADMIN')">
+        <h2>
+            Product Stats
+        </h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Sold This Month</th>
+                    <th>Sold This Year</th>
+                    <th>All-time Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.monthlySales}"></td>
+                    <td th:text="${product.yearlySales}"></td>
+                    <td th:text="${product.allSales}"></td>
                 </tr>
             </tbody>
         </table>
