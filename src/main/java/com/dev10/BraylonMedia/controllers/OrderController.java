@@ -122,8 +122,6 @@ public class OrderController {
             Client curr = clientService.findById(clientIdInt);
             if(curr.getUser().getUserId() != Integer.parseInt(userId))
             {
-                System.out.println(curr.getUser().getUserId() != Integer.parseInt(userId));
-                System.out.println(curr.getUser().getUserId() + " " + Integer.parseInt(userId));
                 Client newClient = new Client();
                 newClient.setCompanyName(curr.getCompanyName());
                 newClient.setContactFirstName(curr.getContactFirstName());
