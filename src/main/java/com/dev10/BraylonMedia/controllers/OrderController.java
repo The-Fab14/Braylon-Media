@@ -50,14 +50,16 @@ public class OrderController {
         User user = userService.getUserFromSession();
         model.addAttribute("customViolations", customViolations);
         model.addAttribute("clients", clientService.findAllByUserId(user.getUserId()));
+        model.addAttribute("allClients", clientService.findAll());
         model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("users", userService.findAll());
         return "add_new_order";
     }
 
     @PostMapping("/add_new_order")
     public String addCustomer(HttpServletRequest request, Model model, String dateSubmitted,
             String dateInstalled, String dateCompleted, String orderTotal,
-            String orderStatus, String orderComments, String clientId, String productId, String productQuantity) {
+            String orderStatus, String orderComments, String clientId, String productId, String productQuantity, String userId) {
 
         LocalDate dateSubmittedLocalDate;
         LocalDate dateInstalledLocalDate;
@@ -115,8 +117,30 @@ public class OrderController {
             customViolations.add("Product quantity format is incorrect.");
             return "redirect:/add_new_order";
         }
-
-        User userId = userService.getUserFromSession();
+        if(userId != null)
+        {
+            Client curr = clientService.findById(clientIdInt);
+            if(curr.getUser().getUserId() != Integer.parseInt(userId))
+            {
+                System.out.println(curr.getUser().getUserId() != Integer.parseInt(userId));
+                System.out.println(curr.getUser().getUserId() + " " + Integer.parseInt(userId));
+                Client newClient = new Client();
+                newClient.setCompanyName(curr.getCompanyName());
+                newClient.setContactFirstName(curr.getContactFirstName());
+                newClient.setContactLastName(curr.getContactLastName());
+                newClient.setAptUnit(curr.getAptUnit());
+                newClient.setCity(curr.getCity());
+                newClient.setEmailAddress(curr.getEmailAddress());
+                newClient.setPhoneNumber(curr.getPhoneNumber());
+                newClient.setState(curr.getState());
+                newClient.setStreetAddress(curr.getStreetAddress());
+                newClient.setZip(curr.getZip());
+                newClient.setUser(userService.findById(Integer.parseInt(userId)));
+                newClient = clientService.save(newClient);
+                clientIdInt = newClient.getClientId();
+            }
+        }
+        User user = userService.getUserFromSession();
         Order order = new Order();
         order.setDateSubmitted(dateSubmittedLocalDate);
         order.setDateInstalled(dateInstalledLocalDate);
