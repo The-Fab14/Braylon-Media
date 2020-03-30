@@ -160,6 +160,13 @@ public class OrderController {
                 }
             }
         } else if (user.getUserRole().equals("ROLE_ADMIN")) {
+            Order orderToDisplay = orderService.getOrder(orderIdInt);
+            List<Product> orderToDisplayProductList = orderToDisplay.getProducts();
+
+            for(Product productToDisplay: orderToDisplayProductList) {
+                int quantity = orderService.getOrderProductQuantity(orderIdInt, productToDisplay.getProductId());
+                productToDisplay.setOrderProductQuantity(quantity);
+            }            
             model.addAttribute("orders", orderService.getOrder(orderIdInt));
             violations.clear();
             return "edit_order";
